@@ -1,0 +1,3 @@
+<% link = post.links.first %>
+<%= link_to(content_tag(:span, truncate(post.caption, 100), :class => 'caption'), link.url, :class => 'caption') %>
+<span class="source">- <%= link_to(link.domain, link.url) %></span>

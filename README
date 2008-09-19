@@ -1,0 +1,27 @@
+== Kakuteru
+
+Is a Web 3.0 enabled Lifestreamer.
+
+== Installation
+
+1. Configure your config/database.yml.
+2. Start the rails server.
+3. Go to: http://url/dashboard/
+4. Make sure to configure your friendfeed_url
+5. To update the lifestream run: ./script/runner Post.update_from_friendfeed
+
+== Migrate from Mephisto
+
+Yes, Mephisto is dead baby!
+
+Setup your mephisto database in config/database.yml:
+
+migrate_from_mephisto:
+  adapter: mysql
+  database: mephisto_database
+  
+Run:
+
+./script/runner db/migrate/from_mephisto.rb # Dump all mephisto articles to ./articles.yml
+./script/runner db/migrate/from_mephisto.rb load_dump
+  

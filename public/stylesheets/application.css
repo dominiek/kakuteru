@@ -1,0 +1,301 @@
+
+body {
+	font-family: "Lucida Grande",Arial,Helvetica,sans serif;
+	font-size: 14px;
+}
+
+a,
+a:visited,
+a:hover {
+	color: #2c94e4;
+	outline: none;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+ul,li {
+	list-style-type: none;
+}
+
+/* Layout */
+
+.header {
+	background: #111;
+	height: 140px;
+	padding: 40px 0 0 0;
+}
+
+.header a {
+	display: block;
+	width: 376px;
+	height: 94px;
+	background: transparent url('/images/dominiek_logo.png') no-repeat;
+	text-indent: -3000px;
+	margin: 0 0 0 40px;
+}
+
+.main {
+	width: 1000px;
+	margin: 0 0 4em 0;
+}
+
+.stream {
+	float: left;
+	margin-left: 10px;
+	width: 735px
+}
+
+.latest_article {
+	float: right;
+	clear: both;
+	font-size: 20px;
+	margin: 1em;
+}
+
+.articles a, 
+.latest_article a {
+	color: #e97f2a;
+}
+
+.articles,
+.profiles {
+	float: left;
+	width: 245px;
+	margin-bottom: 1em;
+}
+
+.articles li,
+.profiles li {
+	margin: 0.6em 0;
+}
+
+.about {
+	background-color: #3C5978;
+	color: #fff;
+	height: 200px;
+	padding: 2em;
+	margin: 8em 0 0 0;
+}
+
+.about p,
+.about h2 {
+  margin-bottom: 0.8em;	
+}
+
+/* Stream */
+
+.posts {
+	margin: 1em 0;
+}
+
+
+.posts .caption_biggest {
+	font-size: 20px !important;
+}
+
+.posts li {
+	display: block;
+	float: left;
+	width: 207px;
+	height: 220px;
+	border: 1px solid #ccc;
+	margin: 1em 1em 4em 1em;
+}
+
+.posts .message {
+	border: none;
+}
+
+.posts .photo, 
+.posts .video {
+	background-color: #111;
+	color: #eee;
+  border: none;
+}
+
+.posts .video a.caption,
+.posts .photo a.caption {
+	color: #eee;
+	text-decoration: none;
+}
+
+.posts .photo span, 
+.posts .video span {
+ /* font-weight: bold;*/
+  font-size: 12px;
+  display: block;
+  height: 30px;
+	text-align: left;
+	margin: 10px;
+}
+
+.posts .photo img,
+.posts .video embed {
+  width: 207px;
+  height: 180px;
+}
+
+.posts .message span {
+	display: block;
+	background-color: #eef8f9;
+	border: 2px solid #bbeef1;
+	color: #333;
+	padding: 0.8em;
+	-moz-border-radius: 10px;
+}
+
+.posts li .info {
+  padding: 0.2em;
+	font-size: 12px;
+	color: #999;
+	text-align: center;
+}
+
+.posts li div.body {
+	height: 220px;
+}
+
+.posts .bookmark {
+	background: transparent url('/images/bookmark_bg.png') no-repeat 20px top;
+}
+
+.posts .bookmark div.body {
+  height: 200px;
+}
+
+.posts .bookmark .caption {
+	display: block;
+	color: #e97f2a;
+	font-size: 20px;
+	margin: 20px 0 0 10px;
+}
+
+.posts .bookmark a.caption {
+	color: #e97f2a;
+	text-decoration: none;
+}
+
+.posts .bookmark .source {
+  display: block;
+  margin: 20px 0 0 20px;	
+}
+
+/* Show the full view */
+
+.read .published {
+	float: right;
+	margin: 0 2em 0em 0;
+	font-style: italic;
+}
+
+.show .entry-content {
+	clear: both;
+}
+
+.show {
+	margin: 1em 0 4em 0;
+	padding: 0 1em;
+}
+
+.show h1 {
+	color: #e97f2a;
+}
+
+.show .video embed {
+  width: 500px;
+  height: 405px;
+  margin: 2em 0;
+}
+
+.show .photo img {
+  margin: 2em 0;
+  max-width: 700px;
+}
+
+.show .tags {
+	margin: 2em 0;
+}
+
+.show p,
+.show table,
+.show img {
+	margin-bottom: 0.8em;
+}
+
+.show .message span {
+	display: block;
+	font-size: 22px;
+	margin: 3em 0;
+}
+
+.show h1,
+.show h2,
+.show h3 {
+	margin: 0.8em 0;
+}
+
+.show ul {
+	margin: 1em 0;
+}
+
+.show li {
+	color: #333;
+	margin: 0.4em 0 0.6em 2em;
+}
+
+.related,
+.tags {
+	padding: 0 1em;
+	margin: 1em 0;
+}
+
+.related ul {
+	margin-left: 2em;
+}
+
+.related li {
+	margin: 0.4em 0;
+}
+
+.related_and_tags {
+	background-color: #eee;
+	margin-right: 1em;
+	margin-bottom: 2em;
+	padding: 1em 0;
+}
+
+.discussion {
+	padding: 0 1em;
+}
+
+.discussion h3 {
+	font-size: 20px;
+}
+
+.discussion .dsq-auth-header {
+	display: none;
+}
+
+a.more {
+	color: #2c94e4;
+}
+
+.share {
+	padding: 0 1em;
+}
+
+.share iframe {
+	width: 100px !important;
+}
+
+.share a.tweet_this {
+	background: url('/images/twitter.png') no-repeat left center;
+	display: block;
+	position: absolute;
+	text-indent: -3000;
+	width: 20px;
+	height: 20px;
+}

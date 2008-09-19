@@ -1,0 +1,8 @@
+<%= sized_caption(post.caption, read_url(:id => post)) %>
+<% if (media = post.medias.first) %>
+  <% if @post %>
+    <%= image_tag(media.embed_url.gsub(/_m\.jpg$/, '.jpg')) %>
+  <% else %>
+    <%= link_to(image_tag(media.embed_url), read_url(:id => post)) %>
+  <% end %>
+<% end %>

@@ -1,0 +1,21 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.clear {
+  clear:both;
+}
+
+.right {
+  float: right;
+}
+
+.left {
+  float: left;
+}
+
+.hide {
+	visibility: hidden;
+}

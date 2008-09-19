@@ -1,0 +1,12 @@
+<h1>Recent stream updates</h1>
+
+<ul>
+  <% @stream.posts.each do |post| %>
+    <li>
+      <span><%= link_to(post.caption, post.url) %></span>
+      <div>
+      <%= link_to('delete', post_url(:id => post), :method => :delete) %>
+      </div>
+    </li>
+  <% end %>
+</ul>

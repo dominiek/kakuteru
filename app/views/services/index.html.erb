@@ -1,0 +1,17 @@
+<h1>Services</h1>
+<% form_tag do %>
+  <ul class="services">
+    <% @stream.services.each do |service| %>
+      <li>
+        <div class="actions">
+        <%= check_box_tag("service_#{service.identifier}[is_enabled]", 'yes', service.is_enabled?) %>
+        </div>
+        <div class="info">
+        <%= image_tag(service.icon_url) %>
+        <span><%= link_to(service.name, service.profile_url) %></span>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+  <%= submit_tag('Toggle enabled services') %>
+<% end %>

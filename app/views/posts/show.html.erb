@@ -1,0 +1,75 @@
+
+<div class="read">
+
+  <abbr class="published" title="<%= @post.published_at.iso8601 %>"><%= distance_of_time_in_words_to_now(@post.published_at) %> ago</abbr>
+  <div class="share">
+    <%= link_to('Tweet this', "http://twitter.com/home/?status=" + CGI.escape("Check out: #{File.join(@stream.blog_url, File.join(request.request_uri))}"), :class => 'tweet_this') %>
+    <script type="text/javascript">
+    //digg_url = '<%= File.join(@stream.blog_url, File.join(request.request_uri)) %>';
+    digg_url = 'http://dominiek.com/';
+    digg_skin = 'compact';
+    digg_window = 'new';
+    </script>
+    <script src="http://digg.com/tools/diggthis.js" type="text/javascript"></script>
+    <% unless @stream.addthis_username.blank? %>
+      <a href="http://www.addthis.com/bookmark.php" onclick="window.open('http://www.addthis.com/bookmark.php?wt=nw&pub=<%= @stream.addthis_username %>&url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title), 'addthis', 'scrollbars=yes,menubar=no,width=620,height=520,resizable=yes,toolbar=no,location=no,status=no,screenX=200,screenY=100,left=200,top=100'); return false;" title="Bookmark and Share" target="_blank"><img src="http://s9.addthis.com/button1-addthis.gif" width="125" height="16" border="0" alt="Bookmark and Share" /></a>
+    <% end %>
+  </div>
+
+
+  <%= javascript_tag("disqus_url = 'http://dominiek.com/articles/2008/9/3/so-you-want-to-work-for-a-web-startup';") %>
+  <div class="hentry show <%= @post.tag_list.collect { |tag| "tag-#{tag}" }.join(' ') %>" rel="<%= @post.type.pluralize %>">
+    <abbr class="published hide" title="<%= @post.published_at.iso8601 %>"></abbr>
+    <div class="entry-content <%= @post.type %>">
+      <%= render(:partial => @post.type, :locals => {:post => @post}) %>
+    </div>
+    <div class="attribution">
+      <%= attribution_for(@post) %>
+    </div>
+  </div>
+
+  <div class="related_and_tags">
+    <% unless @post.tags.blank? %>
+    <div class="tags">
+      tags: <%= @post.tag_list.collect { |tag| link_to(tag, "/tag/#{tag}", :rel => 'tag directory', :class => "tag-#{tag}") }.join(', ') %>
+    </div>
+    <% end %>
+
+    <% if (related_posts = @post.related) && !related_posts.blank? %>
+      <div class="related">
+        related updates:
+        <ul>
+          <% related_posts.each do |post| %>
+            <li>[<%= post.type %>] <%= link_to(post.caption, read_url(:id => post)) %> <!-- <%= post.num_tag_matches %> tags matched --></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+
+  <% unless @stream.disqus_forum_identifier.blank? %>
+    <a name="comments"/>
+    <div class="discussion">
+      <div id="disqus_thread"></div>
+      <noscript><a href="http://<%= @stream.disqus_forum_identifier %>.disqus.com/?url=ref">View the discussion thread.</a></noscript>
+      <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+      <% content_for(:foot) do %>
+        <script type="text/javascript" src="http://disqus.com/forums/<%= @stream.disqus_forum_identifier %>/embed.js"></script>
+        <script type="text/javascript">
+
+          function load_json(url) {
+          	var script = document.createElement( 'script' );
+          	script.type = 'text/javascript';
+          	script.src = url;
+          	document.getElementsByTagName('head')[0].appendChild( script );
+          }
+    
+          var thread = $('disqus_thread');
+          thread.insertBefore($('dsq-comments-count'), thread.firstChild);
+    
+        </script>
+      <% end %>
+    </div>
+  <% end %>
+
+</div>

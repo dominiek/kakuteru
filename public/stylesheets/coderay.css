@@ -1,0 +1,110 @@
+/********************
+ +Coderay
+*********************/
+
+.CodeRay {
+  background-color: #000;
+  border: 1px solid silver;
+  font-family: Monaco;
+  font-size: 11pt;
+  color: #eee;
+  margin-top: 0.2em;
+}
+.CodeRay pre { margin: 0px }
+
+div.CodeRay { }
+
+span.CodeRay { white-space: pre; border: 0px; padding: 2px }
+
+table.CodeRay { border-collapse: collapse; width: 100%; padding: 2px }
+table.CodeRay td { padding: 2px 4px; vertical-align: top }
+
+.CodeRay .line_numbers, .CodeRay .no {
+  background-color: #dedede;
+  color: #a6a6a6;
+  text-align: right;
+}
+.CodeRay .line_numbers tt { font-weight: bold }
+.CodeRay .no { padding: 0px 4px }
+.CodeRay .code { width: 100% }
+
+ol.CodeRay { font-size: 10pt }
+ol.CodeRay li { white-space: pre }
+
+.CodeRay .code pre { overflow: auto }
+
+.CodeRay .af { }
+.CodeRay .an { }
+.CodeRay .av { }
+.CodeRay .aw { }
+.CodeRay .bi { }
+.CodeRay .c  { }
+
+.CodeRay .ch { }
+.CodeRay .ch .k { }
+.CodeRay .ch .dl { }
+
+.CodeRay .cl { color:#6bb4ff; }
+.CodeRay .co { color:#9b8598; }
+.CodeRay .cr { }
+.CodeRay .cv { }
+.CodeRay .df { }
+.CodeRay .di { }
+.CodeRay .dl { }
+.CodeRay .do { }
+.CodeRay .ds { }
+.CodeRay .e  { }
+.CodeRay .en { }
+.CodeRay .er { }
+.CodeRay .ex { }
+.CodeRay .fl { }
+.CodeRay .fu { color:#6bb4ff; }
+.CodeRay .gv { }
+.CodeRay .hx { }
+.CodeRay .i  { }
+.CodeRay .ic { }
+
+.CodeRay .il { color: #dae78f; }
+.CodeRay .il .il {  }
+.CodeRay .il .il .il { }
+.CodeRay .il .dl { }
+
+.CodeRay .in { }
+.CodeRay .iv { }
+.CodeRay .la { }
+.CodeRay .lv { }
+.CodeRay .oc { }
+.CodeRay .on { }
+.CodeRay .op { }
+.CodeRay .pc { color:#3e87e3 }
+.CodeRay .pd { }
+.CodeRay .pp { }
+.CodeRay .pt { }
+.CodeRay .r  { color: #e28550; }
+
+.CodeRay .rx { }
+.CodeRay .rx .k { }
+.CodeRay .rx .dl { }
+.CodeRay .rx .mod { }
+.CodeRay .rx .fu  { }
+
+.CodeRay .s  { color: #53ad42 }
+.CodeRay .s  .s { }
+.CodeRay .s  .s  .s { }
+.CodeRay .s  .k { }
+.CodeRay .s  .dl { }
+
+.CodeRay .sh { }
+.CodeRay .sh .k { }
+.CodeRay .sh .dl { }
+
+.CodeRay .sy { color:#3e87e3 }
+.CodeRay .sy .k { }
+.CodeRay .sy .dl { }
+
+.CodeRay .ta { }
+.CodeRay .tf { }
+.CodeRay .ts { }
+.CodeRay .ty { }
+.CodeRay .v  { }
+.CodeRay .xt { }

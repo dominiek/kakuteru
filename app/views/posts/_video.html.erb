@@ -1,0 +1,4 @@
+<%= sized_caption(post.caption, read_url(:id => post)) %>
+<% if (media = post.medias.first) %>
+  <embed src="<%= media.embed_url %>" type="application/x-shockwave-flash" allowfullscreen="true"></embed>
+<% end %>

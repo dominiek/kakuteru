@@ -1,0 +1,113 @@
+
+
+.navigation {
+	height: 70px;
+	background-color: #111;
+}
+
+.navigation span a {
+	background: transparent url('/images/kakuteru.png') no-repeat left 10px;
+	display: block;
+	float: left;
+	padding: 25px;
+	text-indent: 50px;
+  color: #eee;
+	font-size: 25px;
+	width: 200px;
+}
+
+.navigation ul {
+	float: right;
+	padding: 10px;
+}
+
+ul,li {
+	list-style-type: none;
+}
+
+.navigation li {
+	float: left;
+	display: block;
+	margin: 1em 1em;
+}
+
+.page {
+	margin: 2em;
+}
+
+.page h1 {
+	margin: 1em 0;
+}
+
+.settings input[type=checkbox],
+input[type=text],
+input[type=password],
+input[type=submit],
+textarea,
+select {
+	font-size: 20px;
+	border: #333 1px solid;
+	padding: 4px;
+}
+
+input[type=text],
+textarea {
+	width: 500px;
+}
+
+.write input[type="text"],
+.write textarea {
+	width: 700px;
+}
+
+form input,
+.settings form label,
+form select {
+	display: block;
+	margin: 0 0 10px 0;
+	padding: 4px;
+	font-size: 18px;
+}
+
+.settings form p span {
+	float: left;
+}
+
+.settings form .stream_filter label {
+	width: 200px;
+}
+
+.settings form label {
+	float: left;
+	margin-right: 2em;
+	width: 160px;
+}
+
+.settings div {
+	clear: both;
+}
+
+
+
+form p {
+	clear: both;
+}
+
+.services li {
+	border-bottom: 1px dotted #333;
+	padding: 1em 0;
+	margin: 1em 0;
+}
+
+.services li .actions {
+	float: left;
+	clear: both;
+	margin-right: 2em;
+}
+
+.services li .info {
+}
+
+.services li input {
+	display: inline;
+}
