@@ -1,12 +1,15 @@
-<h1>Recent stream updates</h1>
 
-<ul>
-  <% @stream.posts.each do |post| %>
-    <li>
-      <span><%= link_to(post.caption, post.url) %></span>
-      <div>
-      <%= link_to('delete', post_url(:id => post), :method => :delete) %>
-      </div>
-    </li>
-  <% end %>
-</ul>
+<div class="manage">
+
+  <h1>Recent stream updates</h1>
+
+  <ul>
+    <% @posts.each do |post| %>
+      <li>
+        <%= link_to(post.is_deleted? ? 'undelete' : 'delete', url_for(:controller => :dashboard, :action => :toggle, :id => post), :method => :delete, :class => 'toggle') %>
+        <span><%= link_to(post.caption, post.url) %></span>
+      </li>
+    <% end %>
+  </ul>
+
+</div>

@@ -1,6 +1,12 @@
-== Kakuteru
+= Kakuteru
 
 Is a Web 3.0 enabled Lifestreamer.
+
+== Dependencies
+
+- gem install will_paginate
+- gem install xml-simple
+- gem install mechanize
 
 == Installation
 

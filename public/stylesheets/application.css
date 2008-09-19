@@ -85,6 +85,18 @@ ul,li {
   margin-bottom: 0.8em;	
 }
 
+.pagination {
+	margin: 2em 1em;
+	display: block;
+	clear: both;
+	font-size: 18px;
+}
+
+.pagination .prev_page,
+.pagination .next_page {
+	display: none;
+}
+
 /* Stream */
 
 .posts {
@@ -181,6 +193,24 @@ ul,li {
 .posts .bookmark .source {
   display: block;
   margin: 20px 0 0 20px;	
+}
+
+/* Archive */
+
+.archive {
+	margin: 1em;
+}
+
+.archive ul {
+  margin: 1em 0;
+}
+
+.archive li.month {
+ font-size: 20px;	
+}
+
+.archive li {
+	margin: 0.6em 0;	
 }
 
 /* Show the full view */

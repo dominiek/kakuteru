@@ -24,6 +24,12 @@ class DashboardController < ApplicationController
     end  
   end
   
+  def toggle
+    @post = Post.find(params[:id])
+    @post.update_attribute(:is_deleted, !@post.is_deleted?)
+    redirect_to(manage_stream_url)
+  end
+  
   private
   
   def login_success

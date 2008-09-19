@@ -87,8 +87,6 @@ form select {
 	clear: both;
 }
 
-
-
 form p {
 	clear: both;
 }
@@ -110,4 +108,10 @@ form p {
 
 .services li input {
 	display: inline;
+}
+
+.manage li a.toggle {
+	display: block;
+	float: left;
+	margin: 0 1em 0 0;
 }

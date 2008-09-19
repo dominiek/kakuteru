@@ -54,6 +54,8 @@ ActionController::Routing::Routes.draw do |map|
     m.connect '/articles/:year/:month/:day/:permalink', :action => 'show', :requirements => {:year => /\d+/, :month => /\d+/, :day => /\d+/}
     m.articles_feed '/articles.:format', :action => 'articles'
     m.stream_feed '/stream.:format'
+    m.by_tag '/archive', :action => 'archive'
+    m.by_tag '/tag/:tag_name', :action => 'index'
     m.post '/:id', :action => 'show', :requirements => {:id => /.+/}
     m.posts '/', :action => 'index'
   end

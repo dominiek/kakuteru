@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_filter :require_authentication, :except => [:index, :show]
+  before_filter :require_authentication, :except => [:index, :show, :archive]
   
   def show
     if params[:permalink]
@@ -16,6 +16,10 @@ class PostsController < ApplicationController
       @post.auto_tag! if @post.tag_list.blank?
     end
     render(:layout => 'dashboard')
+  end
+  
+  def archive
+    @posts = @stream.posts.find(:all, :include => [:service], :conditions => ["services.identifier = 'articles'"])
   end
   
   def new
@@ -43,11 +47,18 @@ class PostsController < ApplicationController
   end
   
   def index
-    @posts = @stream.posts.find(:all, :limit => 12)
+    if params[:tag_name].blank?
+      #
+      @posts = Post.paginate(:all, :per_page => 12, :page => params[:page], :conditions => ["is_deleted IS false"])
+      #@posts = @stream.posts.paginate(:all, :limit => 12)
+    else
+      @posts = Post.find_tagged_with(params[:tag_name], :conditions => 'is_draft IS FALSE AND is_deleted IS FALSE', :limit => 12)
+    end
     respond_to(:html, :rss, :atom)
   end
   
   def manage
+    @posts = Post.find(:all, :include => [:service], :conditions => ["services.identifier != 'articles'"], :order => 'posts.id DESC')
     render(:layout => 'dashboard')
   end
   

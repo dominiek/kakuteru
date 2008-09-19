@@ -1,3 +1,8 @@
+
+<% unless params[:tag_name].blank? %>
+  <h1>Updates tagged with <%= h(params[:tag_name]) %></h1>
+<% end %>
+
 <ul class="posts">
   <% @posts.each do |post| 
        next unless post.type
@@ -18,3 +23,5 @@
     </li>
   <% end %>
 </ul>
+
+<%= will_paginate @posts %>
