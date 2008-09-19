@@ -1,0 +1,20 @@
+
+<div class="archive">
+  
+  <h1>Archive</h1>
+  
+  <% if @posts.blank? %>
+    <p>No articles published yet.</p>
+  <% else %>
+    <% last_month = nil %>
+    <ul>
+      <% @posts.each do |post| %>
+        <% if ((month = post.published_at.strftime("%Y, %B")) && month != last_month) %>
+          <li class="month"><%= month %></li>
+          <% last_month = month %>
+        <% end %>
+        <li><%= link_to(post.caption, read_url(:id => post)) %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
