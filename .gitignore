@@ -1,21 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-  <key>content</key>
-  <string>.DS_Store
-log/*.log
-tmp/**/*
+log/*
+tmp/*
 config/database.yml
-doc/api
-doc/app
+config/app_config.yml
+config/*.sphinx.conf
 db/*.sqlite3
-db/schema.rb</string>
-  <key>name</key>
-  <string>gitignore</string>
-  <key>tabTrigger</key>
-  <string>gitignore</string>
-  <key>uuid</key>
-  <string>49BA6AB7-798A-483B-92C4-C951DDB6F8A5</string>
-</dict>
-</plist>
+db/sphinx
+vendor/plugins/rspec*
+public/assets
