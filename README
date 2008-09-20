@@ -2,6 +2,34 @@
 
 Is a Web 3.0 enabled Lifestreamer.
 
+== Background
+
+For my blog, I have been using Mephisto for several years now. It's a fine piece of Ruby, but I found it extremely difficult to customize (has everything to do with their Liquid templating engine). For a while now I've been meaning to write my own hackable blogging software. Kakuteru is however much more than just blogging software.
+
+Luckily I started mashing this together after witnessing an awesome presentation by Yongfook. He developed Sweetcron, an open source Lifestreamer written in PHP. Sweetcron beautifully combines online micro activity with editorial blogging content. As you will notice, I ripped off Yongfook's design almost completely (hence the attribution in the footer). Although greatly inspired by, Kakuteru is not just the Rails version of Sweetcron. Kakuteru is focussed on:
+- integrating Semantic and intelligent services
+- improving Machine readability by supporting micro- and nanoformats
+- keeping in mind SEO by conforming to web standards, pinging blog aggregators and inviting social bookmarking
+
+Basic Features:
+- Uses friendfeed.com as a core lifestream backend (tweets, video, photo and bookmarks currently supported)
+- Uses Disqus.com to support comments on articles & stream updates
+- Articles can be written using Textile, Markdown or HTML
+- Published articles will display Tweet-this, Digg and Addthis.com if voting is enabled
+- "Me on other sites" are automatically gathered from Friendfeed
+
+Semantic Features
+- Autotagging of tweets and articles using Zemanta.com
+- Related articles & tweets are shown for each entry
+
+Microformats supported:
+
+Nanoformats supported:
+
+
+
+
+
 == Dependencies
 
 - gem install will_paginate

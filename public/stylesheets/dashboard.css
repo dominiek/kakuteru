@@ -110,8 +110,9 @@ form p {
 	display: inline;
 }
 
-.manage li a.toggle {
+li span.actions {
 	display: block;
 	float: left;
 	margin: 0 1em 0 0;
+	width: 100px;
 }

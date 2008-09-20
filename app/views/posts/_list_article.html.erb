@@ -1,5 +1,7 @@
 <li>
+  <span class="actions">
+    <%= link_to('edit', edit_post_url(:id => list_article), :class => 'edit') %> · 
+    <%= link_to('delete', delete_post_url(:id => list_article), :class => 'delete', :confirm => 'Are you sure to delete this article?') %>
+  </span>
   <%= list_article.caption %>
-  <%= link_to('edit', edit_post_url(:id => list_article), :class => 'edit') %>
-  <%= link_to('delete', '#', :class => 'delete') %>
 </li>

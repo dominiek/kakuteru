@@ -18,6 +18,12 @@ class PostsController < ApplicationController
     render(:layout => 'dashboard')
   end
   
+  def delete
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to(manage_articles_url)
+  end
+  
   def archive
     @posts = @stream.posts.find(:all, :include => [:service], :conditions => ["services.identifier = 'articles'"])
   end

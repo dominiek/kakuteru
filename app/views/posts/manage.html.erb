@@ -6,8 +6,10 @@
   <ul>
     <% @posts.each do |post| %>
       <li>
-        <%= link_to(post.is_deleted? ? 'undelete' : 'delete', url_for(:controller => :dashboard, :action => :toggle, :id => post), :method => :delete, :class => 'toggle') %>
-        <span><%= link_to(post.caption, post.url) %></span>
+        <span class="actions">
+          <%= link_to(post.is_deleted? ? 'undelete' : 'delete', url_for(:controller => :dashboard, :action => :toggle, :id => post), :method => :delete, :class => 'toggle') %>
+        </span>
+        <%= link_to(post.caption, read_url(:id => post)) %>
       </li>
     <% end %>
   </ul>

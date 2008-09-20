@@ -47,6 +47,7 @@ ActionController::Routing::Routes.draw do |map|
     m.manage_articles '/dashboard/articles', :action => 'articles'
     m.new_post '/dashboard/articles/write', :action => 'new'
     m.edit_post 'dashboard/edit/:id', :action => 'edit'
+    m.delete_post 'dashboard/delete/:id', :action => 'delete'
     
     map.connect 'dashboard/:action/:id', :controller => 'dashboard'
     
