@@ -7,3 +7,4 @@ db/*.sqlite3
 db/sphinx
 vendor/plugins/rspec*
 public/assets
+.DS_Store
