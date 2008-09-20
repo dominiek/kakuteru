@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080918110844) do
+ActiveRecord::Schema.define(:version => 20080916093733) do
 
   create_table "links", :force => true do |t|
     t.integer  "post_id"
@@ -50,9 +50,10 @@ ActiveRecord::Schema.define(:version => 20080918110844) do
     t.integer  "stream_id"
     t.string   "name"
     t.string   "identifier"
-    t.string   "profile_url"
     t.string   "icon_url"
-    t.boolean  "is_enabled",  :default => true, :null => false
+    t.string   "profile_url"
+    t.string   "profile_image_url"
+    t.boolean  "is_enabled",        :default => true, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -84,19 +85,6 @@ ActiveRecord::Schema.define(:version => 20080918110844) do
 
   create_table "tags", :force => true do |t|
     t.string "name"
-  end
-
-  create_table "user_images", :force => true do |t|
-    t.integer  "parent_id"
-    t.string   "content_type"
-    t.string   "filename"
-    t.string   "thumbnail"
-    t.integer  "size"
-    t.integer  "width"
-    t.integer  "height"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "user_id"
   end
 
 end

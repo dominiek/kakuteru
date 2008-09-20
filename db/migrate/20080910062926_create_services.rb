@@ -4,8 +4,9 @@ class CreateServices < ActiveRecord::Migration
       t.integer :stream_id
       t.string :name
       t.string :identifier
-      t.string :profile_url
       t.string :icon_url
+      t.string :profile_url
+      t.string :profile_image_url
       t.boolean :is_enabled, :default => true, :null => false
       t.timestamps
     end
