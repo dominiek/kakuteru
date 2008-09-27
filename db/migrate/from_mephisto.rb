@@ -3,7 +3,7 @@ posts = []
 dump_file = 'articles.yml'
 
 
-if ARGV.first != 'load_dump'
+unless ARGV.include?('load_dump')
   # Step 1, dump mephisto articles
   ActiveRecord::Base.establish_connection(ActiveRecord::Base.configurations['migrate_from_mephisto'])
   ActiveRecord::Migration.rename_column(:contents, :type, :content_type)
