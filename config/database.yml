@@ -4,7 +4,6 @@ development:
   adapter: mysql
   database: tentacle_development
   timeout: 5000
-  encoding: utf8
   
 
 # Warning: The database defined as "test" will be erased and
@@ -14,16 +13,13 @@ test:
   adapter: mysql
   database: kakuteru_test
   timeout: 5000
-  encoding: utf8
   
 production:
   adapter: mysql
   database: dominiek_kakuteru
   timeout: 5000
-  encoding: utf8
   
 migrate_from_mephisto:
   adapter: mysql
   database: mephisto_dodo
-  encoding: utf8
   
