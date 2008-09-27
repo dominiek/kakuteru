@@ -8,6 +8,10 @@
   clear:both;
 }
 
+.clearleft {
+  clear:left;
+}
+
 .right {
   float: right;
 }

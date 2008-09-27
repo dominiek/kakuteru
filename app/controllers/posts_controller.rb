@@ -55,7 +55,7 @@ class PostsController < ApplicationController
   def index
     if params[:tag_name].blank?
       #
-      @posts = Post.paginate(:all, :per_page => 12, :page => params[:page], :conditions => ["is_deleted IS false"])
+      @posts = Post.paginate(:all, :per_page => 12, :page => params[:page], :conditions => ["is_deleted IS false"], :order => 'created_at DESC')
       #@posts = @stream.posts.paginate(:all, :limit => 12)
     else
       @posts = Post.find_tagged_with(params[:tag_name], :conditions => 'is_draft IS FALSE AND is_deleted IS FALSE', :limit => 12)
@@ -66,6 +66,15 @@ class PostsController < ApplicationController
   def manage
     @posts = Post.find(:all, :include => [:service], :conditions => ["services.identifier != 'articles'"], :order => 'posts.id DESC')
     render(:layout => 'dashboard')
+  end
+  
+  def media
+    @media_posts = Post.paginate(:all, 
+                                 :per_page => 12, 
+                                 :page => params[:page], 
+                                 :include => [:medias],
+                                 :conditions => ["is_deleted IS false AND medias.id IS NOT NULL"], 
+                                 :order => 'posts.created_at DESC')
   end
   
 end

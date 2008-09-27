@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20080916093733) do
     t.string   "permalink"
     t.string   "markup"
     t.text     "body"
+    t.text     "summary"
     t.datetime "published_at"
     t.boolean  "is_deleted",   :default => false, :null => false
     t.boolean  "is_draft",     :default => false, :null => false
@@ -65,10 +66,13 @@ ActiveRecord::Schema.define(:version => 20080916093733) do
     t.string   "subtitle"
     t.string   "author"
     t.string   "friendfeed_url"
+    t.string   "feedburner_feed_url"
     t.string   "addthis_username"
     t.string   "disqus_forum_identifier"
     t.boolean  "filter_message_without_space"
     t.string   "filter_tag"
+    t.string   "default_markdown"
+    t.string   "about"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

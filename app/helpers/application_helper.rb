@@ -56,6 +56,18 @@ module ApplicationHelper
     end
   end
   
+  def thumbnail(post)
+    #return image_tag('dodo.jpg')
+    service = post.service
+    if post.type == 'photo'
+      image_tag(post.medias.first.thumbnail_url)
+    elsif !service.profile_image_url.blank?
+      image_tag(service.profile_image_url)
+    else
+      image_tag("#{post.type}.png")
+    end
+  end
+  
   def markup_nanoformats(post)
     match = post.service.profile_url.to_s.match(/http:\/\/([^\/]+)\//)
     service_base_url = match[1]

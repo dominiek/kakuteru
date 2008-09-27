@@ -26,46 +26,18 @@
         <a class="fn org url" href="<%= request.request_uri %>"><%= @stream.author %></a>
       </div>
     </div>
-    <div class="main">
-      <% if (article = @stream.articles.find(:all, :limit => 1).first) %>
-        <div class="latest_article">
-          New article! <%= link_to(article.caption, post_url(:id => article)) %>
-        </div>
-      <% end %>
-      <div class="hfeed stream">
-        <%= yield %>
-      </div>
-      <div class="articles">
-        <h3>Previous articles</h3>
-        <ul>
-          <% @stream.articles.find(:all, :limit => 10).each_with_index do |article,i| 
-               next if i == 0
-            %>
-            <li><%= link_to(article.caption, read_url(:id => article)) %></li>
-          <% end %>
-          <li><%= link_to('more...', archive_url, :class => 'more') %></li>
-        </ul>
-      </div>
-      <div class="profiles">
-        <h3>Me elsewhere</h3>
-        <ul>
-          <% @stream.services.public.each do |service|
-            %>
-            <li><%= link_to("#{image_tag(service.icon_url)} #{service.name}", service.profile_url, :rel => 'me') %></li>
-          <% end %>
-          <li><%= link_to('more...', "http://google.com?q=#{CGI.escape(@stream.author.to_s)}", :class => 'more') %></li>
-        </ul>
-      </div>
-    </div>
+    <%= yield %>
     
     <div class="clear"></div>
     <div class="about">
-      <h2>About</h2>
-      <p>I'm a <%= ((Time.now - Time.mktime(1986, 7, 5, 15, 0)) / 1.year).round %> year old Web Developer who is currently engaged in RubyOnRails consulting.  
+      <div class="inner">
+        <h2>About</h2>
+        <p>I'm a <%= ((Time.now - Time.mktime(1986, 7, 5, 15, 0)) / 1.year).round %> year old Web Developer who is currently engaged in RubyOnRails consulting.  
          Apart from obsessing about many technology related topics, I enjoy traveling and international life. 
-         Already I am manifesting my passion in many entrepreneurial activities, but soon I will start doing this full time.</p>
-      <p>All content on this blog is available under the <a href="http://creativecommons.org/licenses/by/3.0/" rel="license">Creative Commons Attribution 3.0 License</a>.</p>
-      <%= yield(:foot) %>
+         In the coming months I intend to boost up my entrepreneurial activities, so stay tuned!</p>
+        <p>All content on this blog is available under the <a href="http://creativecommons.org/licenses/by/3.0/" rel="license">Creative Commons Attribution 3.0 License</a>. Dominiek.com is running <a href="http://kakuteru.com/">Kakuteru</a> a new 3.0 enabled lifestreamer. Design and interaction inspired by <a href="http://yongfook">Yonfook's Sweetcron</a>. Most icons used are by <a href="http://sweetie.sublink.ca/">Joseph North</a>.</p>
+      </div>
     </div>
+    <%= yield(:foot) %>
   </body>
 </html>

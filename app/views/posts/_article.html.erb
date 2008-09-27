@@ -1,4 +1,6 @@
 <% if @post %>
   <h1><%= post.caption %></h1>
   <p><%= markup(post) %></p>
+<% else %>
+  <%= sized_caption(post.caption, read_url(:id => post)) %>
 <% end %>

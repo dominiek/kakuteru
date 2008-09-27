@@ -26,7 +26,7 @@ class Post < ActiveRecord::Base
     permalink!
   end
   
-  def self.update_from_friendfeed
+  def self.fetch_from_friendfeed
     friendfeed = Friendfeed.new(Stream.current.friendfeed_url)
     friendfeed.fetch do |entry|
       puts entry.title

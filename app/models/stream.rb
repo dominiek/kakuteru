@@ -10,6 +10,12 @@ class Stream < ActiveRecord::Base
     :conditions => "is_deleted IS FALSE AND is_draft IS TRUE  AND services.identifier = 'articles'", 
     :order => 'posts.created_at DESC', 
     :class_name => 'Post'
+  has_many :media_posts,
+    :include => [:medias],
+    :conditions => "is_deleted IS FALSE AND medias.id IS NOT NULL", 
+    :order => 'posts.created_at', 
+    :class_name => 'Post',
+    :limit => 4
   has_many :services do
     def public(options = {})
       find(:all, options.merge(:conditions => "is_enabled IS TRUE AND identifier != 'blog'"))

@@ -2,7 +2,7 @@
 <% if (media = post.medias.first) %>
   <% if @post %>
     <%= image_tag(media.embed_url.gsub(/_m\.jpg$/, '.jpg')) %>
-  <% else %>
+  <% elsif local_assigns[:context] == 'media' %>
     <%= link_to(image_tag(media.embed_url), read_url(:id => post)) %>
   <% end %>
 <% end %>

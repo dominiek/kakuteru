@@ -8,6 +8,7 @@ class CreatePosts < ActiveRecord::Migration
       t.string :permalink
       t.string :markup
       t.text :body
+      t.text :summary
       t.datetime :published_at
       t.boolean :is_deleted, :default => false, :null => false
       t.boolean :is_draft, :default => false, :null => false

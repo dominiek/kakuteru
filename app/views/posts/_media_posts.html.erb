@@ -1,0 +1,12 @@
+<% unless media_posts.blank? %>
+  <div class="media summary">
+    <div class="inner">
+      <%= link_to('more media', '/media', :class => 'more') %>
+      <h2>Recent Media</h2>
+      <ul>
+        <%= render(:partial => 'media_post', :collection => media_posts) %>
+      </ul>
+      <div class="clear"></div>
+    </div>
+  </div>
+<% end %>

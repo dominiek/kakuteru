@@ -23,7 +23,7 @@ ul,li {
 /* Layout */
 
 .header {
-	background: #111;
+	background: #111 url('/images/background.png') no-repeat right 20px;
 	height: 140px;
 	padding: 40px 0 0 0;
 }
@@ -37,47 +37,19 @@ ul,li {
 	margin: 0 0 0 40px;
 }
 
-.main {
-	width: 1000px;
-	margin: 0 0 4em 0;
-}
-
-.stream {
-	float: left;
-	margin-left: 10px;
-	width: 735px
-}
-
-.latest_article {
-	float: right;
-	clear: both;
-	font-size: 20px;
-	margin: 1em;
-}
-
-.articles a, 
-.latest_article a {
-	color: #e97f2a;
-}
-
-.articles,
-.profiles {
-	float: left;
-	width: 245px;
-	margin-bottom: 1em;
-}
-
-.articles li,
-.profiles li {
-	margin: 0.6em 0;
-}
-
 .about {
-	background-color: #3C5978;
+	/*background-color: #3C5978;*/
+	background-color: #333;
 	color: #fff;
 	height: 200px;
-	padding: 2em;
 	margin: 8em 0 0 0;
+	width: 100%;
+}
+
+.about .inner {
+	width: 920px;
+	margin: 2em auto;
+	padding-top: 2em;
 }
 
 .about p,
@@ -97,45 +69,129 @@ ul,li {
 	display: none;
 }
 
-/* Stream */
+.details {
+	font-size: 11px;
+	color: #999;
+	text-align: left;
+}
 
-.posts {
+/* Articles */
+
+div.articles {
+	width: 920px;
+	margin: 2em auto;
+}
+
+.latest_article {
+	float: left;
+	width: 43%;
+	padding: 2em 2em 0 2em;
+}
+
+.latest_article p {
+	margin: 0.4em 0;
+}
+
+.previous_articles {
+	float: left;
+	width: 43%;
+	padding: 2em 2em 0 2em;
+	border-left: 1px dashed #999;
+}
+
+.previous_articles h3 {
+	margin-bottom: 0.8em;
+}
+
+.previous_articles a.article {
+	font-size: 16px;
+}
+
+.previous_articles .details {
+	margin-top: 4px;
+}
+
+div.articles li {
+	margin: 0.4em 0;
+}
+
+div.articles a.article {
+	color: #e97f2a;
+}
+
+div.articles a.more {
+	color: #2c94e4;
+}
+div.articles a.read.more {
+	display: block;
+	margin-top: 1em;
+}
+
+div.articles a.more.articles {
+	display: block;
 	margin: 1em 0;
 }
 
+div.articles a.feedburner {
+	display: block;
+	float: right;
+	margin-top: -0.2em;
+}
 
-.posts .caption_biggest {
+/* Media */
+
+.media.summary {
+	width: 100%;
+	background-color: #ddd;
+}
+
+.media.summary h2 {
+	text-align: left;
+	margin-left: 10px;
+}
+
+.media .caption_biggest {
 	font-size: 20px !important;
 }
 
-.posts li {
+.media.summary .inner {
+	width: 920px;
+	margin: 2em auto;
+	padding-top: 1em;
+	/*padding: 2em 0 1em 0;*/
+	text-align: center;
+	height: 300px;
+}
+
+.media li {
 	display: block;
 	float: left;
 	width: 207px;
 	height: 220px;
 	border: 1px solid #ccc;
-	margin: 1em 1em 4em 1em;
+	margin: 10px;
 }
 
-.posts .message {
-	border: none;
+.media li.body {
+	float: left;
+	margin: 1em;
 }
 
-.posts .photo, 
-.posts .video {
+.media .photo, 
+.media .video {
 	background-color: #111;
 	color: #eee;
   border: none;
 }
 
-.posts .video a.caption,
-.posts .photo a.caption {
+.media .video a.caption,
+.media .photo a.caption {
 	color: #eee;
 	text-decoration: none;
 }
 
-.posts .photo span, 
-.posts .video span {
+.media .photo span, 
+.media .video span {
  /* font-weight: bold;*/
   font-size: 12px;
   display: block;
@@ -144,61 +200,109 @@ ul,li {
 	margin: 10px;
 }
 
-.posts .photo img,
-.posts .video embed {
+.media .photo img,
+.media .video embed {
   width: 207px;
   height: 180px;
 }
 
-.posts .message span {
-	display: block;
-	background-color: #eef8f9;
-	border: 2px solid #bbeef1;
-	color: #333;
-	padding: 0.8em;
-	-moz-border-radius: 10px;
-}
-
-.posts li .info {
-  padding: 0.2em;
-	font-size: 12px;
-	color: #999;
+.media .details {
 	text-align: center;
+	margin-top: 0.4em;
 }
 
-.posts li div.body {
-	height: 220px;
-}
-
-.posts .bookmark {
-	background: transparent url('/images/bookmark_bg.png') no-repeat 20px top;
-}
-
-.posts .bookmark div.body {
-  height: 200px;
-}
-
-.posts .bookmark .caption {
+.media a.more {
 	display: block;
-	color: #e97f2a;
-	font-size: 20px;
-	margin: 20px 0 0 10px;
+	float: right;
+	margin: 5px 20px 0 0;
 }
 
-.posts .bookmark a.caption {
-	color: #e97f2a;
-	text-decoration: none;
+.media.all {
+	width: 920px;
+	margin: 2em auto;
 }
 
-.posts .bookmark .source {
-  display: block;
-  margin: 20px 0 0 20px;	
+.media.all h1 {
+	margin: 0 10px;
+}
+
+/* Stream panels */
+
+.tagcloud h3,
+.profiles h3 {
+	margin-bottom: 0.8em;
+}
+
+.tagcloud {
+	float: left;
+	word-spacing: 5px;left;
+	width: 300px;
+	padding: 1em;
+}
+
+.profiles {
+	float: left;
+	width: 300px;
+	padding: 1em;
+}
+
+.profiles li {
+  margin-bottom: 1em;	
+}
+
+.profiles .more {
+}
+
+/* Stream */
+
+.stream_and_context {
+	width: 920px;
+	margin: 2em auto;
+	padding: 0 10px;
+}
+
+.stream {
+	width: 500;
+	float: left;
+	margin: 0 2em 0 10px;
+}
+
+.stream li {
+	border-bottom: 1px dashed #999;
+	padding: 15px 5px;
+}
+
+.stream li:hover {
+	background-color: #F7F7F7;
+}
+
+.stream .icon img {
+	width: 48px;
+}
+
+.stream .icon {
+	float: left;
+	height: 48px;
+}
+
+.stream div.body {
+	margin-left: 60px;
+}
+
+.stream .details {
+	margin-left: 60px;
+	margin-top: 6px;
+}
+
+.stream ul {
+	margin-bottom: 4em;
 }
 
 /* Archive */
 
 .archive {
-	margin: 1em;
+	width: 920px;
+	margin: 2em auto;
 }
 
 .archive ul {
@@ -214,6 +318,11 @@ ul,li {
 }
 
 /* Show the full view */
+
+.read {
+	width: 920px;
+	margin: 2em auto;
+}
 
 .read .published {
 	float: right;
@@ -276,10 +385,22 @@ ul,li {
 	margin: 0.4em 0 0.6em 2em;
 }
 
+.tags label {
+	display: block;
+	float: left;
+	background: url('/images/icons/24-tag-hot.png') no-repeat left center;
+	text-indent: -3000;
+	width: 30px;
+}
+
 .related,
 .tags {
 	padding: 0 1em;
 	margin: 1em 0;
+}
+
+.related {
+	margin-bottom: 2em;
 }
 
 .related ul {
@@ -301,6 +422,7 @@ ul,li {
 	padding: 0 1em;
 }
 
+.related h3,
 .discussion h3 {
 	font-size: 20px;
 }
@@ -329,3 +451,4 @@ a.more {
 	width: 20px;
 	height: 20px;
 }
+

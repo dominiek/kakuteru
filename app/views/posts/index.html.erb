@@ -1,27 +1,76 @@
 
-<% unless params[:tag_name].blank? %>
-  <h1>Updates tagged with <%= h(params[:tag_name]) %></h1>
+<% unless params[:tag_name] %>
+  <%= render(:partial => 'articles', :locals => {:articles => @stream.articles.find(:all, :limit => 4)}) %>
+  <%= render(:partial => 'media_posts', :locals => {:media_posts => @stream.media_posts}) %>
 <% end %>
 
-<ul class="posts">
-  <% @posts.each do |post| 
-       next unless post.type
-    %>
-    <li class="hentry <%= post.type %>" rel="<%= post.type.pluralize %>">
-      <div class="entry-content body">
-        <%= render(:partial => post.type, :locals => {:post => post}) %>
-      </div>
-      <div class="info">
-        <abbr class="published" title="<%= post.published_at.iso8601 %>"><%= distance_of_time_in_words_to_now(post.published_at) %> ago</abbr>
-        ·
-        <% unless @stream.disqus_forum_identifier.blank? %>
-          <%= link_to(pluralize(0, 'comment'), read_url(:id => post), :rel => 'bookmark url') %>
-        <% end %>
-        <address class="hide vcard author"><a class="url fn" href="<%= @stream.blog_url %>"><%= @stream.author %></a></address>
-        
-      </div>
-    </li>
-  <% end %>
-</ul>
+<div class="stream_and_context">
+  <div class="hfeed stream">
+    <% if params[:tag_name] %>
+      <h2>Updates tagged with <%= h(params[:tag_name]) %></h2>
+    <% else %>
+      <h2>Recent Activity</h2>
+    <% end %>
+    <ul class="posts">
+      <% @posts.each do |post| 
+           next unless post.type
+        %>
+        <li class="hentry <%= post.type %>" rel="<%= post.type.pluralize %>">
+          <%= content_tag(:div, link_to(thumbnail(post), read_url(:id => post)), :class => 'icon') %>
+            <div class="entry-content body">
+              <%= render(:partial => post.type, :locals => {:post => post}) %>
+            </div>
+            <div class="details">
+              <abbr class="published" title="<%= post.published_at.iso8601 %>"><%= distance_of_time_in_words_to_now(post.published_at) %> ago</abbr>
+              <% service_icon = post.service.icon_url.blank? ? '' : image_tag(post.service.icon_url, :width => '12px')+' ' %>
+              from <%= link_to("#{service_icon}#{post.service.name}", post.service.profile_url, :rel => 'me') %>
+              ·
+              <% unless @stream.disqus_forum_identifier.blank? %>
+                <%= link_to(pluralize(0, 'comment'), read_url(:id => post) + '#comments', :rel => 'bookmark url') %>
+              <% end %>
+              <address class="hide vcard author"><a class="url fn" href="<%= @stream.blog_url %>"><%= @stream.author %></a></address>
+            </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  
+  <div class="tagcloud">
+    <h3>Tags</h3>
+    <% Tag.counts(:limit => 40, :order => 'count DESC').sort{ |t1,t2| t1.name <=> t2.name }.each do |tag| %>
+      <%= link_to(tag.name, by_tag_url(:tag_name => tag.name), :class => 'tag', :rel => 'tag')%>
+    <% end %>
+  </div>
+  
+  
+  <div class="profiles">
+    <h3>Me elsewhere</h3>
+    <ul>
+      <% @stream.services.public.each do |service|
+        %>
+        <li><%= link_to("#{image_tag(service.icon_url)} #{service.name}", service.profile_url, :rel => 'me') %></li>
+      <% end %>
+      <li><%= link_to("#{image_tag('google.gif')} Google", "http://google.com?q=#{CGI.escape(@stream.author.to_s)}") %></li>
+    </ul>
+  </div>
+  
+  <%= will_paginate(@posts) if @posts.respond_to?(:total_pages) %>
+</div>
 
-<%= will_paginate @posts %>
+<% content_for(:foot) do %>
+  <script type="text/javascript">
+  //<![CDATA[
+  (function() {
+  		var links = document.getElementsByTagName('a');
+  		var query = '?';
+  		for(var i = 0; i < links.length; i++) {
+  			if(links[i].href.indexOf('#comments') >= 0) {
+  				query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+  			}
+  		}
+  		document.write('<script type="text/javascript" src="http://disqus.com/forums/<%= @stream.disqus_forum_identifier %>/get_num_replies.js' + query + '"></' + 'script>');
+  	})();
+  //]]>
+  </script>
+<% end %>
+ 

@@ -1,11 +1,12 @@
 
 <div class="read">
-
-  <abbr class="published" title="<%= @post.published_at.iso8601 %>"><%= distance_of_time_in_words_to_now(@post.published_at) %> ago</abbr>
+  <abbr class="published" title="<%= @post.published_at.iso8601 %>">
+    <%= distance_of_time_in_words_to_now(@post.published_at) %> ago
+  </abbr>
   <div class="share">
-    <%= link_to('Tweet this', "http://twitter.com/home/?status=" + CGI.escape("Check out: #{File.join(@stream.blog_url, File.join(request.request_uri))}"), :class => 'tweet_this') %>
+    <%= link_to('Tweet this', "http://twitter.com/home/?status=" + CGI.escape("Check out: #{File.join(@stream.blog_url.to_s, File.join(request.request_uri.to_s))}"), :class => 'tweet_this') %>
     <script type="text/javascript">
-    //digg_url = '<%= File.join(@stream.blog_url, File.join(request.request_uri)) %>';
+    //digg_url = '<%= File.join(@stream.blog_url.to_s, File.join(request.request_uri.to_s)) %>';
     digg_url = 'http://dominiek.com/';
     digg_skin = 'compact';
     digg_window = 'new';
@@ -31,21 +32,21 @@
   <div class="related_and_tags">
     <% unless @post.tags.blank? %>
     <div class="tags">
-      tags: <%= @post.tag_list.collect { |tag| link_to(tag, "/tag/#{tag}", :rel => 'tag directory', :class => "tag-#{tag}") }.join(', ') %>
+      <label for="tags">tags</label> <%= @post.tag_list.collect { |tag| link_to(tag, "/tag/#{tag}", :rel => 'tag directory', :class => "tag-#{tag}") }.join(', ') %>
     </div>
     <% end %>
-
-    <% if (related_posts = @post.related) && !related_posts.blank? %>
-      <div class="related">
-        related updates:
-        <ul>
-          <% related_posts.each do |post| %>
-            <li>[<%= post.type %>] <%= link_to(post.caption, read_url(:id => post)) %> <!-- <%= post.num_tag_matches %> tags matched --></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
   </div>
+  
+  <% if (related_posts = @post.related) && !related_posts.blank? %>
+    <div class="related">
+      <h3>Related Content</h3>
+      <ul>
+        <% related_posts.each do |post| %>
+          <li>[<%= post.type %>] <%= link_to(post.caption, read_url(:id => post)) %> <!-- <%= post.num_tag_matches %> tags matched --></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
   <% unless @stream.disqus_forum_identifier.blank? %>
     <a name="comments"/>
