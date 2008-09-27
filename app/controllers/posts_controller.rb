@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_filter :require_authentication, :except => [:index, :show, :archive, :articles]
+  before_filter :require_authentication, :except => [:index, :show, :archive, :articles, :media]
   
   def show
     if params[:permalink]

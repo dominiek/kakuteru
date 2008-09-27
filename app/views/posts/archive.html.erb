@@ -16,3 +16,7 @@
     </ul>
   <% end %>
 </div>
+
+<% content_for(:foot) do %>
+  <%= render(:partial => 'services/enable_disqus_comments')%>
+<% end %>

@@ -6,7 +6,7 @@
     <abbr class="published" title="<%= media_post.published_at.iso8601 %>"><%= distance_of_time_in_words_to_now(media_post.published_at) %> ago</abbr>
     ·
     <% unless @stream.disqus_forum_identifier.blank? %>
-      <%= link_to(pluralize(0, 'comment'), read_url(:id => media_post) + '#comments', :rel => 'bookmark url') %>
+      <%= link_to(pluralize(0, 'comment'), read_url(:id => media_post) + '#disqus_thread', :rel => 'bookmark url') %>
     <% end %>
     <address class="hide vcard author"><a class="url fn" href="<%= @stream.blog_url %>"><%= @stream.author %></a></address>
   </div>

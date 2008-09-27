@@ -47,7 +47,7 @@
   <% end %>
 
   <% unless @stream.disqus_forum_identifier.blank? %>
-    <a name="comments"/>
+    <a name="disqus_thread"/>
     <div class="discussion">
       <div id="disqus_thread"></div>
       <noscript><a href="http://<%= @stream.disqus_forum_identifier %>.disqus.com/?url=ref">View the discussion thread.</a></noscript>

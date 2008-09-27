@@ -5,3 +5,8 @@
   </ul>
 </div>
 <%= will_paginate(@media_posts) %>
+
+
+<% content_for(:foot) do %>
+  <%= render(:partial => 'services/enable_disqus_comments')%>
+<% end %>

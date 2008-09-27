@@ -26,7 +26,7 @@
               from <%= link_to("#{service_icon}#{post.service.name}", post.service.profile_url, :rel => 'me') %>
               ·
               <% unless @stream.disqus_forum_identifier.blank? %>
-                <%= link_to(pluralize(0, 'comment'), read_url(:id => post) + '#comments', :rel => 'bookmark url') %>
+                <%= link_to(pluralize(0, 'comment'), read_url(:id => post) + '#disqus_thread', :rel => 'bookmark url') %>
               <% end %>
               <address class="hide vcard author"><a class="url fn" href="<%= @stream.blog_url %>"><%= @stream.author %></a></address>
             </div>
@@ -58,19 +58,6 @@
 </div>
 
 <% content_for(:foot) do %>
-  <script type="text/javascript">
-  //<![CDATA[
-  (function() {
-  		var links = document.getElementsByTagName('a');
-  		var query = '?';
-  		for(var i = 0; i < links.length; i++) {
-  			if(links[i].href.indexOf('#comments') >= 0) {
-  				query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
-  			}
-  		}
-  		document.write('<script type="text/javascript" src="http://disqus.com/forums/<%= @stream.disqus_forum_identifier %>/get_num_replies.js' + query + '"></' + 'script>');
-  	})();
-  //]]>
-  </script>
+  <%= render(:partial => 'services/enable_disqus_comments')%>
 <% end %>
  
