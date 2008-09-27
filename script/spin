@@ -1,0 +1,1 @@
+mongrel_rails cluster::start -C /www/apps/dominiek/current/config/mongrel_cluster.yml
