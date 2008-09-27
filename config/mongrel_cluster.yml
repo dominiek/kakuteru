@@ -1,5 +1,5 @@
 ---
-cwd: /www/apps/dominiek/current
+cwd: /www/apps/dominiek_kakuteru/current
 log_file: log/mongrel.log
 port: "7000"
 environment: production
