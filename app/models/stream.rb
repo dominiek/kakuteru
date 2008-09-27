@@ -13,7 +13,7 @@ class Stream < ActiveRecord::Base
   has_many :media_posts,
     :include => [:medias],
     :conditions => "is_deleted IS FALSE AND medias.id IS NOT NULL", 
-    :order => 'posts.created_at', 
+    :order => 'posts.published_at DESC', 
     :class_name => 'Post',
     :limit => 4
   has_many :services do
