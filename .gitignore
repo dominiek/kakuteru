@@ -8,3 +8,5 @@ db/sphinx
 vendor/plugins/rspec*
 public/assets
 .DS_Store
+config/deploy.rb
+Capfile
