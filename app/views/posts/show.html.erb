@@ -6,8 +6,7 @@
   <div class="share">
     <%= link_to('Tweet this', "http://twitter.com/home/?status=" + CGI.escape("Check out: #{File.join(@stream.blog_url.to_s, File.join(request.request_uri.to_s))}"), :class => 'tweet_this') %>
     <script type="text/javascript">
-    //digg_url = '<%= File.join(@stream.blog_url.to_s, File.join(request.request_uri.to_s)) %>';
-    digg_url = 'http://dominiek.com/';
+    digg_url = '<%= File.join(@stream.blog_url.to_s, File.join(request.request_uri.to_s)) %>';
     digg_skin = 'compact';
     digg_window = 'new';
     </script>

@@ -18,6 +18,7 @@ class CreateStreams < ActiveRecord::Migration
     end
     Stream.create(:password => 'dodo', 
                   :friendfeed_url => 'http://friendfeed.com/api/feed/user/dominiek?format=xml',
+                  :blog_url => 'http://dev.dominiek.com/',
                   :feedburner_feed_url => 'http://feeds.feedburner.com/dominiek',
                   :title => 'Dominiek', 
                   :subtitle => 'Web, technology and startups', 
