@@ -37,6 +37,12 @@ ul,li {
 	margin: 0 0 0 40px;
 }
 
+.about a.license {
+	display: block;
+	float: left;
+	margin: 0.2em 1em 1em 0;
+}
+
 .about {
 	/*background-color: #3C5978;*/
 	background-color: #333;
