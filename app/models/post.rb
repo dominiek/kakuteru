@@ -78,6 +78,8 @@ class Post < ActiveRecord::Base
     case self.service.identifier
       when 'youtube'
         'video'
+      when 'vimeo'
+        'video'
       when 'twitter'
         'message'
       when 'delicious'

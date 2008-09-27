@@ -5,6 +5,7 @@
     <p><label for="tags">Tags:</label> <small>Leave empty for auto-tagging</small> <%= text_field(:post, :tag_list) %></p>
     <% unless @post.new_record? %>
       <p>Draft? <%= check_box(:post, :is_draft) %></p>
+      <p><label for="summary">Summary:</label> <%= text_field(:post, :summary) %></p>
     <% end %>
     <p>Enable Tweet, Digg and Addthis? <%= check_box(:post, :is_votable) %></p>
     <p><%= select(:post, :markup, Post::SUPPORTED_MARKUP_FORMATS) %></p>

@@ -32,6 +32,7 @@ sudo gem install will_paginate
 sudo gem install xml-simple
 sudo gem install mechanize
 sudo gem install BlueCloth
+sudo gem install mofo
 
 == Installation
 
@@ -65,3 +66,5 @@ Run:
 * Icons for updates (related)
 * Flickr Thumbnail size
 * Vimeo support check
+* Graphs
+* Dopplr integration
