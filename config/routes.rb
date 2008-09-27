@@ -56,7 +56,7 @@ ActionController::Routing::Routes.draw do |map|
     m.articles_feed '/articles.:format', :action => 'articles'
     m.stream_feed '/stream.:format'
     m.by_tag '/tag/:tag_name', :action => 'index'
-    m.by_tag '/media', :action => 'media'
+    m.media '/media', :action => 'media'
     m.post '/:id', :action => 'show', :requirements => {:id => /.+/}
     m.posts '/', :action => 'index'
   end
