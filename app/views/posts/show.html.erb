@@ -17,7 +17,6 @@
   </div>
 
 
-  <%= javascript_tag("disqus_url = 'http://dominiek.com/articles/2008/9/3/so-you-want-to-work-for-a-web-startup';") %>
   <div class="hentry show <%= @post.tag_list.collect { |tag| "tag-#{tag}" }.join(' ') %>" rel="<%= @post.type.pluralize %>">
     <abbr class="published hide" title="<%= @post.published_at.iso8601 %>"></abbr>
     <div class="entry-content <%= @post.type %>">
@@ -56,14 +55,6 @@
       <% content_for(:foot) do %>
         <script type="text/javascript" src="http://disqus.com/forums/<%= @stream.disqus_forum_identifier %>/embed.js"></script>
         <script type="text/javascript">
-
-          function load_json(url) {
-          	var script = document.createElement( 'script' );
-          	script.type = 'text/javascript';
-          	script.src = url;
-          	document.getElementsByTagName('head')[0].appendChild( script );
-          }
-    
           var thread = $('disqus_thread');
           thread.insertBefore($('dsq-comments-count'), thread.firstChild);
     
