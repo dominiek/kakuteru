@@ -7,7 +7,7 @@ xml.rss('version' => '2.0',
     xml.title("#{@stream.title} - #{@stream.subtitle}")
     xml.description("#{@stream.subtitle}")
     xml.link(@stream.blog_url)
-    xml.tag!('atom:link', :href => File.join(@stream.blog_url, File.join(request.request_uri), :rel => 'self', :type => 'application/rss+xml')
+    xml.tag!('atom:link', :href => File.join(@stream.blog_url.to_s, File.join(request.request_uri.to_s)), :rel => 'self', :type => 'application/rss+xml')
     xml.pubDate(@articles.first.published_at.to_s(:rfc822)) if @articles.first
     xml.generator(APPLICATION_NAME)
     @articles.each do |article|

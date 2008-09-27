@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_filter :require_authentication, :except => [:index, :show, :archive]
+  before_filter :require_authentication, :except => [:index, :show, :archive, :articles]
   
   def show
     if params[:permalink]
@@ -47,6 +47,7 @@ class PostsController < ApplicationController
       format.rss
       format.atom
       format.html do
+        require_authentication
         render(:layout => 'dashboard')
       end
     end

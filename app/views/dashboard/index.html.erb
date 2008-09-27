@@ -5,6 +5,7 @@
   <% form_tag do %>
     <div>
       <p><label for="password" title="Need this to get in.">Password: </label><%= password_field(:stream, :password) %></p>
+      <p><label for="blog_url" title="URL of this blog.">Blog URL: </label><%= text_field(:stream, :blog_url) %></p>
       <p><label for="title" title="Will be used for SEO and in the title $title - $subtitle.">Title: </label><%= text_field(:stream, :title) %></p>
       <p><label for="subtitle" title="Will be used for SEO and in the title $title - $subtitle.">Subtitle: </label><%= text_field(:stream, :subtitle) %></p>
       <p><label for="author" title="Used for feeds and for microformats.">Your name: </label><%= text_field(:stream, :author) %></p>

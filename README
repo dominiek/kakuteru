@@ -28,9 +28,10 @@ Nanoformats supported:
 
 == Dependencies
 
-- gem install will_paginate
-- gem install xml-simple
-- gem install mechanize
+sudo gem install will_paginate
+sudo gem install xml-simple
+sudo gem install mechanize
+sudo gem install BlueCloth
 
 == Installation
 
@@ -52,6 +53,7 @@ migrate_from_mephisto:
   
 Run:
 
+# Make backup first
 ./script/runner db/migrate/from_mephisto.rb # Dump all mephisto articles to ./articles.yml
 ./script/runner db/migrate/from_mephisto.rb load_dump
   

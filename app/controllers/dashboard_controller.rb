@@ -24,6 +24,11 @@ class DashboardController < ApplicationController
     end  
   end
   
+  def logout
+    session[:authenticated] = false
+    redirect_to(:action => :login)
+  end
+  
   def toggle
     @post = Post.find(params[:id])
     @post.update_attribute(:is_deleted, !@post.is_deleted?)

@@ -9,5 +9,4 @@ vendor/plugins/rspec*
 public/assets
 .DS_Store
 config/deploy.rb
-config/mongrel_cluster.yml
 Capfile
