@@ -1,7 +1,10 @@
 * {
   margin: 0;
   padding: 0;
-  border: 0;
+}
+
+img,table,div,td,tr {
+	border: 0;
 }
 
 .clear {

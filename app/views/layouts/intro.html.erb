@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <title>Kakuteru - Semantic-Web enabled Lifestreaming, Your Style.</title>
+    <%= stylesheet_link_tag('html') %>
+    <%= stylesheet_link_tag('intro') %>
+    <%= javascript_include_tag(:defaults) %>
+    <meta name="generator" content="<%= APPLICATION_NAME %>" />
+    <meta name="description" content="<%= @stream.subtitle %>" />
+    <meta name="keywords" content="<%= @stream.subtitle %>" />
+    <meta name="robots" content="index, follow" />
+    <meta name="GOOGLEBOT" content="index, follow" />
+    <meta name="MSSmartTagsPreventParsing" content="yes" />
+    <meta http-equiv="expires" content="3600" />
+    <%= yield(:head) %>
+  </head>
+  
+  <body>
+    <div class="header">
+      <%= link_to('Kakuteru', '/') %>
+    </div>
+    <div class="main">
+      <%= yield %>
+    </div>
+    <%= yield(:foot) %>
+  </body>
+</html>

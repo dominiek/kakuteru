@@ -1,0 +1,110 @@
+
+body {
+	background-color: #111;
+	font-family: "Lucida Grande",Arial,Helvetica,sans serif;
+	font-size: 14px;
+	color: #333;
+}
+
+a {
+	color: #777;
+	text-decoration: none;
+}
+
+ul {
+	margin-left: 1em;
+	list-style-type: square;
+}
+
+.header a {
+	background: url('/images/kakuteru.png') no-repeat left bottom;
+	display: block;
+	float: left;
+	height: 70px;
+	width: 300px;
+	text-indent: -3000;
+}
+
+.header {
+	background: url('/images/shaken_not_stirred.png') no-repeat right 42px;
+	height: 70px;
+	width: 700px;
+	margin: 0px auto 0 auto;
+}
+
+.main {
+	background-color: #fff;
+	width: 700px;
+	min-height: 400px;
+	margin: 0 auto 4em auto;
+}
+
+.one_liner {
+	text-align: center;
+	height: 100px;
+	width: 100%;
+	padding-top: 40px;
+}
+
+.one_liner span {
+	display: block;
+	font-size: 24px;
+	color: #333;
+	text-align: center;
+}
+
+.facts {
+	padding: 2em 2em;
+	font-size: 18px;
+}
+
+li {
+	margin: 0.4em 0;
+}
+
+.semantic_web {
+	padding: 2em 2em 1em 2em;
+	color: #ddd;
+	background-color: #333;
+}
+
+.semantic_web ul {
+	margin: 0;
+	list-style-type: none;
+}
+
+.semantic_web a {
+	color: #777;
+}
+.semantic_web span {
+	float: right;
+	font-size: 12px;
+}
+
+.notice {
+	margin:  2em 0;
+	padding-top: 1em;
+	font-size: 20px;
+	color: #699742;
+}
+
+.invite {
+	margin: 0 2em;
+	padding: 0 0 2em 0;
+}
+
+.invite h3 {
+	font-size: 20px;
+}
+
+.invite p {
+	margin: 0.4em 0;
+}
+
+.invite input {
+	font-size: 20px;
+}
+
+.invite form {
+	padding: 2em 0;
+}

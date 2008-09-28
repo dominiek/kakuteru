@@ -1,0 +1,43 @@
+<!--<div class="one_liner">
+  <span>Semantic-web enabled Lifestreaming, Your Style.</span>
+</div>-->
+<div class="facts">
+  <div>
+    <ul>
+      <li>combining <%= link_to('Friendfeed', 'http://friendfeed.com/') %> and blogging</li>
+      <li>to market yourself better</li>
+      <li>inspired by <%= link_to("Yongfook's Sweetcron", 'http://yongfook.com/') %></li>
+      <li>use your own domain and control all the styling</li>
+      <li>support for social voting services like <%= link_to('Digg') %> and <%= link_to('Addthis') %></li>
+      <li>integrates with <%= link_to('Feedburner') %>, <%= link_to('Disqus') %>, <%= link_to('Dopplr') %>, etc.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="invite">
+  <h3>Private beta invite</h3>
+  <p>An early prototype is running at <%= link_to('Dominiek.com') %>, but soon Kakuteru will be available as a private beta.</p>
+  <% unless flash[:notice] %>
+    <% form_tag(invite_url) do %>
+      <label for="invite_email">E-mail: </label>
+      <%= text_field(:invite, :email) %>
+      <%= submit_tag('Invite me soon!') %>
+    <% end %>
+  <% else %>
+    <p class="notice"><%= flash[:notice]%></p>
+  <% end %>
+</div>
+
+
+<div class="semantic_web">
+  <h3>Semantic Web ready!</h3>
+  <ul>
+    <li>conforming to many Web Standards, <%= link_to('Microformats') %> and <%= link_to('Nanoformats') %></li>
+    <li>pinging the Blogosphere through <%= link_to('Technorati') %> and many others</li>
+    <li>integrates with <%= link_to('Zemanta') %> to facilitate auto-tagging</li>
+    <li>built-in content recommender system<li>
+    <li>providing attention data in <%= link_to('APML') %> format</li>
+  </ul>
+  <span><%= link_to("Want to get involved?", "http://github.com/dominiek/kakuteru/tree") %></span>
+  <div class="clear"></div>
+</div>

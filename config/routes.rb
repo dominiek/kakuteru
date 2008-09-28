@@ -41,6 +41,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :services
   
+=begin # Make this for subdomains
   map.with_options(:controller => 'posts') do |m|
     m.archive '/archive', :action => 'archive'
     m.manage_stream '/dashboard/stream', :action => 'manage'
@@ -60,8 +61,11 @@ ActionController::Routing::Routes.draw do |map|
     m.post '/:id', :action => 'show', :requirements => {:id => /.+/}
     m.posts '/', :action => 'index'
   end
+=end
   #map.resources :posts, :collection => {:manage => :get, :archive => :get}
   
+  map.intro '/', :controller => 'intro'
+  map.invite '/invite', :controller => 'intro', :action => 'invite'
 
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should

@@ -9,7 +9,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080916093733) do
+ActiveRecord::Schema.define(:version => 20080928113744) do
+
+  create_table "invites", :force => true do |t|
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "links", :force => true do |t|
     t.integer  "post_id"
@@ -89,6 +95,14 @@ ActiveRecord::Schema.define(:version => 20080916093733) do
 
   create_table "tags", :force => true do |t|
     t.string "name"
+  end
+
+  create_table "trips", :force => true do |t|
+    t.string   "destination"
+    t.datetime "travel_starts_at"
+    t.datetime "travel_ends_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

@@ -1,0 +1,2 @@
+module IntroHelper
+end
