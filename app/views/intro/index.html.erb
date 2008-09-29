@@ -16,7 +16,7 @@
 
 <div class="invite">
   <h3>Private beta invite</h3>
-  <p>An early prototype is running at <%= link_to('Dominiek.com') %>, but soon Kakuteru will be available as a private beta.</p>
+  <p>An early prototype is running at <%= link_to('Dominiek.com', 'http://dominiek.com/') %>, but soon Kakuteru will be available as a private beta.</p>
   <% unless flash[:notice] %>
     <% form_tag(invite_url) do %>
       <label for="invite_email">E-mail: </label>
