@@ -16,12 +16,12 @@
 
 <div class="invite">
   <h3>Private beta invite</h3>
-  <p>An early prototype is running at <%= link_to('Dominiek.com', 'http://dominiek.com/') %>, but soon Kakuteru will be available as a private beta.</p>
+  <p>An early prototype is running at <%= link_to('Dominiek.com', 'http://dominiek.com/') %>, but soon Kakuteru will be available for you too! We will email you as soon as we are in private beta testing.</p>
   <% unless flash[:notice] %>
     <% form_tag(invite_url) do %>
       <label for="invite_email">E-mail: </label>
       <%= text_field(:invite, :email) %>
-      <%= submit_tag('Invite me soon!') %>
+      <%= submit_tag('Sign me up!') %>
     <% end %>
   <% else %>
     <p class="notice"><%= flash[:notice]%></p>
