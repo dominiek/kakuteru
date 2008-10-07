@@ -2,7 +2,7 @@
   <div class="articles summary">
     <div class="latest_article">
       <h2><%= link_to(articles.first.caption, read_url(:id => articles.first), :class => 'article') %></h2>
-      <%= articles.first.summary.blank? ? truncate_html(markup(articles.first).to_s, 244, '') : articles.first.summary %>
+      <%= articles.first.summary.blank? ? truncate_html(markup(articles.first).to_s, 244, '') : markup(articles.first, :summary) %>
       <%= link_to('read full article', read_url(:id => articles.first), :class => 'read more') %>
     </div>
     <div class="previous_articles">

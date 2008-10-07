@@ -40,16 +40,16 @@ module ApplicationHelper
     end
   end
   
-  def markup(post)
+  def markup(post, field = :body)
     case post.type
       when 'article'
         case post.markup
           when 'textile'
-            FilteredColumn::Processor.new('textile_filter', post.body).filter
+            FilteredColumn::Processor.new('textile_filter', post.send(field)).filter
           when 'markdown'
-            FilteredColumn::Processor.new('markdown_filter', post.body).filter
+            FilteredColumn::Processor.new('markdown_filter', post.send(field)).filter
           else
-            post.body
+            post.send(field)
         end
       when 'message'
         markup_nanoformats(post)

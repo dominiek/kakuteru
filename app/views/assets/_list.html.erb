@@ -1,0 +1,5 @@
+<div class="assets">
+  <h2>Attachments</h2>
+  <ul id="assets"><%= render(:partial => 'assets/asset', :collection => Asset.find(:all, :limit => 10)) %></ul>
+  <%= render(:partial => 'assets/form') %>
+</div>

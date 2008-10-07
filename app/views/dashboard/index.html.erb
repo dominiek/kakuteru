@@ -12,7 +12,7 @@
       <p><label for="friendfeed_url" title="Core backend of the lifestream feed must be in XML, eg: http://friendfeed.com/api/feed/user/dominiek?format=xml">Friendfeed URL: </label><%= text_field(:stream, :friendfeed_url) %></p>
       <p><label for="addthis_username" title="If set, will be used for voting mechanism next to digg and twitter.">Addthis.com user: </label><%= text_field(:stream, :addthis_username) %></p>
       <p><label for="disqus_forum_identifier" title="If set, will be used to provide commenting by Disqus.com">Disqus forum identifier: </label><%= text_field(:stream, :disqus_forum_identifier) %></p>
-      <p><label for="feedburner_feed_url" title="Make sure to set /articles.rss as your FeedBurner source!">Feedburner Feed URL: </label><%= text_field(:stream, :feedburner_feed_url) %></p>
+      <p><label for="feedburner_feed_url" title="Make sure to set /articles.atom as your FeedBurner source!">Feedburner Feed URL: </label><%= text_field(:stream, :feedburner_feed_url) %></p>
     </div>
     <div class="clear"></div>
     <h2>Stream filter</h2>

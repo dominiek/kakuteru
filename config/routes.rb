@@ -40,6 +40,7 @@ ActionController::Routing::Routes.draw do |map|
   #map.connect '/archive', :controller => 'posts', :method => :archive
   
   map.resources :services
+  map.resources :assets
   
   map.with_options(:controller => 'posts') do |m|
     m.archive '/archive', :action => 'archive'

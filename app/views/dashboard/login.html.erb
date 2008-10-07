@@ -1,12 +1,14 @@
 
-<% unless @stream.password %>
-  <h1>Set a password</h1>
-<% else %>
-  <h1>Open Sesame</h1>
-<% end %>
+<div class="login">
+  <% unless @stream.password %>
+    <h2>Set a password</h2>
+  <% else %>
+    <h2>Open Sesame</h2>
+  <% end %>
 
-<% form_tag do %>
-  <%= error_message_on(@stream, :password) %>
-  <%= password_field_tag(:password) %>
-  <%= submit_tag('Remember me!') %>
-<% end %>
+  <% form_tag do %>
+    <%= error_message_on(@stream, :password) %>
+    <%= password_field_tag(:password) %>
+    <%= submit_tag('Remember me!') %>
+  <% end %>
+</div>
