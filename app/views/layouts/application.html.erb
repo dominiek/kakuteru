@@ -35,12 +35,7 @@
     <div class="clear"></div>
     <div class="about">
       <div class="inner">
-        <h2>About</h2>
-        <p>I'm a <%= ((Time.now - Time.mktime(1986, 7, 5, 15, 0)) / 1.year).round %> year old Web Developer who is currently engaged in RubyOnRails consulting.  
-         Apart from obsessing about many technology related topics, I enjoy traveling and international life. 
-         In the coming months I intend to boost up my entrepreneurial activities, so stay tuned!</p>
-         <a rel="license" class="license" href="http://creativecommons.org/licenses/by/3.0/nl/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/nl/88x31.png" /></a>
-        <p>All content on this blog is available under the <a href="http://creativecommons.org/licenses/by/3.0/" rel="license">Creative Commons Attribution 3.0 License</a>. Dominiek.com is running <a href="http://github.com/dominiek/kakuteru/tree">Kakuteru</a> a new Semantic-Web enabled lifestreamer. Design and interaction inspired by <a href="http://yongfook.com/">Yonfook's Sweetcron</a>. Most icons used are by <a href="http://sweetie.sublink.ca/">Joseph North</a>.</p>
+        <%= @stream.footer %>
       </div>
     </div>
     <%= yield(:foot) %>

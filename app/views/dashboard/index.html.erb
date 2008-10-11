@@ -21,6 +21,9 @@
       <p><label for="filter_message_without_space" title="Only show tweets that are prefixed with a ' ' whitespace">'Tweets with space': </label> <%= check_box(:stream, :filter_message_without_space) %></p>
       <p><label for="filter_tag" title="Only show updates that are tagged or #hashtagged with this tag.">Only tagged: </label><%= text_field(:stream, :filter_tag) %></p>
     </div>
+    
+    <h2>Footer</h2>
+    <%= text_area(:stream, :footer) %>
     <%= submit_tag('save') %>
   <% end %>
 </div>

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080929112620) do
+ActiveRecord::Schema.define(:version => 20081011094404) do
 
   create_table "assets", :force => true do |t|
     t.integer  "post_id"
@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(:version => 20080929112620) do
     t.string   "about"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "footer"
   end
 
   create_table "taggings", :force => true do |t|
