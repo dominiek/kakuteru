@@ -183,6 +183,7 @@ div.articles a.feedburner {
 	margin: 1em;
 }
 
+.media .slide,
 .media .photo, 
 .media .video {
 	background-color: #111;
@@ -190,13 +191,15 @@ div.articles a.feedburner {
   border: none;
 }
 
+.media .slide a.caption,
 .media .video a.caption,
 .media .photo a.caption {
 	color: #eee;
 	text-decoration: none;
 }
 
-.media .photo span, 
+.media .slide span,
+.media .photo span,
 .media .video span {
  /* font-weight: bold;*/
   font-size: 12px;
@@ -206,6 +209,7 @@ div.articles a.feedburner {
 	margin: 10px;
 }
 
+.media .slide img,
 .media .photo img,
 .media .video embed {
   width: 207px;

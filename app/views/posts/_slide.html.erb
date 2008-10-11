@@ -1,0 +1,13 @@
+<%= sized_caption(post.caption, read_url(:id => post)) %>
+<% if (media = post.medias.first) %>
+  <% if @post %>
+    <% slide_id = media.thumbnail_url.match(/slideshare\.net\/(.*)-thumbnail/)[1] %>
+    <object style="margin:0px" width="425" height="355">
+      <param name="movie" value="http://static.slideshare.net/swf/ssplayer2.swf?doc=<%= slide_id %>&stripped_title=iknow-tokyo-20-presentation" />
+      <param name="allowFullScreen" value="true"/>
+      <param name="allowScriptAccess" value="always"/><embed src="http://static.slideshare.net/swf/ssplayer2.swf?doc=<%= slide_id %>&stripped_title=iknow-tokyo-20-presentation" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="355"></embed>
+    </object>
+  <% elsif local_assigns[:context] == 'media' %>
+    <%= link_to(image_tag(media.thumbnail_url), read_url(:id => post)) %>
+  <% end %>
+<% end %>
