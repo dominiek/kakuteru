@@ -8,4 +8,8 @@ class Service < ActiveRecord::Base
       self.update_attribute(:profile_image_url, twitter.profile_image_url)
     end
   end
+  
+  def icon_url
+    "/images/services/#{identifier}.png"
+  end
 end

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081011094404) do
+ActiveRecord::Schema.define(:version => 20081013042601) do
 
   create_table "assets", :force => true do |t|
     t.integer  "post_id"
@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(:version => 20081011094404) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "footer"
+    t.string   "dopplr_ical_url"
   end
 
   create_table "taggings", :force => true do |t|
@@ -112,6 +113,10 @@ ActiveRecord::Schema.define(:version => 20081011094404) do
     t.datetime "travel_ends_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "identifier"
+    t.string   "url"
+    t.integer  "stream_id"
+    t.text     "description"
   end
 
 end

@@ -21,6 +21,10 @@ class Stream < ActiveRecord::Base
       find(:all, options.merge(:conditions => "is_enabled IS TRUE AND identifier != 'blog'"))
     end
   end
+  has_many :upcoming_trips,
+    :conditions => "travel_starts_at > NOW()",
+    :class_name => 'Trip',
+    :limit => 8
   
   def authenticate(password)
     if self.password == password
