@@ -1,0 +1,11 @@
+<div class="statistics">
+  <div class="overall activity">
+    <%= image_tag(@stream.activity_overview_graph.to_url) %>
+  </div>
+  <div class="services summary">
+    <%= image_tag(@stream.used_services_graph.to_url) %>
+  </div>
+  <div class="hourly activity">
+    <%= image_tag(@stream.common_activity_hours_graph_url) %>
+  </div>
+</div>

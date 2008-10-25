@@ -39,6 +39,7 @@ ActionController::Routing::Routes.draw do |map|
   #map.connect '/', :controller => 'posts', :method => :index
   #map.connect '/archive', :controller => 'posts', :method => :archive
   
+  map.resources :statistics
   map.resources :services
   map.resources :assets
   

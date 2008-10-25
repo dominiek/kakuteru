@@ -245,7 +245,8 @@ div.articles a.feedburner {
 
 .trips h3,
 .tagcloud h3,
-.profiles h3 {
+.profiles h3,
+.stats h3 {
 	margin-bottom: 0.8em;
 }
 
@@ -257,7 +258,8 @@ div.articles a.feedburner {
 }
 
 .trips,
-.profiles {
+.profiles,
+.stats {
 	float: left;
 	width: 300px;
 	padding: 1em;
@@ -287,6 +289,11 @@ div.articles a.feedburner {
 }
 
 /* Stream */
+
+.stream_and_context a.more {
+	display: block;
+	font-size: 12px;
+}
 
 .stream_and_context {
 	width: 920px;
@@ -483,5 +490,21 @@ a.more {
 	text-indent: -3000;
 	width: 20px;
 	height: 20px;
+}
+
+/* Statistics */
+
+div.statistics {
+	width: 920px;
+	margin: 2em auto;
+}
+
+.statistics div.services.summary {
+	margin: 2em 2em 0 0;
+	float: left;
+}
+
+.statistics div.hourly.activity {
+	margin-top: 2em;
 }
 

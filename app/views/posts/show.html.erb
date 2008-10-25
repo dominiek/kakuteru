@@ -4,15 +4,17 @@
     <%= distance_of_time_in_words_to_now(@post.published_at) %> ago
   </abbr>
   <div class="share">
-    <%= link_to('Tweet this', "http://twitter.com/home/?status=" + CGI.escape("Check out: #{File.join(@stream.blog_url.to_s, File.join(request.request_uri.to_s))}"), :class => 'tweet_this') %>
-    <script type="text/javascript">
-    digg_url = '<%= File.join(@stream.blog_url.to_s, File.join(request.request_uri.to_s)) %>';
-    digg_skin = 'compact';
-    digg_window = 'new';
-    </script>
-    <script src="http://digg.com/tools/diggthis.js" type="text/javascript"></script>
-    <% unless @stream.addthis_username.blank? %>
-      <a href="http://www.addthis.com/bookmark.php" onclick="window.open('http://www.addthis.com/bookmark.php?wt=nw&pub=<%= @stream.addthis_username %>&url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title), 'addthis', 'scrollbars=yes,menubar=no,width=620,height=520,resizable=yes,toolbar=no,location=no,status=no,screenX=200,screenY=100,left=200,top=100'); return false;" title="Bookmark and Share" target="_blank"><img src="http://s9.addthis.com/button1-addthis.gif" width="125" height="16" border="0" alt="Bookmark and Share" /></a>
+    <% if @post.type == 'article' %>
+      <%= link_to('Tweet this', "http://twitter.com/home/?status=" + CGI.escape("Check out: #{File.join(@stream.blog_url.to_s, File.join(request.request_uri.to_s))}"), :class => 'tweet_this') %>
+      <script type="text/javascript">
+      digg_url = '<%= File.join(@stream.blog_url.to_s, File.join(request.request_uri.to_s)) %>';
+      digg_skin = 'compact';
+      digg_window = 'new';
+      </script>
+      <script src="http://digg.com/tools/diggthis.js" type="text/javascript"></script>
+      <% unless @stream.addthis_username.blank? %>
+        <a href="http://www.addthis.com/bookmark.php" onclick="window.open('http://www.addthis.com/bookmark.php?wt=nw&pub=<%= @stream.addthis_username %>&url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title), 'addthis', 'scrollbars=yes,menubar=no,width=620,height=520,resizable=yes,toolbar=no,location=no,status=no,screenX=200,screenY=100,left=200,top=100'); return false;" title="Bookmark and Share" target="_blank"><img src="http://s9.addthis.com/button1-addthis.gif" width="125" height="16" border="0" alt="Bookmark and Share" /></a>
+      <% end %>
     <% end %>
   </div>
 
