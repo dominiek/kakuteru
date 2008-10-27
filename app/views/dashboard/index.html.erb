@@ -1,30 +1,42 @@
 
-<div class="settings">
+<div class="settings page">
   <h1>Settings</h1>
-  <p><small>Hover the labels to see description tooltip.</small></p>
   <% form_tag do %>
-    <div>
+    <div class="base">
+      <h2>Base Settings</h2>
+      <p class="description">Please make sure that you select a proper Friendfeed URL. eg: <a href="http://friendfeed.com/dominiek">http://friendfeed.com/dominiek</a>.</p> 
       <p><label for="password" class="required" title="Need this to get in.">Password: </label><%= password_field(:stream, :password) %></p>
+      <p><label for="friendfeed_url" class="required" title="Core backend of the lifestream feed must be in XML, eg: http://friendfeed.com/api/feed/user/dominiek?format=xml">Friendfeed URL: </label><%= text_field(:stream, :friendfeed_url) %></p>
+    </div>
+    <div class="blog_information">
+      <h2>Blog Information</h2>
+      <p class="description">This is used to display information correctly and to improve SEO.</p>
       <p><label for="blog_url" class="required" title="URL of this blog.">Blog URL: </label><%= text_field(:stream, :blog_url) %></p>
       <p><label for="title" class="required" title="Will be used for SEO and in the title $title - $subtitle.">Title: </label><%= text_field(:stream, :title) %></p>
       <p><label for="subtitle" class="required" title="Will be used for SEO and in the title $title - $subtitle.">Subtitle: </label><%= text_field(:stream, :subtitle) %></p>
       <p><label for="author" class="required" title="Used for feeds and for microformats.">Your name: </label><%= text_field(:stream, :author) %></p>
-      <p><label for="friendfeed_url" class="required" title="Core backend of the lifestream feed must be in XML, eg: http://friendfeed.com/api/feed/user/dominiek?format=xml">Friendfeed URL: </label><%= text_field(:stream, :friendfeed_url) %></p>
+    </div>
+
+    <div class="integration">
+      <h2>Integration</h2>
+      <p class="description">Through FrienFeed Kakuteru integrates with many services, however, here are some more that provide social commenting and voting functionality.</p>
       <p><label for="addthis_username" title="If set, will be used for voting mechanism next to digg and twitter.">Addthis.com user: </label><%= text_field(:stream, :addthis_username) %></p>
       <p><label for="disqus_forum_identifier" title="If set, will be used to provide commenting by Disqus.com">Disqus forum identifier: </label><%= text_field(:stream, :disqus_forum_identifier) %></p>
       <p><label for="feedburner_feed_url" title="Make sure to set /articles.atom as your FeedBurner source!">Feedburner Feed URL: </label><%= text_field(:stream, :feedburner_feed_url) %></p>     
       <p><label for="dopplr_ical_url" title="The iCal address of your Dopplr.com account - used for showing your travel schedule">Dopplr iCal URL: </label><%= text_field(:stream, :dopplr_ical_url) %></p>
     </div>
     <div class="clear"></div>
-    <h2>Stream filter</h2>
     <div class="stream_filter">
-      <p><small>Note: these settings only work for updates that have tags with it</small></p>
+      <h2>Advanced Filtering</h2>
+      <p class="description">This allows you to exclude or include certain Lifestream events, for example only show bookmarks that are tagged 'kakuteru'. These settings only work for updates that have tags with it.</p>
       <p><label for="filter_message_without_space" title="Only show tweets that are prefixed with a ' ' whitespace">'Tweets with space': </label> <%= check_box(:stream, :filter_message_without_space) %></p>
       <p><label for="filter_tag" title="Only show updates that are tagged or #hashtagged with this tag.">Only tagged: </label><%= text_field(:stream, :filter_tag) %></p>
     </div>
     
+    <div class="footer">
     <h2>Footer</h2>
-    <%= text_area(:stream, :footer) %>
+    <%= text_area(:stream, :footer, :class => 'body') %>
+    </div>
     <%= submit_tag('save') %>
   <% end %>
 </div>

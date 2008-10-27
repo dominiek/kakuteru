@@ -24,6 +24,17 @@
 	padding: 10px;
 }
 
+div.login {
+	background-color: #ddd;
+	width: 500px;
+	padding: 1em;
+	margin: 2em auto;
+}
+
+.login h2 {
+	margin: 0.4em 0;
+}
+
 ul,li {
 	list-style-type: none;
 }
@@ -70,12 +81,26 @@ form input,
 form select {
 	display: block;
 	margin: 0 0 10px 0;
-	padding: 4px;
 	font-size: 18px;
 }
 
 form p {
 	clear: both;
+	margin-bottom: 0.8em;
+}
+
+form p.description {
+	color: #666;
+}
+
+form h2 {
+	margin-bottom: 0.4em;
+}
+
+textarea.body,
+textarea.summary {
+	font-size: 14px;
+	width: 600px;
 }
 
 /* Settings */
@@ -95,7 +120,16 @@ form p {
 }
 
 .settings div {
+	padding: 0.8em;
 	clear: both;
+}
+
+.settings .base {
+	background-color: #ccc;
+}
+
+.settings textarea {
+	width: 100%;
 }
 
 /* Services */
@@ -112,12 +146,17 @@ form p {
 	margin-right: 2em;
 }
 
-.services li .info {
-}
-
 .services li input {
 	display: inline;
 }
+
+/* Stream */
+
+.stream li .caption {
+	font-size: 16px;
+}
+
+/* Articles */
 
 .articles li {
 	padding: 0.4em;
@@ -140,7 +179,7 @@ li span.actions {
 	margin: 0.2em 0;
 }
 
-.articles a.edit {
+a.edit {
 	background: url('/images/icons/24-frame.png') no-repeat left center;
 	padding-left: 30px;
 }
@@ -153,17 +192,6 @@ a.edit:hover {
 a.delete {
 	background: url('/images/icons/16-em-cross.png') no-repeat left center;
 	padding-left: 20px;
-}
-
-div.login {
-	background-color: #ddd;
-	width: 500px;
-	padding: 1em;
-	margin: 2em auto;
-}
-
-.login h2 {
-	margin: 0.4em 0;
 }
 
 /* Write article */
@@ -190,7 +218,6 @@ div.write {
 
 .write textarea {
 	margin-bottom: 0.4em;
-	font-size: 14px;
 }
 
 .write label {

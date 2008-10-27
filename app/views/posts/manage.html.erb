@@ -1,5 +1,5 @@
 
-<div class="manage">
+<div class="manage stream page">
 
   <h1>Recent stream updates</h1>
 
@@ -7,9 +7,9 @@
     <% @posts.each do |post| %>
       <li>
         <span class="actions">
-          <%= link_to(post.is_deleted? ? 'undelete' : 'delete', url_for(:controller => :dashboard, :action => :toggle, :id => post), :method => :delete, :class => 'toggle') %>
+          <%= link_to(post.is_deleted? ? 'undelete' : 'delete', url_for(:controller => :dashboard, :action => :toggle, :id => post), :method => :delete, :class => post.is_deleted? ? 'toggle' : 'delete') %>
         </span>
-        <%= link_to(post.caption, read_url(:id => post)) %>
+        <span class="caption with_icon <%= post.type %>"><%= link_to(truncate(post.caption, 70), read_url(:id => post)) %></span>
       </li>
     <% end %>
   </ul>
