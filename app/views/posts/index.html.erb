@@ -42,7 +42,6 @@
     <% end %>
   </div>
   
-  
   <div class="profiles">
     <h3>Me elsewhere</h3>
     <ul>
@@ -52,6 +51,31 @@
       <% end %>
       <li><%= link_to("#{image_tag('google.gif')} Google", "http://google.com?q=#{CGI.escape(@stream.author.to_s)}") %></li>
     </ul>
+  </div>
+  
+  <% upcoming_trips = @stream.upcoming_trips %>
+  <% unless upcoming_trips.blank? %>
+    <div class="trips">
+      <h3>Upcoming travels</h3>
+      <ul>
+        <% upcoming_trips.each do |trip|
+          %>
+          <li class="trip vevent">
+            <span class="summary hide"><%= trip.destination %></span>
+            <%= link_to(trip.destination, trip.url, :class => 'location', :rel => 'url', :title => trip.description, :alt => trip.description) %>
+            <p class="description"><%= trip.description %></p>
+            <abbr class="dtstamp travel_starts_at" title="<%= trip.travel_starts_at.iso8601 %>"><%= trip.travel_starts_at.strftime("%B, ") + trip.travel_starts_at.strftime("%d").to_i.ordinalize.to_s %></abbr>
+            <abbr class="dtend travel_ends_at" title="<%= trip.travel_ends_at.iso8601 %>"></abbr>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="stats">
+    <h3>Activity Stats</h3>
+    <%= link_to(image_tag(@stream.activity_summary_sparkline_url), statistics_url) %>
+    <%= link_to('more', statistics_url, :class => 'more') %>
   </div>
   
   <%= will_paginate(@posts) if @posts.respond_to?(:total_pages) %>

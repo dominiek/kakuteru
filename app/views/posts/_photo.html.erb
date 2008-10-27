@@ -3,6 +3,6 @@
   <% if @post %>
     <%= image_tag(media.embed_url.gsub(/_m\.jpg$/, '.jpg')) %>
   <% elsif local_assigns[:context] == 'media' %>
-    <%= link_to(image_tag(media.embed_url), read_url(:id => post)) %>
+    <%= link_to(image_tag(media.big_thumbnail_url), read_url(:id => post)) %>
   <% end %>
 <% end %>

@@ -1,12 +1,13 @@
-<%= link_to('Write Post', new_post_url) %>
+<div class="articles">
+  <%= link_to('Write Post', new_post_url) %>
 
-<% unless @stream.drafts.blank? %>
-  <h1>Drafts</h1>
-  <ul><%= render(:partial => 'posts/list_article', :collection => @stream.drafts) %></ul>
-<% end %>
+  <% unless @stream.drafts.blank? %>
+    <h1>Drafts</h1>
+    <ul><%= render(:partial => 'posts/list_article', :collection => @stream.drafts) %></ul>
+  <% end %>
 
-<% unless @stream.articles.blank? %>
-  <h1>Previous Articles</h1>
-  <ul><%= render(:partial => 'posts/list_article', :collection => @stream.articles) %></ul>
-<% end %>
-
+  <% unless @stream.articles.blank? %>
+    <h1>Previous Articles</h1>
+    <ul><%= render(:partial => 'posts/list_article', :collection => @stream.articles) %></ul>
+  <% end %>
+</div>

@@ -1,14 +1,18 @@
 <div class="write">
   <% form_tag do %>
     <p><label for="title">Title:</label> <%= text_field(:post, :caption) %></p>
-    <p><%= text_area(:post, :body) %></p>
+    <p><%= text_area(:post, :body, :class => 'body') %></p>
+    <% unless @post.new_record? %>
+      <p><label for="summary">Summary (optional):</label></p>
+      <p><%= text_area(:post, :summary, :class => 'summary') %></p>
+    <% end %>
     <p><label for="tags">Tags:</label> <small>Leave empty for auto-tagging</small> <%= text_field(:post, :tag_list) %></p>
     <% unless @post.new_record? %>
-      <p>Draft? <%= check_box(:post, :is_draft) %></p>
-      <p><label for="summary">Summary:</label> <%= text_field(:post, :summary) %></p>
+      <p><%= check_box(:post, :is_draft) %> Draft?</p>
     <% end %>
-    <p>Enable Tweet, Digg and Addthis? <%= check_box(:post, :is_votable) %></p>
+    <p><%= check_box(:post, :is_votable) %> Enable Tweet, Digg and Addthis?</p>
     <p><%= select(:post, :markup, Post::SUPPORTED_MARKUP_FORMATS) %></p>
     <%= submit_tag(@post.new_record? ? 'save as draft' : 'save') %>
+    <%= link_to('cancel', manage_articles_url, :rel => 'directory', :class => 'cancel') %>
   <% end %>
 </div>

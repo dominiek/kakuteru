@@ -1,5 +1,5 @@
 class ServicesController < ApplicationController
-  before_filter :require_authentication, :except => :login
+  before_filter :require_authentication
   layout 'dashboard'
   
   def create

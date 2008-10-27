@@ -33,6 +33,7 @@ sudo gem install xml-simple
 sudo gem install mechanize
 sudo gem install BlueCloth
 sudo gem install mofo
+sudo gem install icalendar
 
 == Installation
 

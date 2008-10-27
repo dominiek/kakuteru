@@ -88,6 +88,8 @@ class Post < ActiveRecord::Base
         'article'
       when 'flickr'
         'photo'
+      when 'slideshare'
+        'slide'
     end
   end
   

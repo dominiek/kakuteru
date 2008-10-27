@@ -1,0 +1,12 @@
+<div id="upload" class="upload">
+  <iframe width="1" height="1" id="background_submission" name="background_submission" src="about:blank" style="display: none;"></iframe>
+  <% form_tag(assets_url, 
+      :method => 'post',
+      :id => 'upload_asset_form',
+      :target => 'background_submission', 
+      :multipart => true) do %>
+    <label>
+      <%= file_field_tag(:asset, :onchange => "$('upload').className = 'upload busy'; $('upload_asset_form').submit();", :size => 12) %>
+    </label>
+  <% end %>
+</div>

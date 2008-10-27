@@ -20,6 +20,28 @@ ul,li {
 	list-style-type: none;
 }
 
+abbr {
+	text-decoration: none;
+	border-bottom: none;
+}
+
+div.page {
+	width: 920px;
+	margin: 2em auto;
+}
+
+.with_icon {
+	padding-left: 24px;
+	background-repeat: no-repeat;
+	background-position: left center;
+}
+
+.with_icon.bookmark { background-image: url('/images/icons/16-book-blue-mark.png'); }
+.with_icon.photo { background-image: url('/images/icons/16-image.png'); }
+.with_icon.video { background-image: url('/images/icons/16-video-square.png'); }
+.with_icon.message { background-image: url('/images/icons/16-comment-square.png'); }
+.with_icon.article { background-image: url('/images/icons/16-file-page.png'); }
+
 /* Layout */
 
 .header {
@@ -82,11 +104,6 @@ ul,li {
 }
 
 /* Articles */
-
-div.articles {
-	width: 920px;
-	margin: 2em auto;
-}
 
 .latest_article {
 	float: left;
@@ -183,6 +200,7 @@ div.articles a.feedburner {
 	margin: 1em;
 }
 
+.media .slide,
 .media .photo, 
 .media .video {
 	background-color: #111;
@@ -190,13 +208,15 @@ div.articles a.feedburner {
   border: none;
 }
 
+.media .slide a.caption,
 .media .video a.caption,
 .media .photo a.caption {
 	color: #eee;
 	text-decoration: none;
 }
 
-.media .photo span, 
+.media .slide span,
+.media .photo span,
 .media .video span {
  /* font-weight: bold;*/
   font-size: 12px;
@@ -206,6 +226,7 @@ div.articles a.feedburner {
 	margin: 10px;
 }
 
+.media .slide img,
 .media .photo img,
 .media .video embed {
   width: 207px;
@@ -223,19 +244,16 @@ div.articles a.feedburner {
 	margin: 5px 20px 0 0;
 }
 
-.media.all {
-	width: 920px;
-	margin: 2em auto;
-}
-
 .media.all h1 {
 	margin: 0 10px;
 }
 
 /* Stream panels */
 
+.trips h3,
 .tagcloud h3,
-.profiles h3 {
+.profiles h3,
+.stats h3 {
 	margin-bottom: 0.8em;
 }
 
@@ -246,20 +264,43 @@ div.articles a.feedburner {
 	padding: 1em;
 }
 
-.profiles {
+.trips,
+.profiles,
+.stats {
 	float: left;
 	width: 300px;
 	padding: 1em;
 }
 
 .profiles li {
-  margin-bottom: 1em;	
+  margin-bottom: 0.8em;	
+}
+
+.trips li {
+	margin-bottom: 0.6em;
+}
+
+.trips li abbr.travel_ends_at,
+.trips li .summary,
+.trips li .description {
+	visibility: hidden;
+	display: none;
+}
+
+.trips li abbr.travel_starts_at {
+	display: block;
+	font-size: 12px;
 }
 
 .profiles .more {
 }
 
 /* Stream */
+
+.stream_and_context a.more {
+	display: block;
+	font-size: 12px;
+}
 
 .stream_and_context {
 	width: 920px;
@@ -306,11 +347,6 @@ div.articles a.feedburner {
 
 /* Archive */
 
-.archive {
-	width: 920px;
-	margin: 2em auto;
-}
-
 .archive ul {
   margin: 1em 0;
 }
@@ -324,11 +360,6 @@ div.articles a.feedburner {
 }
 
 /* Show the full view */
-
-.read {
-	width: 920px;
-	margin: 2em auto;
-}
 
 .read .published {
 	float: right;
@@ -456,5 +487,16 @@ a.more {
 	text-indent: -3000;
 	width: 20px;
 	height: 20px;
+}
+
+/* Statistics */
+
+.statistics div.services.summary {
+	margin: 2em 2em 0 0;
+	float: left;
+}
+
+.statistics div.hourly.activity {
+	margin-top: 2em;
 }
 
