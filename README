@@ -59,13 +59,7 @@ Run:
 ./script/runner db/migrate/from_mephisto.rb # Dump all mephisto articles to ./articles.yml
 ./script/runner db/migrate/from_mephisto.rb load_dump
   
+== LICENSE
 
-== TODO
+All Kakuteru code is licensed under Creative Commons Attribution 3.0 (the Netherlands jurist diction): http://creativecommons.org/licenses/by/3.0/nl/deed.en 
 
-* Contextualize feeds
-* Feedburner support
-* Icons for updates (related)
-* Flickr Thumbnail size
-* Vimeo support check
-* Graphs
-* Dopplr integration
