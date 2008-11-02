@@ -25,7 +25,7 @@ class DashboardController < ApplicationController
   end
   
   def logout
-    session[:authenticated] = false
+    session[:authenticated_subdomain] = false
     redirect_to(:action => :login)
   end
   
@@ -35,10 +35,35 @@ class DashboardController < ApplicationController
     redirect_to(manage_stream_url)
   end
   
+  def services
+    if request.post?
+      @stream.services.each do |service|
+        service_key = "service_#{service.identifier}"
+        if params[service_key] && params[service_key]['is_enabled']
+          service.update_attribute(:is_enabled, :true)
+        else
+          service.update_attribute(:is_enabled, :false)
+        end
+      end
+    end
+  end
+  
+  def content
+    @stream.update_attributes(params[:stream]) if request.post?
+  end
+  
+  def integration
+    @stream.update_attributes(params[:stream]) if request.post?
+  end
+  
+  def account
+    @stream.update_attributes(params[:stream]) if request.post?
+  end
+  
   private
   
   def login_success
-    session[:authenticated] = true
+    session[:authenticated_subdomain] = @stream.subdomain
     redirect_to(manage_stream_url)
   end
   

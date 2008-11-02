@@ -6,13 +6,13 @@ require 'date'
 
 class Friendfeed
   
-  def initialize(url)
-    @url = url
+  def initialize(username)
+    @username = username
   end
   
   def fetch(&block)
     agent = WWW::Mechanize.new
-    page = agent.get(@url)
+    page = agent.get("http://friendfeed.com/api/feed/user/#{@username}?format=xml")
     xml = REXML::Document.new(page.body)
     xml.elements['/feed'].each do |xml_entry|
       next unless xml_entry.name == 'entry'
@@ -42,5 +42,23 @@ class Friendfeed
       end
       yield(entry)
     end
+  end
+  
+  def profile
+    profile = {}
+    agent = WWW::Mechanize.new
+    page = agent.get("http://friendfeed.com/api/user/#{@username}/profile?format=xml")
+    xml = REXML::Document.new(page.body)
+    profile[:name] = xml.elements['user/name'].text
+    profile[:services] = []
+    xml.get_elements('user/service').each do |xml_entry|
+      service = OpenStruct.new
+      service.identifier = xml_entry.elements['id'].text.to_s
+      service.name = xml_entry.elements['name'].text.to_s
+      service.profileUrl = xml_entry.elements['profileUrl'].text.to_s
+      service.iconUrl = xml_entry.elements['iconUrl'].text.to_s
+      profile[:services] << service
+    end
+    return profile
   end
 end

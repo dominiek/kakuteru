@@ -1,0 +1,14 @@
+<% if post.type %>
+  <li class="hentry <%= post.type %>" rel="<%= post.type.pluralize %>">
+    <%= content_tag(:div, link_to(thumbnail(post), read_url(:id => post)), :class => 'icon') %>
+      <div class="entry-content body">
+        <%= render(:partial => "posts/#{post.type}", :locals => {:post => post}) %>
+      </div>
+      <div class="details">
+        <abbr class="published" title="<%= post.published_at.iso8601 %>"><%= distance_of_time_in_words_to_now(post.published_at) %> ago</abbr>
+        <% service_icon = post.service.icon_url.blank? ? '' : image_tag(post.service.icon_url, :width => '12px')+' ' %>
+        from <%= link_to("#{service_icon}#{post.service.name}", post.service.profile_url, :rel => 'me') %>
+        ·
+      </div>
+  </li>
+<% end %>

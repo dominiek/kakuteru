@@ -1,4 +1,6 @@
 
+require 'digest/sha2'
+
 class Stream < ActiveRecord::Base
   has_many :posts, :conditions => 'is_deleted IS FALSE', :order => 'published_at DESC'
   has_many :articles, 
@@ -26,9 +28,11 @@ class Stream < ActiveRecord::Base
     :conditions => "travel_starts_at > NOW()",
     :class_name => 'Trip',
     :limit => 8
+  attr_accessor :new_password, 
+                :new_password_repeat
   
   def authenticate(password)
-    if self.password == password
+    if self.password == Digest::SHA512.hexdigest(password)
       true
     else
       self.errors.add(:password, 'Invalid password mate!')
@@ -134,10 +138,71 @@ class Stream < ActiveRecord::Base
     "http://chart.apis.google.com/chart?chs=200x80&chd=t:#{data.join(',')}&cht=ls"
   end
   
+  def before_save
+    if self.new_password
+      if self.new_password.blank?
+        self.errors.add(:password, "Please choose a magic word.")
+      end
+      if self.new_password != self.new_password_repeat
+        self.errors.add(:password, "Woops, passwords didn't match. Clock is ticking!")
+      else
+        self.password = Digest::SHA512.hexdigest(self.new_password)
+      end
+    end
+  end
+  
+  def aggregate_services!(options = {})
+    profile = Friendfeed.new(self.friendfeed_username).profile
+    if !self.author
+      self.update_attribute(:author, profile[:name])
+    end
+    profile[:services].each do |ff_service|
+      find_or_create_service(ff_service)
+    end
+  end
+  
+  def aggregate!(options = {})
+    friendfeed = Friendfeed.new(Stream.current.friendfeed_url)
+    Friendfeed.new(self.friendfeed_username).fetch do |entry|
+      service = find_or_create_service(entry.service)
+                              
+      post = Post.find_or_create_by_identifier_and_stream_id(entry.identifier, self.id)
+      post.update_attributes(:caption => entry.title,
+                             :published_at => entry.published,
+                             :service => service)
+      post.auto_tag!
+      post.permalink!
+
+      if entry.link
+        post.links.find_or_create_by_url(entry.link)
+      end
+      
+      unless entry.medias.blank?
+        entry.medias.each do |media_entry|
+          media = post.medias.find_or_create_by_url(media_entry.link)
+          embed_url = media_entry.content.blank? ? media_entry.enclosure : media_entry.content
+          media.update_attributes(:caption => media_entry.title,
+                                  :thumbnail_url => media_entry.thumbnail,
+                                  :embed_url => embed_url)
+        end
+      end
+    end
+
+  end
+  
   protected
   
   def graph_colors
     ['2a2a2a', '666666', '999999', 'cccccc']
+  end
+  
+  def find_or_create_service(ff_service)
+    return if ff_service.identifier == 'blog'
+    service = Service.find_or_create_by_identifier_and_stream_id_and_profile_url(ff_service.identifier, self.id, ff_service.profileUrl)
+    service.update_attributes(:name => ff_service.name,
+                              :profile_url => ff_service.profileUrl,
+                              :icon_url => ff_service.iconUrl)
+    service
   end
 
 end

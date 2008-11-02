@@ -1,0 +1,2 @@
+page.replace_html('friendfeed_aggregation_activity', :partial => 'streams/post', :collection => @stream.posts)
+page.replace_html('friendfeed_setup', :partial => 'streams/confirm_form')

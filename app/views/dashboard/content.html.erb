@@ -1,0 +1,11 @@
+<% content_for(:settings) do %>
+  <% form_tag do %>
+    <div class="subsettings content">
+      <h2>Footer</h2>
+      <%= text_area(:stream, :footer, :class => 'body') %>
+      <%= submit_tag('save') %>
+    </div>
+  <% end %>
+<% end %>
+
+<%= render(:partial => 'dashboard/settings') %>

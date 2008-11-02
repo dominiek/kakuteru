@@ -1,0 +1,24 @@
+<% content_for(:settings) do %>
+  <% form_tag do %>
+  <div class="subsettings blog_information">
+    <h2>Toggle Services</h2>
+    <p class="description">You can enable/disable services here.</p>
+    <ul class="services">
+      <% @stream.services.each do |service| %>
+        <li>
+          <div class="actions">
+          <%= check_box_tag("service_#{service.identifier}[is_enabled]", 'yes', service.is_enabled?) %>
+          </div>
+          <div class="info">
+          <%= image_tag(service.icon_url) %>
+          <span><%= link_to(service.name, service.profile_url) %></span>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  <%= submit_tag('Toggle enabled services') %>
+  </div>
+  <% end %>
+<% end %>
+
+<%= render(:partial => 'dashboard/settings') %>

@@ -1,0 +1,30 @@
+<% content_for(:settings) do %>
+  <% form_tag do %>
+    <div class="subsettings integration">
+      <h2>Custom Disqus forum</h2>
+      <p class="description">Unless set, Kakuteru uses a generic Kakuteru forum on <%= link_to('Disqus.com', 'http://disqus.com/') %> to provide comments. You can however set your own unique forum identifier here.</p>
+      <p><label for="disqus_forum_identifier" title="If set, will be used to provide commenting by Disqus.com">Forum identifier: </label><%= text_field(:stream, :disqus_forum_identifier) %></p>
+      <h2>FeedBurner feed</h2>
+      <p class="description"><%= link_to('FeedBurner', 'http://feedburner.com/') %> is a way of keeping track of feed subscriptions and providing some extra SEO. Please make sure to set <%= link_to("#{@stream.blog_url}/articles.atom", "#{@stream.blog_url}/articles.atom") %> as the origin feed.</p>
+      <p><label for="feedburner_feed_url" title="Make sure to set /articles.atom as your FeedBurner source!">Feed URL: </label><%= text_field(:stream, :feedburner_feed_url, :class => 'url') %></p>     
+      <h2>Dopplr travel schedule</h2>
+      <p class="description"><%= link_to('Dopplr', 'http://dopplr.com/') %> allows you to share your travel schedule. On your Dopplr dashboard you can find an iCal URL for integration.</p>
+      <p><label for="dopplr_ical_url" title="The iCal address of your Dopplr.com account - used for showing your travel schedule">iCal URL: </label><%= text_field(:stream, :dopplr_ical_url, :class => 'url') %></p>
+      <h2>Addthis social bookmarking</h2>
+      <p class="description"><%= link_to('Addthis', 'http://addthis.com/') %> is a way of letting people easily bookmark your articles, you need to register for an account there (they also provide tracking and stuff).</p>
+      <p><label for="addthis_username" title="If set, will be used for voting mechanism next to digg and twitter.">username: </label><%= text_field(:stream, :addthis_username) %></p>
+      <%= submit_tag('save') %>
+    </div>
+  <% end %>
+<% end %>
+    
+ <!--
+<div class="stream_filter">
+  <h2>Advanced Filtering</h2>
+  <p class="description">This allows you to exclude or include certain Lifestream events, for example only show bookmarks that are tagged 'kakuteru'. These settings only work for updates that have tags with it.</p>
+  <p><label for="filter_message_without_space" title="Only show tweets that are prefixed with a ' ' whitespace">'Tweets with space': </label> <%= check_box(:stream, :filter_message_without_space) %></p>
+  <p><label for="filter_tag" title="Only show updates that are tagged or #hashtagged with this tag.">Only tagged: </label><%= text_field(:stream, :filter_tag) %></p>
+</div>
+ -->
+
+<%= render(:partial => 'dashboard/settings') %>

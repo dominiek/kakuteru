@@ -1,0 +1,17 @@
+<ul class="menu">
+  <li class="<%= current_page?(:action => :index) ? 'active' : '' %>">
+    <%= link_to('Blog information', '/dashboard') %>
+  </li>
+  <li class="<%= current_page?(:action => :services) ? 'active' : '' %>">
+    <%= link_to('Toggle services', '/dashboard/services') %>
+  </li>
+  <li class="<%= current_page?(:action => :integration) ? 'active' : '' %>">
+    <%= link_to('Extra integration', '/dashboard/integration') %>
+  </li>
+  <li class="<%= current_page?(:action => :content) ? 'active' : '' %>">
+    <%= link_to('Content', '/dashboard/content') %>
+  </li>
+  <li class="<%= current_page?(:action => :account) ? 'active' : '' %>">
+    <%= link_to('Account Settings', '/dashboard/account') %>
+  </li>
+</ul>

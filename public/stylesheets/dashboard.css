@@ -9,11 +9,12 @@
 }
 
 .navigation span a {
+	margin-left: 40px;
 	background: transparent url('/images/kakuteru.png') no-repeat left 10px;
 	display: block;
 	float: left;
 	padding: 25px;
-	text-indent: 50px;
+	text-indent: -5000px;
   color: #eee;
 	font-size: 25px;
 	width: 200px;
@@ -69,7 +70,7 @@ select {
 
 input[type=text],
 textarea {
-	width: 500px;
+	width: 400px;
 }
 
 input[type=hidden] {
@@ -103,7 +104,36 @@ textarea.summary {
 	width: 600px;
 }
 
+div.formError {
+	
+}
+
 /* Settings */
+
+.settings ul.menu {
+	width: 140px;
+	float: left;
+	margin: 0.8em 0;
+}
+
+.settings ul.menu li {
+	padding: 0.6em;
+}
+
+.settings ul.menu li.active {
+	background-color: #ddd;	
+}
+
+.settings ul.menu li.active a {
+  color: #333;	
+}
+
+.settings div.subsettings {
+	width: 600px;
+	float: left;
+	border-left: 2px solid #ddd;
+	padding-left: 1em;
+}
 
 .settings form p span {
 	float: left;
@@ -116,12 +146,11 @@ textarea.summary {
 .settings form label {
 	float: left;
 	margin-right: 2em;
-	width: 160px;
+	width: 140px;
 }
 
 .settings div {
 	padding: 0.8em;
-	clear: both;
 }
 
 .settings .base {
@@ -131,13 +160,26 @@ textarea.summary {
 .settings textarea {
 	width: 100%;
 }
+.settings .integration label,
+.settings .integration input[type="text"] {
+	font-size: 16px;
+}
+.settings .integration label {
+	width: 130px;
+}
 
+.settings .integration input[type="text"] {
+	width: 230px;
+}
+
+.settings .integration input.url {
+  width: 300px;
+}
 /* Services */
 
 .services li {
 	border-bottom: 1px dotted #333;
-	padding: 1em 0;
-	margin: 1em 0;
+	padding: 0.6em 0;
 }
 
 .services li .actions {
@@ -148,6 +190,10 @@ textarea.summary {
 
 .services li input {
 	display: inline;
+}
+
+.services ul {
+	margin-bottom: 2em;
 }
 
 /* Stream */
@@ -257,4 +303,55 @@ div.write {
 
 .assets h2 {
 	margin-bottom: 0.4em;
+}
+
+/* Setup */
+
+.domain.claim {
+	color: #A4F062;
+	/*color: #699742;*/
+	font-size: 32px;
+	margin: 2em 0;
+}
+
+.friendfeed p,
+.claim p {
+	margin: 1em 0;
+}
+
+.friendfeed form {
+	margin: 2em 0;
+}
+
+.friendfeed.setup input[type="text"] {
+	display: inline;
+	width: 240px;
+}
+
+.friendfeed.setup span {
+	font-size: 16px;
+}
+
+.friendfeed div.explanation {
+	background: url('/images/friendfeed.png') no-repeat 95% 90%;
+	border: 1px solid #999;
+	padding: 1em;
+	width: 600px;
+	color: #666;
+}
+
+
+.friendfeed .aggregation ul.services {
+	width: 160px;
+	float: left;
+}
+
+.friendfeed .aggregation .services li {
+	border: none;
+	margin: 0;
+	padding: 0 0 1em 0;
+}
+
+.friendfeed .aggregation li.activity {
+	margin-left: 180px;
 }

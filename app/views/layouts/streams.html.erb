@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Dashboard</title>
+    <title>Setup <%= request.subdomains.first %>.kakuteru.com</title>
     <%= stylesheet_link_tag('html') %>
     <%= stylesheet_link_tag('application') %>
     <%= stylesheet_link_tag('dashboard') %>
@@ -10,11 +10,6 @@
   <body>
     <div class="navigation">
       <span><%= link_to(APPLICATION_NAME, '/') %></span>
-      <ul>
-        <li><%= link_to('settings', :controller => :dashboard) %></li>
-        <li><%= link_to('activity', manage_stream_url) %></li>
-        <li><%= link_to('articles', manage_articles_url) %></li>
-      </ul>
     </div>
     <div class="page clear">
       <%= yield %>

@@ -17,7 +17,8 @@ class ApplicationController < ActionController::Base
   protected
   
   def require_authentication
-    if session[:authenticated]
+    puts session[:authenticated_subdomain]
+    if session[:authenticated_subdomain] == request.subdomains.first
       true
     else
       redirect_to(:action => :login)
@@ -25,7 +26,10 @@ class ApplicationController < ActionController::Base
   end
   
   def load_stream
-    @stream = Stream.current
+    @subdomain = request.subdomains.first
+    unless @subdomain == 'kakuteru'
+      @stream = Stream.find_or_create_by_subdomain(@subdomain)
+    end
   end
   
 end

@@ -29,7 +29,6 @@ class Post < ActiveRecord::Base
   def self.fetch_from_friendfeed
     friendfeed = Friendfeed.new(Stream.current.friendfeed_url)
     friendfeed.fetch do |entry|
-      puts entry.title
       service = Service.find_or_create_by_identifier_and_stream_id_and_profile_url(entry.service.identifier, Stream.current.id, entry.service.profileUrl)
       service.update_attributes(:name => entry.service.name,
                                 :profile_url => entry.service.profileUrl,

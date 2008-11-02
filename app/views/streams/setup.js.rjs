@@ -1,0 +1,3 @@
+page.hide('friendfeed_explanation')
+page.show('friendfeed_aggregation')
+page << remote_function(:url => setup_aggregate_services_path, :method => :get)

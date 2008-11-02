@@ -1,7 +1,7 @@
 
 <% unless params[:tag_name] %>
-  <%= render(:partial => 'articles', :locals => {:articles => @stream.articles.find(:all, :limit => 4)}) %>
-  <%= render(:partial => 'media_posts', :locals => {:media_posts => @stream.media_posts}) %>
+  <%= render(:partial => 'posts/articles', :locals => {:articles => @stream.articles.find(:all, :limit => 4)}) %>
+  <%= render(:partial => 'posts/media_posts', :locals => {:media_posts => @stream.media_posts}) %>
 <% end %>
 
 <div class="stream_and_context">
@@ -18,7 +18,7 @@
         <li class="hentry <%= post.type %>" rel="<%= post.type.pluralize %>">
           <%= content_tag(:div, link_to(thumbnail(post), read_url(:id => post)), :class => 'icon') %>
             <div class="entry-content body">
-              <%= render(:partial => post.type, :locals => {:post => post}) %>
+              <%= render(:partial => "posts/#{post.type}", :locals => {:post => post}) %>
             </div>
             <div class="details">
               <abbr class="published" title="<%= post.published_at.iso8601 %>"><%= distance_of_time_in_words_to_now(post.published_at) %> ago</abbr>
