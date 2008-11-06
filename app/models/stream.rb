@@ -50,7 +50,7 @@ class Stream < ActiveRecord::Base
                          :select => 'COUNT(posts.id) AS num_posts, service_id, published_at', 
                          :conditions => ['posts.published_at > ?', 2.weeks.ago],
                          :group => "service_id,DATE_FORMAT(posts.published_at, '%Y-%m-%d')").each do |post|
-        xlabel = post.published_at.strftime("%b-%d")
+        xlabel = post.published_at.beginning_of_day
         data[xlabel] = {} unless data[xlabel]
         data[xlabel][post.service_id.to_i] = post.num_posts.to_i
         services << post.service_id.to_i unless services.include?(post.service_id.to_i)
@@ -58,8 +58,10 @@ class Stream < ActiveRecord::Base
       xlabels = []
       data_by_service = {}
       all_values = []
-      data.each do |day,posts_by_service|
-        xlabels << day
+      data = data.to_a
+      data.sort! { |a,b| a.first.to_i <=> b.first.to_i }
+      data.each do |date,posts_by_service|
+        xlabels << date.strftime("%b-%d")
         total_today = 0
         services.each do |service_id|
           data_by_service[service_id] ||= []
@@ -69,6 +71,8 @@ class Stream < ActiveRecord::Base
         all_values << total_today
       end
       color_i = 0
+      services.sort!
+      services.reverse!
       services.each do |service_id|
         bc.data(Service.find(service_id).identifier, data_by_service[service_id], graph_colors[(color_i % 4)])
         color_i += 1 
@@ -88,7 +92,7 @@ class Stream < ActiveRecord::Base
     require 'google_chart'
     # Services Diagram
     services = {}
-    self.posts.find(:all, 
+    self.posts.find(:all,
                        :select => 'COUNT(posts.id) AS num_posts,service_id',
                        :conditions => ['posts.published_at > ?', 2.weeks.ago],
                        :group => 'service_id').each do |post|
@@ -96,6 +100,7 @@ class Stream < ActiveRecord::Base
     end
     GoogleChart::PieChart.new('320x200', "Services used", false) do |pc|
       color_i = 0
+      services = services.to_a.sort! { |b,a| a.first <=> b.first }
       services.each do |service_id,num_posts|
         pc.data(Service.find(service_id).identifier, num_posts, graph_colors[(color_i % 4)])
         color_i += 1
