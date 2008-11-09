@@ -127,13 +127,16 @@ class Stream < ActiveRecord::Base
   end
   
   def activity_summary_sparkline_url
-    data = []
+    data = {}
     self.posts.find(:all, 
                     :select => 'COUNT(posts.id) AS num_posts, published_at', 
                     :conditions => ['posts.published_at > ?', 2.weeks.ago],
                     :group => "DATE_FORMAT(posts.published_at, '%Y-%m-%d')").each do |post|
-      data << post.num_posts.to_i
+      data[post.published_at.beginning_of_day] = post.num_posts.to_i
     end
+    data = data.to_a
+    data.sort! { |a,b| a.first <=> b.first }
+    data = data.collect { |d| d.last }
     peak = data.max
     data = data.collect { |p| ((p/peak.to_f)*100).ceil }
     "http://chart.apis.google.com/chart?chs=200x80&chd=t:#{data.join(',')}&cht=ls"
