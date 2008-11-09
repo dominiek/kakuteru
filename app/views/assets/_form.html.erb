@@ -6,7 +6,7 @@
       :target => 'background_submission', 
       :multipart => true) do %>
     <label>
-      <%= file_field_tag(:asset, :onchange => "$('upload').className = 'upload busy'; $('upload_asset_form').submit();", :size => 12) %>
+      <%= file_field_tag(:asset, :onchange => "$('upload').className = 'upload busy'; $('upload_asset_form').submit();", :size => 8) %>
     </label>
   <% end %>
 </div>

@@ -1,43 +1,60 @@
-<!--<div class="one_liner">
-  <span>Semantic-web enabled Lifestreaming, Your Style.</span>
-</div>-->
-<div class="facts">
-  <div>
-    <ul>
-      <li>combining <%= link_to('Friendfeed', 'http://friendfeed.com/') %> and blogging</li>
-      <li>to market yourself better</li>
-      <li>inspired by <%= link_to("Yongfook's Sweetcron", 'http://yongfook.com/') %></li>
-      <li>use your own domain and control all the styling</li>
-      <li>support for social voting services like <%= link_to('Digg', 'http://digg.com') %> and <%= link_to('Addthis', 'http://addthis.com') %></li>
-      <li>integrates with <%= link_to('Feedburner', 'http://feedburner.com') %>, <%= link_to('Disqus', 'http://disqus.com/') %>, <%= link_to('Dopplr', 'http://dopplr.com') %>, etc.</li>
-    </ul>
+
+<div class="engage">
+  <div class="invite">
+    
+    
+    <% form_tag do %>
+      <%= text_field(:stream, :subdomain) %>.kakuteru.com
+      <%= text_field(:stream, :invite_key) %>
+    <% end %>
+    <% if false %>
+      <% unless flash[:notice] %>
+        <% form_tag(invite_url) do %>
+          <label for="invite_email">E-mail: </label>
+          <%= text_field(:invite, :email) %>
+          <%= submit_tag('Sign me up!') %>
+        <% end %>
+      <% else %>
+        <p class="notice"><%= flash[:notice]%></p>
+      <% end %>
+    <% end %>
   </div>
 </div>
 
-<div class="invite">
-  <h3>Private beta invite</h3>
-  <p>An early prototype is running at <%= link_to('Dominiek.com', 'http://dominiek.com/') %>, but soon Kakuteru will be available for you too! We will email you as soon as we are in private beta testing.</p>
-  <% unless flash[:notice] %>
-    <% form_tag(invite_url) do %>
-      <label for="invite_email">E-mail: </label>
-      <%= text_field(:invite, :email) %>
-      <%= submit_tag('Sign me up!') %>
-    <% end %>
-  <% else %>
-    <p class="notice"><%= flash[:notice]%></p>
-  <% end %>
-</div>
-
-
-<div class="semantic_web">
-  <h3>Semantic Web ready!</h3>
-  <ul>
-    <li>conforming to many Web Standards, <%= link_to('Microformats', 'http://microformats.org/') %> and <%= link_to('Nanoformats', 'http://microformats.org/wiki/microblogging-nanoformats') %></li>
-    <li>pinging the Blogosphere through <%= link_to('Technorati', 'http://technorati.com/') %> and many others</li>
-    <li>integrates with <%= link_to('Zemanta', 'http://zemanta.com/') %> to facilitate auto-tagging</li>
-    <li>built-in content recommender system<li>
-    <li>gathering attention data and providing that in <%= link_to('APML', 'http://apml.org/') %> format</li>
-  </ul>
-  <span><%= link_to("Want to get involved?", "http://github.com/dominiek/kakuteru/tree") %></span>
-  <div class="clear"></div>
+<div class="about">
+  <div class="facts">
+    <div>
+      <ul>
+        <li>combining folksemantic practices with lifestreaming and blogging</li>
+        <li>to market yourself without any effort</li>
+        <li>integrates with 
+          <%= link_to('Friendfeed', 'http://friendfeed.com/') %>,
+          <%= link_to('Disqus', 'http://disqus.com/') %>,
+          <%= link_to('Dopplr', 'http://dopplr.com/') %>,
+          <%= link_to('Zemanta', 'http://zemanta.com/') %> and dozens more.</li>
+        <!--
+        <li>combining <%= link_to('Friendfeed', 'http://friendfeed.com/') %> and blogging</li>
+        <li>to market yourself better</li>
+        <li>inspired by <%= link_to("Yongfook's Sweetcron", 'http://yongfook.com/') %></li>
+        <li>use your own domain and control all the styling</li>
+        <li>support for social voting services like <%= link_to('Digg', 'http://digg.com') %> and <%= link_to('Addthis', 'http://addthis.com') %></li>
+        <li>integrates with <%= link_to('Feedburner', 'http://feedburner.com') %>, <%= link_to('Disqus', 'http://disqus.com/') %>, <%= link_to('Dopplr', 'http://dopplr.com') %>, etc.</li>
+      </ul>
+       -->
+    </div>
+  </div>
+<!--
+  <div class="semantic_web">
+    <h3>Semantic Web ready!</h3>
+    <ul>
+      <li>conforming to many Web Standards, <%= link_to('Microformats', 'http://microformats.org/') %> and <%= link_to('Nanoformats', 'http://microformats.org/wiki/microblogging-nanoformats') %></li>
+      <li>pinging the Blogosphere through <%= link_to('Technorati', 'http://technorati.com/') %> and many others</li>
+      <li>integrates with <%= link_to('Zemanta', 'http://zemanta.com/') %> to facilitate auto-tagging</li>
+      <li>built-in content recommender system<li>
+      <li>gathering attention data and providing that in <%= link_to('APML', 'http://apml.org/') %> format</li>
+    </ul>
+    <span><%= link_to("Want to get involved?", "http://github.com/dominiek/kakuteru/tree") %></span>
+    <div class="clear"></div>
+  </div>
+-->
 </div>

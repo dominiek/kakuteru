@@ -1,7 +1,7 @@
 
 <% unless params[:tag_name] %>
   <%= render(:partial => 'posts/articles', :locals => {:articles => @stream.articles.find(:all, :limit => 4)}) %>
-  <%= render(:partial => 'posts/media_posts', :locals => {:media_posts => @stream.media_posts}) %>
+  <%= render(:partial => 'posts/medias', :locals => {:media_posts => @stream.media_posts}) %>
 <% end %>
 
 <div class="stream_and_context">
@@ -25,9 +25,7 @@
               <% service_icon = post.service.icon_url.blank? ? '' : image_tag(post.service.icon_url, :width => '12px')+' ' %>
               from <%= link_to("#{service_icon}#{post.service.name}", post.service.profile_url, :rel => 'me') %>
               ·
-              <% unless @stream.disqus_forum_identifier.blank? %>
-                <%= link_to(pluralize(0, 'comment'), read_url(:id => post) + '#disqus_thread', :rel => 'bookmark url') %>
-              <% end %>
+              <%= link_to(pluralize(0, 'comment'), read_url(:id => post) + '#disqus_thread', :rel => 'bookmark url') %>
               <address class="hide vcard author"><a class="url fn" href="<%= @stream.blog_url %>"><%= @stream.author %></a></address>
             </div>
         </li>

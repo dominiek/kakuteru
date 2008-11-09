@@ -1,5 +1,11 @@
 <div class="articles">
-  <%= link_to('Write Post', new_post_url) %>
+  <% if @stream.drafts.blank? && @stream.articles.blank? %>
+    <p class="description">
+      Hey there, you don't have any blog articles written yet. The kakuteru blogging system works like any other blogging system, but has some extra enhancements: Auto-tagging, social-voting buttons, powerful blogosphere ping etc. In the near future you can also hook up an external RSS feed here.
+    </p> 
+  <% end %>
+  
+  <%= link_to('Write article', new_post_url, :class => 'write') %>
 
   <% unless @stream.drafts.blank? %>
     <h1>Drafts</h1>

@@ -1,10 +1,25 @@
 
 <div class="manage stream page">
+  
 
+
+  <div class="heading actions">
+    <% form_remote_tag(:url => aggregate_activity_path, :method => :post) do %>
+      <%= submit_tag('Fetch new entries', :disabled => @stream.busy?, :id => 'aggregate_activity_submit') %>
+    <% end %>
+  </div>
+  
   <h1>Recent stream updates</h1>
+  
+  
+  <div id="aggregation_status" class="aggregation status" <%= @stream.busy? ? '' : 'style="display: none"' %>
+    <div class="progress bar" style="width: 100%"><div id="inner_progress_bar" style="width: <%= @stream.aggregation_progress %>%"><%= @stream.aggregation_progress %>%</div></div>
+  </div>
 
   <ul>
-    <% @posts.each do |post| %>
+    <% @posts.each do |post|
+       next unless post.type 
+     %>
       <li>
         <span class="actions">
           <%= link_to(post.is_deleted? ? 'undelete' : 'delete', url_for(:controller => :dashboard, :action => :toggle, :id => post), :method => :delete, :class => post.is_deleted? ? 'toggle' : 'delete') %>

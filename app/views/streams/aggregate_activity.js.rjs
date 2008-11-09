@@ -1,2 +1,4 @@
-page.replace_html('friendfeed_aggregation_activity', :partial => 'streams/post', :collection => @stream.posts)
-page.replace_html('friendfeed_setup', :partial => 'streams/confirm_form')
+page.replace_html('inner_progress_bar', "#{@stream.aggregation_progress}%")
+page << "$('inner_progress_bar').style.width = '#{@stream.aggregation_progress}%';"
+page.visual_effect(:appear, 'aggregation_status')
+page << remote_function(:url => aggregation_status_path, :method => :get)

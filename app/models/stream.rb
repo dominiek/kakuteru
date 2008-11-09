@@ -30,6 +30,9 @@ class Stream < ActiveRecord::Base
     :limit => 8
   attr_accessor :new_password, 
                 :new_password_repeat
+                
+  STATUS_READY = 0
+  STATUS_AGGREGATING = 1
   
   def authenticate(password)
     if self.password == Digest::SHA512.hexdigest(password)
@@ -126,13 +129,16 @@ class Stream < ActiveRecord::Base
   end
   
   def activity_summary_sparkline_url
-    data = []
+    data = {}
     self.posts.find(:all, 
                     :select => 'COUNT(posts.id) AS num_posts, published_at', 
                     :conditions => ['posts.published_at > ?', 2.weeks.ago],
                     :group => "DATE_FORMAT(posts.published_at, '%Y-%m-%d')").each do |post|
-      data << post.num_posts.to_i
+      data[post.published_at.beginning_of_day] = post.num_posts.to_i
     end
+    data = data.to_a
+    data.sort! { |a,b| a.first <=> b.first }
+    data = data.collect { |d| d.last }
     peak = data.max
     data = data.collect { |p| ((p/peak.to_f)*100).ceil }
     "http://chart.apis.google.com/chart?chs=200x80&chd=t:#{data.join(',')}&cht=ls"
@@ -144,7 +150,7 @@ class Stream < ActiveRecord::Base
         self.errors.add(:password, "Please choose a magic word.")
       end
       if self.new_password != self.new_password_repeat
-        self.errors.add(:password, "Woops, passwords didn't match. Clock is ticking!")
+        self.errors.add(:password, "Woops, passwords didn't match!")
       else
         self.password = Digest::SHA512.hexdigest(self.new_password)
       end
@@ -163,10 +169,15 @@ class Stream < ActiveRecord::Base
   
   def aggregate!(options = {})
     friendfeed = Friendfeed.new(Stream.current.friendfeed_url)
-    Friendfeed.new(self.friendfeed_username).fetch do |entry|
+    entries = Friendfeed.new(self.friendfeed_username).activity
+    update_attribute(:aggregation_progress, 50)
+    entries_count = entries.size
+    entries.each_with_index do |entry,i|
       service = find_or_create_service(entry.service)
                               
-      post = Post.find_or_create_by_identifier_and_stream_id(entry.identifier, self.id)
+      post = Post.find_by_identifier_and_stream_id(entry.identifier, self.id)
+      next if post
+      post = Post.create(:identifier => entry.identifier, :stream_id => self.id)
       post.update_attributes(:caption => entry.title,
                              :published_at => entry.published,
                              :service => service)
@@ -186,8 +197,71 @@ class Stream < ActiveRecord::Base
                                   :embed_url => embed_url)
         end
       end
+      update_attribute(:aggregation_progress, 50+((50/entries_count)*(i+1)))
     end
+    
+    update_attributes(:aggregation_progress => 100, 
+                      :aggregation_status => Stream::STATUS_READY)
+  rescue => e
+    puts e.backtrace.join("\n")
+  end
+  
+  def aggregate_from_gnip
+    require 'rubygems'
+    require 'gnip'
 
+    gnip = Gnip::Connection.new(Gnip::Config.new(GNIP_EMAIL, GNIP_PASSWORD))
+    twitter = Gnip::Publisher.new('twitter')
+    twitter_filter = Gnip::Filter.new('kakuteru-twitter')
+    twitter_filter.add_rule('actor', self.services.find_by_identifier('twitter').actor)
+    gnip.create_filter(twitter, twitter_filter)
+
+    activities = gnip.filter_notifications_stream(twitter, twitter_filter)
+    puts activities.inspect
+  end
+  
+  def css
+    if File.exists?(css_file_path)
+      fp = File.open(css_file_path, 'r')
+      css_data = fp.read
+      fp.close
+      css_data
+    else
+      self.class.default_css
+    end
+  end
+  
+  def css=(data)
+    fp = File.open(css_file_path, 'w')
+    fp.write(data)
+    fp.close
+    self.has_custom_css = true
+  end
+  
+  def self.default_css
+    default_css_file_path = File.join(RAILS_ROOT, 'public/stylesheets', 'default') + '.css'
+    fp = File.open(default_css_file_path, 'r')
+    css_data = fp.read
+    fp.close
+    css_data
+  end
+  
+  def to_s
+    unless self.title.blank?
+      return self.title
+    end
+    unless self.author.blank?
+      return self.author
+    end
+    return self.subdomain
+  end
+  
+  def friendly_url
+    self.blog_url.gsub(/^http:\/\//, '').gsub(/\//, '')
+  end
+  
+  def busy?
+    self.aggregation_status != STATUS_READY
   end
   
   protected
@@ -204,5 +278,9 @@ class Stream < ActiveRecord::Base
                               :icon_url => ff_service.iconUrl)
     service
   end
-
+  
+  def css_file_path
+    File.join(RAILS_ROOT, 'public/stylesheets', self.subdomain) + '.css'
+  end
+  
 end

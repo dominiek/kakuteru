@@ -1,0 +1,9 @@
+page.replace_html('inner_progress_bar', "#{@stream.aggregation_progress}%")
+page << "$('inner_progress_bar').style.width = '#{@stream.aggregation_progress}%';"
+if @stream.aggregation_status == Stream::STATUS_READY
+  #page.visual_effect(:fade, 'aggregation_status')
+  #page << "$('aggregate_activity_submit').disabled = false;"
+  page << "document.location.reload();"
+else
+  page << wait_and_redirect_js(aggregation_status_path)
+end

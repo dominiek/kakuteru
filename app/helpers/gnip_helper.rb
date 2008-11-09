@@ -1,0 +1,2 @@
+module GnipHelper
+end

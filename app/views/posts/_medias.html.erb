@@ -1,10 +1,12 @@
 <% unless media_posts.blank? %>
   <div class="media summary">
     <div class="inner">
-      <%= link_to('more media', '/media', :class => 'more') %>
+      <% if media_posts.size > 3 %>
+        <%= link_to('more media', '/media', :class => 'more') %>
+      <% end %>
       <h2>Recent Media</h2>
       <ul>
-        <%= render(:partial => 'media_post', :collection => media_posts) %>
+        <%= render(:partial => '/posts/media', :collection => media_posts) %>
       </ul>
       <div class="clear"></div>
     </div>

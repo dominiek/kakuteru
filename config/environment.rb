@@ -51,6 +51,8 @@ Rails::Initializer.run do |config|
     :session_key => '_maitako_session',
     :secret      => '8b48cbf2302018a6878c54146f4af90ddc9842790d6979caad44c5bc82904653fe62ac686a130be80437865fd960e56ccefc9d8ad03a798a506aa7f5d78b473e'
   }
+  
+  config.active_record.allow_concurrency = true
 
   # Use the database for sessions instead of the cookie-based default,
   # which shouldn't be used to store highly confidential information
@@ -70,4 +72,9 @@ require 'will_paginate'
 
 APPLICATION_NAME = 'Kakuteru'
 ZEMENTA_API_KEY = '2ewhzg6vmdmnc5xbbyw6wmns'
+GNIP_EMAIL = 'kakuteru@dominiek.com'
+GNIP_PASSWORD = ''
 
+Spawn::method :thread, 'production'
+Spawn::method :fork, 'development'
+Spawn::method :yield, 'test'

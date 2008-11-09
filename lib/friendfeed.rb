@@ -10,7 +10,8 @@ class Friendfeed
     @username = username
   end
   
-  def fetch(&block)
+  def activity
+    entries = []
     agent = WWW::Mechanize.new
     page = agent.get("http://friendfeed.com/api/feed/user/#{@username}?format=xml")
     xml = REXML::Document.new(page.body)
@@ -40,8 +41,9 @@ class Friendfeed
         media.content = xml_media.get_text('content/url').to_s
         entry.medias << media
       end
-      yield(entry)
+      entries << entry
     end
+    entries
   end
   
   def profile

@@ -1,3 +1,2 @@
 page.replace_html('friendfeed_aggregation_services', :partial => 'streams/service', :collection => @stream.services)
-page.show('friendfeed_aggregation_activity')
-page << remote_function(:url => setup_aggregate_activity_path, :method => :get)
+page.show('friendfeed_setup')

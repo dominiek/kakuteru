@@ -3,7 +3,7 @@
     <div class="subsettings blog_information">
       <h2>Blog Information</h2>
       <p class="description">This is used to display information correctly and to improve SEO.</p>
-      <p><label for="blog_url" class="required" title="URL of this blog.">Blog URL: </label><%= text_field(:stream, :blog_url) %></p>
+      <p><label for="blog_url" class="disabled required" title="URL of this lifestream.">URL/domain: </label><%= text_field(:stream, :blog_url, :disabled => true) %></p>
       <p><label for="title" class="required" title="Will be used for SEO and in the title $title - $subtitle.">Title: </label><%= text_field(:stream, :title) %></p>
       <p><label for="subtitle" class="required" title="Will be used for SEO and in the title $title - $subtitle.">Subtitle: </label><%= text_field(:stream, :subtitle) %></p>
       <p><label for="author" class="required" title="Used for feeds and for microformats.">Your name: </label><%= text_field(:stream, :author) %></p>

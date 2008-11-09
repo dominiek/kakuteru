@@ -6,6 +6,10 @@ body {
 	color: #333;
 }
 
+.about { 
+	
+}
+
 a {
 	color: #777;
 	text-decoration: none;
@@ -32,11 +36,18 @@ ul {
 	margin: 0px auto 0 auto;
 }
 
-.main {
+.about {
 	background-color: #fff;
-	width: 700px;
-	min-height: 400px;
-	margin: 0 auto 4em auto;
+	width: 40%;
+	height: 100%;
+	margin: 0;
+	float: left;
+}
+
+.engage {
+	width: 50%;
+	float: right;
+	height: 100%;
 }
 
 .one_liner {
@@ -89,8 +100,6 @@ li {
 }
 
 .invite {
-	margin: 0 2em;
-	padding: 0 0 2em 0;
 }
 
 .invite h3 {

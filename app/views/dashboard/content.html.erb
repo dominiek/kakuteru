@@ -1,7 +1,11 @@
 <% content_for(:settings) do %>
   <% form_tag do %>
     <div class="subsettings content">
-      <h2>Footer</h2>
+      <h2>Header</h2>
+      <p class="description">Additional HTML and Javascript to be enclosed in the &lt;head&gt; tags of the page.</p>
+      <%= text_area(:stream, :header, :class => 'body') %>
+      <h2>About</h2>
+      <p class="description">This is the content displayed at the bottom of your lifestream. You can use both Textile and HTML markup.</p>
       <%= text_area(:stream, :footer, :class => 'body') %>
       <%= submit_tag('save') %>
     </div>

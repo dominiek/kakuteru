@@ -3,6 +3,11 @@
 	background: url('/images/spinner.gif') no-repeat left center !important;
 }
 
+li.busy {
+	padding: 0 0 0 30px !important;
+	line-height: 2;
+}
+
 .navigation {
 	height: 70px;
 	background-color: #111;
@@ -90,7 +95,7 @@ form p {
 	margin-bottom: 0.8em;
 }
 
-form p.description {
+p.description {
 	color: #666;
 }
 
@@ -98,14 +103,24 @@ form h2 {
 	margin-bottom: 0.4em;
 }
 
+form label.disabled {
+	color: #999;
+}
+
 textarea.body,
 textarea.summary {
 	font-size: 14px;
 	width: 600px;
+	margin-bottom: 0.8em;
 }
 
 div.formError {
 	
+}
+
+.heading.actions {
+	float: right;
+	margin-top: 2.5em;
 }
 
 /* Settings */
@@ -175,6 +190,11 @@ div.formError {
 .settings .integration input.url {
   width: 300px;
 }
+
+.settings ul.services {
+	margin-bottom: 0.8em;
+}
+
 /* Services */
 
 .services li {
@@ -202,10 +222,37 @@ div.formError {
 	font-size: 16px;
 }
 
+.aggregation.status {
+	margin: 2em 0;
+}
+
+.aggregation.status .progress.bar,
+.aggregation.status .progress.bar div {
+	height: 30px;
+}
+
+.aggregation.status .progress.bar { 
+  background-color: #ddd;
+  border: 1px solid #999;
+}
+
+.aggregation.status .progress.bar div {
+	background-color: #A4F062;
+	font-size: 14px;
+	font-weight: bold;
+	color: #fff;
+	line-height: 2em;
+	text-align: right;
+}
+
 /* Articles */
 
 .articles li {
 	padding: 0.4em;
+}
+
+.articles p.description {
+  margin: 0 0 1em 0;
 }
 
 .stream li:hover,
@@ -223,6 +270,11 @@ li span.actions {
 	display: block;
 	float: right;
 	margin: 0.2em 0;
+}
+
+a.write {
+	background: url('/images/icons/16-em-pencil.png') no-repeat 5px center;
+	padding-left: 30px;
 }
 
 a.edit {
@@ -269,6 +321,10 @@ div.write {
 .write label {
 	display: block;
 	margin: 0.4em 0;
+}
+
+.write select {
+	display: inline;
 }
 
 /* Assets */
@@ -319,7 +375,7 @@ div.write {
 	margin: 1em 0;
 }
 
-.friendfeed form {
+.friendfeed div.form {
 	margin: 2em 0;
 }
 
@@ -332,6 +388,13 @@ div.write {
 	font-size: 16px;
 }
 
+.friendfeed div.form {
+	width: 500px;
+}
+.friendfeed div.form input {
+	display: inline;
+}
+
 .friendfeed div.explanation {
 	background: url('/images/friendfeed.png') no-repeat 95% 90%;
 	border: 1px solid #999;
@@ -340,18 +403,12 @@ div.write {
 	color: #666;
 }
 
-
 .friendfeed .aggregation ul.services {
-	width: 160px;
-	float: left;
+	width: 260px;
 }
 
 .friendfeed .aggregation .services li {
 	border: none;
 	margin: 0;
 	padding: 0 0 1em 0;
-}
-
-.friendfeed .aggregation li.activity {
-	margin-left: 180px;
 }

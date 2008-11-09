@@ -1,3 +1,6 @@
-<%= link_to('return to overview', manage_articles_url, :rel => 'directory', :class => 'return_to_index') %>
-<h1>New draft</h1>
-<%= render(:partial => 'posts/form')%>
+<div class="articles">
+  <%= link_to('return to overview', manage_articles_url, :rel => 'directory', :class => 'return_to_index') %>
+  <h1>New draft</h1>
+  <p class="description">After saving this draft, more editing functions will be available.</p>
+  <%= render(:partial => 'posts/form')%>
+</div>

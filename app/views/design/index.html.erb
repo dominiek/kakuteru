@@ -1,0 +1,9 @@
+<div class="design page">
+  <h1>Design</h1>
+  <% form_tag do %>
+    <h2>Custom CSS</h2>
+    <p class="description">More ways of styling your stream will come soon. For now, you have full control over your CSS. You can use <%= link_to('Content Settings', '/dashboard/content') %> to insert additional markup and Javascript.</p>
+    <%= text_area(:stream, :css, :class => 'body') %>
+    <%= submit_tag('save')%>
+  <% end %>
+</div>

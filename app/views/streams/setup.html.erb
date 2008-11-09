@@ -1,9 +1,10 @@
 <div class="friendfeed setup">
-  <div id="friendfeed_setup">
-    <% form_remote_tag do %>
+  
+  <div class="form">
+    <% form_tag(setup_confirm_path) do %>
       <h2>2. Enter your <%= link_to('FriendFeed.com', 'http://friendfeed.com/') %> Account</h2>
       <p><span>http://friendfeed.com/<%= text_field(:stream, :friendfeed_username, :class => '') %></span></p>
-      <%= submit_tag('continue', :disable_with => 'aggregating..') %>
+      <%= submit_tag('continue') %>
     <% end %>
   </div>
 
@@ -14,9 +15,5 @@
     We plan to support other lifestreaming services soon, but for now, you'll have to quickly create a FriendFeed account.</p>
     <p><%= button_to('get a FriendFeed account', 'http://friendfeed.com/') %></p> 
   </div>
-  
-  <div id="friendfeed_aggregation" class="aggregation" style="display: none">
-    <ul id="friendfeed_aggregation_services" class="services"><li class="busy">Loading services...</li></ul>
-    <ul id="friendfeed_aggregation_activity" class="activity stream" style="display: none"><p class="busy">Fetching activity stream...</p></ul>
-  </div>
+
 </div>

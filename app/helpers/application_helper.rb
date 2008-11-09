@@ -85,4 +85,13 @@ module ApplicationHelper
     
     body
   end
+  
+  def wait_and_redirect_js(url, options = {})
+    redirect_function = remote_function(:url => url, :method => :get)
+    "setTimeout(function() {#{redirect_function}}, 3000);"
+  end
+  
+  def disqus_forum_identifier
+    @stream.disqus_forum_identifier.blank? ? 'kakuteru' : @stream.disqus_forum_identifier
+  end
 end

@@ -48,21 +48,19 @@
     </div>
   <% end %>
 
-  <% unless @stream.disqus_forum_identifier.blank? %>
-    <a name="disqus_thread"/>
-    <div class="discussion">
-      <div id="disqus_thread"></div>
-      <noscript><a href="http://<%= @stream.disqus_forum_identifier %>.disqus.com/?url=ref">View the discussion thread.</a></noscript>
-      <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
-      <% content_for(:foot) do %>
-        <script type="text/javascript" src="http://disqus.com/forums/<%= @stream.disqus_forum_identifier %>/embed.js"></script>
-        <script type="text/javascript">
-          var thread = $('disqus_thread');
-          thread.insertBefore($('dsq-comments-count'), thread.firstChild);
-    
-        </script>
-      <% end %>
-    </div>
-  <% end %>
+  <a name="disqus_thread"/>
+  <div class="discussion">
+    <div id="disqus_thread"></div>
+    <noscript><a href="http://<%= disqus_forum_identifier %>.disqus.com/?url=ref">View the discussion thread.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+    <% content_for(:foot) do %>
+      <script type="text/javascript" src="http://disqus.com/forums/<%= disqus_forum_identifier %>/embed.js"></script>
+      <script type="text/javascript">
+        var thread = $('disqus_thread');
+        thread.insertBefore($('dsq-comments-count'), thread.firstChild);
+  
+      </script>
+    <% end %>
+  </div>
 
 </div>

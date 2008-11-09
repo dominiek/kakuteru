@@ -33,12 +33,22 @@ class StreamsController < ApplicationController
   end
   
   def aggregate_activity
+    if request.post? && @stream.aggregation_status == Stream::STATUS_READY
+      @stream.update_attributes(:aggregation_status => Stream::STATUS_AGGREGATING, :aggregation_progress => 10)
+      spawn do
+        @stream.aggregate!
+      end
+    end
     #@stream.aggregate!
     respond_to(:js)
   end
   
   def aggregate_services
-    #@stream.aggregate_services!
+    @stream.aggregate_services!
+    respond_to(:js)
+  end
+  
+  def status
     respond_to(:js)
   end
   

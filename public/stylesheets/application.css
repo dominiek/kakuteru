@@ -36,11 +36,12 @@ div.page {
 	background-position: left center;
 }
 
-.with_icon.bookmark { background-image: url('/images/icons/16-book-blue-mark.png'); }
+.with_icon.bookmark { background-image: url('/images/icons/16-book-green-mark.png'); }
 .with_icon.photo { background-image: url('/images/icons/16-image.png'); }
 .with_icon.video { background-image: url('/images/icons/16-video-square.png'); }
 .with_icon.message { background-image: url('/images/icons/16-comment-square.png'); }
 .with_icon.article { background-image: url('/images/icons/16-file-page.png'); }
+.with_icon.slide { background-image: url('/images/icons/16-circle-blue.png'); }
 
 /* Layout */
 

@@ -1,0 +1,15 @@
+<li class="<%= media.type %>">
+  <div class="body">
+    <%= render(:partial => "posts/#{media.type}", :locals => {:post => media, :context => 'media'}) %>
+  </div>
+  <div class="details">
+    <abbr class="published" title="<%= media.published_at.iso8601 %>">
+      <%= distance_of_time_in_words_to_now(media.published_at) %> ago
+    </abbr>
+      ·
+    <%= link_to(pluralize(0, 'comment'), read_url(:id => media) + '#disqus_thread', :rel => 'bookmark url') %>
+    <address class="hide vcard author">
+      <a class="url fn" href="<%= @stream.blog_url %>"><%= @stream.author %></a>
+    </address>
+  </div>
+</li>

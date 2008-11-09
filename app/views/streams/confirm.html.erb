@@ -1,0 +1,14 @@
+<div class="friendfeed setup confirm">
+
+  <%= javascript_tag(remote_function(:url => setup_aggregate_services_path, :method => :get)) %>
+
+  <div id="friendfeed_aggregation" class="aggregation">
+    <ul id="friendfeed_aggregation_services" class="services"><li class="busy">Fetching profile information...</li></ul>
+  </div>
+
+  <div id="friendfeed_setup" class="form" style="display:none">
+  <%= button_to('Cool this is me!', finalize_setup_path) %> <%= link_to('This is not me, use different feed', setup_stream_path) %>
+  </div>
+
+
+</div>

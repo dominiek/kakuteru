@@ -9,6 +9,19 @@ class Service < ActiveRecord::Base
     end
   end
   
+  def actor
+    case identifier
+      when 'youtube'
+        profile_url.match(/user=([^\/]+)$/)[1]
+      else
+        if (m = profile_url.match(/\/([^\/]+)$/)) || (m = profile_url.match(/\/([^\/]+)\/$/))
+          m[1]
+        else
+          profile_url
+        end
+    end
+  end
+  
   def icon_url
     "/images/services/#{identifier}.png"
   end
