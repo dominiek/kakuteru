@@ -12,8 +12,8 @@ class Stream < ActiveRecord::Base
     :order => 'posts.created_at DESC', 
     :class_name => 'Post'
   has_many :media_posts,
-    :include => [:medias],
-    :conditions => "is_deleted IS FALSE AND medias.id IS NOT NULL", 
+    :include => [:medias, :service],
+    :conditions => "is_deleted IS FALSE AND medias.id IS NOT NULL AND services.identifier != 'wakoopa'",
     :order => 'posts.published_at DESC', 
     :class_name => 'Post',
     :limit => 4
