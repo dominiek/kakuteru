@@ -56,10 +56,10 @@ class PostsController < ApplicationController
   def index
     if params[:tag_name].blank?
       #
-      @posts = Post.paginate(:all, :per_page => 12, :page => params[:page], :conditions => ["is_deleted IS false"], :order => 'published_at DESC')
+      @posts = Post.paginate(:all, :per_page => 20, :page => params[:page], :conditions => ["is_deleted IS false"], :order => 'published_at DESC')
       #@posts = @stream.posts.paginate(:all, :limit => 12)
     else
-      @posts = Post.find_tagged_with(params[:tag_name], :conditions => 'is_draft IS FALSE AND is_deleted IS FALSE', :limit => 12)
+      @posts = Post.find_tagged_with(params[:tag_name], :conditions => 'is_draft IS FALSE AND is_deleted IS FALSE', :limit => 20)
     end
     respond_to(:html, :rss, :atom)
   end
