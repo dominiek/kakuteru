@@ -1,3 +1,11 @@
+body {
+	font-family: "Lucida Grande",Arial,Helvetica,sans serif;
+	font-size: 14px;
+}
+
+ul,li {
+	list-style-type: none;
+}
 
 .busy {
 	background: url('/images/spinner.gif') no-repeat left center !important;
@@ -8,6 +16,18 @@ li.busy {
 	line-height: 2;
 }
 
+a,
+a:visited,
+a:hover {
+	color: #2c94e4;
+	outline: none;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
 .navigation {
 	height: 70px;
 	background-color: #111;
@@ -15,11 +35,11 @@ li.busy {
 
 .navigation span a {
 	margin-left: 40px;
-	background: transparent url('/images/kakuteru.png') no-repeat left 10px;
+	background: transparent url('/images/kakuteru_glass.png') no-repeat left 4px;
 	display: block;
 	float: left;
-	padding: 25px;
-	text-indent: -5000px;
+	padding: 19px;
+	text-indent: 40px;
   color: #eee;
 	font-size: 25px;
 	width: 200px;
@@ -27,7 +47,11 @@ li.busy {
 
 .navigation ul {
 	float: right;
-	padding: 10px;
+	padding: 14px;
+}
+
+.navigation ul li a.active {
+	color: #AFC5FF;
 }
 
 div.login {
@@ -52,7 +76,16 @@ a.return_to_index {
 .navigation li {
 	float: left;
 	display: block;
-	margin: 1em 1em;
+	margin: 1em 1em 1em 0.2em;
+}
+
+.navigation li a.exit {
+	color: #fff;
+}
+
+div.page {
+	width: 920px;
+	margin: 2em auto;
 }
 
 .page {
@@ -62,6 +95,19 @@ a.return_to_index {
 .page h1 {
 	margin: 1em 0;
 }
+
+.pagination {
+	margin: 2em 1em;
+	display: block;
+	clear: both;
+	font-size: 18px;
+}
+
+.pagination .prev_page,
+.pagination .next_page {
+	display: none;
+}
+
 
 .settings input[type=checkbox],
 input[type=text],
@@ -217,6 +263,44 @@ div.formError {
 }
 
 /* Stream */
+
+
+.stream {
+	width: 500;
+	float: left;
+	margin: 0 2em 0 10px;
+}
+
+.stream li {
+	border-bottom: 1px dashed #999;
+	padding: 15px 5px;
+}
+
+.stream li:hover {
+	background-color: #F7F7F7;
+}
+
+.stream .icon img {
+	width: 48px;
+}
+
+.stream .icon {
+	float: left;
+	height: 48px;
+}
+
+.stream div.body {
+	margin-left: 60px;
+}
+
+.stream .details {
+	margin-left: 60px;
+	margin-top: 6px;
+}
+
+.stream ul {
+	margin-bottom: 4em;
+}
 
 .stream li .caption {
 	font-size: 16px;

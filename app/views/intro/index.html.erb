@@ -1,11 +1,22 @@
+<% content_for(:head) do %>
+  <%= stylesheet_link_tag('lightbox') %>
+  <%= javascript_include_tag('lightbox') %>
+<% end %>
 
 <div class="engage">
+  <%= link_to('Kakuteru', '/', :class => 'kakuteru') %>
+  <div class="status">
+    <p>
+      Right now Kakuteru is in a closed Beta. 
+      This will help us iron out the kinks and give us some time to scale up.
+      If you didn't manage to get an invite, keep your eyes and ears open - the second batch is coming soon!
+    </p>
+  </div>
   <div class="invite">
-    
-    
     <% form_tag do %>
-      <%= text_field(:stream, :subdomain) %>.kakuteru.com
-      <%= text_field(:stream, :invite_key) %>
+      <p><label for="stream_subdomain">Pick a name: </label><%= text_field(:stream, :subdomain, :class => 'text') %><span>.kakuteru.com</span></p>
+      <p><label for="stream_invite_key">Invite code: </label><%= text_field(:stream, :invite_code, :class => 'invite code text') %></p>
+      <p><label></label><%= submit_tag('Get started!', :class => 'get started') %></p>
     <% end %>
     <% if false %>
       <% unless flash[:notice] %>
@@ -25,36 +36,31 @@
   <div class="facts">
     <div>
       <ul>
-        <li>combining folksemantic practices with lifestreaming and blogging</li>
-        <li>to market yourself without any effort</li>
-        <li>integrates with 
-          <%= link_to('Friendfeed', 'http://friendfeed.com/') %>,
-          <%= link_to('Disqus', 'http://disqus.com/') %>,
-          <%= link_to('Dopplr', 'http://dopplr.com/') %>,
-          <%= link_to('Zemanta', 'http://zemanta.com/') %> and dozens more.</li>
-        <!--
-        <li>combining <%= link_to('Friendfeed', 'http://friendfeed.com/') %> and blogging</li>
-        <li>to market yourself better</li>
-        <li>inspired by <%= link_to("Yongfook's Sweetcron", 'http://yongfook.com/') %></li>
-        <li>use your own domain and control all the styling</li>
-        <li>support for social voting services like <%= link_to('Digg', 'http://digg.com') %> and <%= link_to('Addthis', 'http://addthis.com') %></li>
-        <li>integrates with <%= link_to('Feedburner', 'http://feedburner.com') %>, <%= link_to('Disqus', 'http://disqus.com/') %>, <%= link_to('Dopplr', 'http://dopplr.com') %>, etc.</li>
-      </ul>
-       -->
+        <% 
+          intro = [
+            [:your_style, "Lifestreaming, YOUR style"],
+            [:activity, "Your activity anywhere"],
+            [:web30_enabled, "Web 3.0 enabled"],
+            [:integration, "An integration Behemoth"],
+            [:statistics, "Activity stats"],
+            [:clusters, "Coming soon!"]
+          ]
+         %>
+        <% intro.each do |key_caption| 
+            key,caption = key_caption
+          %>
+          <li>
+            <%= link_to(caption, "/images/intro_#{key.to_s}.png", :rel => "lightbox[intro]", :title => caption, :class => key.to_s) %>
+          </li>
+        <% end %>
     </div>
   </div>
-<!--
-  <div class="semantic_web">
-    <h3>Semantic Web ready!</h3>
-    <ul>
-      <li>conforming to many Web Standards, <%= link_to('Microformats', 'http://microformats.org/') %> and <%= link_to('Nanoformats', 'http://microformats.org/wiki/microblogging-nanoformats') %></li>
-      <li>pinging the Blogosphere through <%= link_to('Technorati', 'http://technorati.com/') %> and many others</li>
-      <li>integrates with <%= link_to('Zemanta', 'http://zemanta.com/') %> to facilitate auto-tagging</li>
-      <li>built-in content recommender system<li>
-      <li>gathering attention data and providing that in <%= link_to('APML', 'http://apml.org/') %> format</li>
-    </ul>
-    <span><%= link_to("Want to get involved?", "http://github.com/dominiek/kakuteru/tree") %></span>
-    <div class="clear"></div>
-  </div>
--->
+</div>
+
+<%= javascript_tag("$('stream_subdomain').focus();") %>
+
+<div class="footer">
+  <h1>About</h1>
+  <p><%= link_to('Kakuteru', 'http://kakuteru.com/') %> is a part time endeavor initiated by <%= link_to('Dominiek ter Heide', 'http://dominiek.com/') %>. Kakuteru is a play-bed for new technologies and it started out because of the need to pimp up and lifestreamatize my blog. However, I think it can be much more. Kakuteru is Open Source and can be freely downloaded from <%= link_to('Github', 'http://github.com/dominiek/kakuteru/tree') %>.</p>
+  <p>Kakuteru.com is a way of turning that same piece of open source into an awesome and robust service. Kakuteru embraces openness and to continue along that same mindset, I intend to make Kakuteru an Open Business. That means anyone can jump in and make Kakuteru great and profitable - with ownership in return. How am I going to accomplish this? I have no freakin' idea! So if your interested, please pop me an email @ kakuteru [ monkeytail ] dominiek.com</p>
 </div>

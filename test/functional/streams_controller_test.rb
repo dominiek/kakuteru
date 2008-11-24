@@ -1,8 +1,19 @@
-require 'test_helper'
+require RAILS_ROOT + '/test/test_helper'
 
 class StreamsControllerTest < ActionController::TestCase
-  # Replace this with your real tests.
-  def test_truth
-    assert true
+
+  def test_reserved_subdomains
+    set_subdomain('blog')
+    get(:show, {}, {})
+    assert_response(:forbidden)
+
+    set_subdomain('monkey')
+    get(:show, {}, {})
+    assert_redirected_to(claim_stream_url)
+    
+    set_subdomain('kirk')
+    get(:show, {}, {})
+    assert_response(:success)
   end
+
 end

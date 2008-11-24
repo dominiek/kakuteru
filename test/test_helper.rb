@@ -33,6 +33,15 @@ class Test::Unit::TestCase
   # Note: You'll currently still have to declare fixtures explicitly in integration tests
   # -- they do not yet inherit this setting
   fixtures :all
+  
+
+  def set_subdomain(subdomain)
+    set_domain("#{subdomain}.test.host")
+  end
+
+  def set_domain(host)
+    @request.host = host
+  end
 
   # Add more helper methods to be used by all tests here...
 end

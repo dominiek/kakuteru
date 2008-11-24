@@ -3,7 +3,7 @@ body {
 	background-color: #111;
 	font-family: "Lucida Grande",Arial,Helvetica,sans serif;
 	font-size: 14px;
-	color: #333;
+	color: #999;
 }
 
 .about { 
@@ -13,12 +13,34 @@ body {
 a {
 	color: #777;
 	text-decoration: none;
+	outline: none;
 }
 
-ul {
-	margin-left: 1em;
-	list-style-type: square;
+.facts ul {
+	list-style-type: none;
 }
+
+.facts li {
+	border-bottom: 1px dashed #999;
+}
+
+.facts li:last-child {
+	border-bottom: none !important;
+}
+
+.facts li a {
+	display: block;
+	padding-top: 44px;
+	text-indent: 100px;
+	height: 69px;
+}
+
+.facts li a.your_style { background: url('/images/intro_your_style_tn.png') no-repeat left center; }
+.facts li a.activity { background: url('/images/intro_activity_tn.png') no-repeat left center; }
+.facts li a.web30_enabled { background: url('/images/intro_web30_enabled_tn.png') no-repeat left center; }
+.facts li a.integration { background: url('/images/intro_integration_tn.png') no-repeat left center; }
+.facts li a.statistics { background: url('/images/intro_statistics_tn.png') no-repeat left center; }
+.facts li a.clusters { background: url('/images/intro_clusters_tn.png') no-repeat left center; }
 
 .header a {
 	background: url('/images/kakuteru.png') no-repeat left bottom;
@@ -39,57 +61,39 @@ ul {
 .about {
 	background-color: #fff;
 	width: 40%;
-	height: 100%;
 	margin: 0;
 	float: left;
+	color: #333;
 }
 
 .engage {
-	width: 50%;
+	width: 58%;
 	float: right;
 	height: 100%;
+	margin-top: 1.4em;
 }
 
-.one_liner {
-	text-align: center;
-	height: 100px;
-	width: 100%;
-	padding-top: 40px;
-}
-
-.one_liner span {
+.engage a.kakuteru {
 	display: block;
-	font-size: 24px;
-	color: #333;
-	text-align: center;
+	background: url('/images/kakuteru_shaken_not_stirred.png') no-repeat center center;
+	width: 355;
+	height: 74px;
+	text-indent: -3000px;
+	margin: 2em 0 3em 0;
 }
 
 .facts {
-	padding: 2em 2em;
+	padding: 2em 1.5em;
 	font-size: 18px;
 }
 
-li {
-	margin: 0.4em 0;
+.status {
+	padding-right: 2em;
+	margin-bottom: 1em;
 }
 
-.semantic_web {
-	padding: 2em 2em 1em 2em;
-	color: #ddd;
-	background-color: #333;
-}
-
-.semantic_web ul {
-	margin: 0;
-	list-style-type: none;
-}
-
-.semantic_web a {
-	color: #777;
-}
-.semantic_web span {
-	float: right;
-	font-size: 12px;
+.get.started {
+	font-size: 20px;
 }
 
 .notice {
@@ -97,9 +101,6 @@ li {
 	padding-top: 1em;
 	font-size: 20px;
 	color: #699742;
-}
-
-.invite {
 }
 
 .invite h3 {
@@ -110,10 +111,46 @@ li {
 	margin: 0.4em 0;
 }
 
-.invite input {
-	font-size: 20px;
+.invite input.text {
+	font-size: 18px;
+	background-color: #333;
+	margin-bottom: 0.8em;
+	color: #A4F062;
+	padding: 2px;
+	width: 140px;
+	border: 1px solid #999;
+}
+
+.invite input.invite.code {
+	width: 266px;
+}
+
+.invite label {
+	width: 100px;
+	display: block;
+	float: left;
+	padding-top: 4px;
 }
 
 .invite form {
 	padding: 2em 0;
+}
+
+.invite form span {
+	font-size: 18px;
+}
+
+.footer a {
+	color: #A4F061;
+}
+
+.footer {
+	clear: both;
+	background-color: #333;
+	color: #eee;
+	padding: 2em 1em;
+}
+
+.footer p,h1 {
+	margin-bottom: 1em;
 }

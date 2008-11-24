@@ -2,7 +2,14 @@
 require 'digest/sha2'
 
 class Stream < ActiveRecord::Base
-  has_many :posts, :conditions => 'is_deleted IS FALSE', :order => 'published_at DESC'
+  has_many :posts, 
+    :conditions => 'is_deleted IS FALSE', 
+    :order => 'published_at DESC'
+  has_many :public_posts,
+    :include => [:service],
+    :conditions => 'is_deleted IS FALSE AND services.is_enabled = true',
+    :order => 'published_at DESC',
+    :class_name => 'Post'
   has_many :articles, 
     :include => [:service],
     :conditions => "is_deleted IS FALSE AND is_draft IS FALSE AND services.identifier = 'articles'", 
@@ -14,8 +21,8 @@ class Stream < ActiveRecord::Base
     :order => 'posts.created_at DESC', 
     :class_name => 'Post'
   has_many :media_posts,
-    :include => [:medias],
-    :conditions => "is_deleted IS FALSE AND medias.id IS NOT NULL", 
+    :include => [:medias, :service],
+    :conditions => ["is_deleted IS FALSE AND medias.id IS NOT NULL AND services.is_enabled = 1 AND services.identifier IN (?)", Media::SUPPORTED_SERVICES], 
     :order => 'posts.published_at DESC', 
     :class_name => 'Post',
     :limit => 4
@@ -33,6 +40,20 @@ class Stream < ActiveRecord::Base
                 
   STATUS_READY = 0
   STATUS_AGGREGATING = 1
+  RESERVED_SUBDOMAINS = ['blog', 'admin', 'kakuteru', 'status', 'developer', 'api', 'wiki', 'help', 'dominiek', 'zemanta', 'friendfeed', 'iknow', 'reccoon']
+  
+  include Statistics
+  
+  def verify_invite_code!(code)
+    puts code
+    invite = Invite.find(:first, :conditions => ['is_used = 0 AND code = ?', code])
+    if invite.blank?
+      self.errors.add(:password, 'Invalid invite code mate!')
+      return false
+    end
+    invite.update_attribute(:used_for_stream, subdomain)
+    true
+  end
   
   def authenticate(password)
     if self.password == Digest::SHA512.hexdigest(password)
@@ -41,107 +62,6 @@ class Stream < ActiveRecord::Base
       self.errors.add(:password, 'Invalid password mate!')
       false
     end
-  end
-  
-  def self.current
-    self.find_or_create_by_id(1)
-  end
-  
-  def activity_overview_graph
-    require 'google_chart'
-    # Main Activity Chart
-    GoogleChart::BarChart.new('900x300', "Daily Activity", :vertical, false) do |bc|
-      data = {}
-      services = []
-      self.posts.find(:all, 
-                         :select => 'COUNT(posts.id) AS num_posts, service_id, published_at', 
-                         :conditions => ['posts.published_at > ?', 2.weeks.ago],
-                         :group => "service_id,DATE_FORMAT(posts.published_at, '%Y-%m-%d')").each do |post|
-        xlabel = post.published_at.strftime("%b-%d")
-        data[xlabel] = {} unless data[xlabel]
-        data[xlabel][post.service_id.to_i] = post.num_posts.to_i
-        services << post.service_id.to_i unless services.include?(post.service_id.to_i)
-      end
-      xlabels = []
-      data_by_service = {}
-      all_values = []
-      data.each do |day,posts_by_service|
-        xlabels << day
-        total_today = 0
-        services.each do |service_id|
-          data_by_service[service_id] ||= []
-          data_by_service[service_id] << (posts_by_service[service_id] || 0)
-          total_today += posts_by_service[service_id].to_i
-        end
-        all_values << total_today
-      end
-      color_i = 0
-      services.each do |service_id|
-        bc.data(Service.find(service_id).identifier, data_by_service[service_id], graph_colors[(color_i % 4)])
-        color_i += 1 
-      end
-      ylabels = []
-      0.upto(all_values.max) { |i| ylabels << i }
-      #1.upto(10) { |i| ylabels << i }
-      bc.axis(:y, :labels => ylabels)
-      bc.axis(:x, :labels => xlabels)
-      bc.width_spacing_options(:bar_width => 50)
-      bc.stacked = true
-      return bc    
-    end    
-  end
-  
-  def used_services_graph
-    require 'google_chart'
-    # Services Diagram
-    services = {}
-    self.posts.find(:all, 
-                       :select => 'COUNT(posts.id) AS num_posts,service_id',
-                       :conditions => ['posts.published_at > ?', 2.weeks.ago],
-                       :group => 'service_id').each do |post|
-      services[post.service_id.to_i] = post.num_posts.to_i
-    end
-    GoogleChart::PieChart.new('320x200', "Services used", false) do |pc|
-      color_i = 0
-      services.each do |service_id,num_posts|
-        pc.data(Service.find(service_id).identifier, num_posts, graph_colors[(color_i % 4)])
-        color_i += 1
-      end
-      return pc
-    end
-  end
-  
-  def common_activity_hours_graph_url
-    require 'google_chart'
-    hourly_activity = {}
-    time_zone = nil
-    self.posts.find(:all, 
-                       :select => 'COUNT(posts.id) AS num_posts,published_at',
-                       :conditions => ['posts.published_at > ?', 2.weeks.ago],
-                       :group => "DATE_FORMAT(posts.published_at, '%H')").each do |post|
-      hourly_activity[post.published_at.strftime("%H").to_i] = post.num_posts.to_i
-    end
-    puts hourly_activity.inspect
-    xlabels = (0..23).collect { |h| "#{h+1}:00" }
-    hourly_activity = (0..23).collect { |h| hourly_activity[h] || 0 }
-    hourly_activity = hourly_activity.collect { |p| ((p/hourly_activity.max.to_f)*100).ceil }
-    "http://chart.apis.google.com/chart?cht=r&chs=200x200&chd=t:#{hourly_activity.join(',')}0&chco=#{graph_colors.first}&chls=2.0,4.0,0.0&chxt=x&chxl=0:|#{(0..23).collect { |i| i.to_s }.join('|')}&chxr=0,0.0,23.0&chm=B,#{graph_colors.last},0,1.0,4.0&chtt=Hourly+Activity+#{time_zone}"
-  end
-  
-  def activity_summary_sparkline_url
-    data = {}
-    self.posts.find(:all, 
-                    :select => 'COUNT(posts.id) AS num_posts, published_at', 
-                    :conditions => ['posts.published_at > ?', 2.weeks.ago],
-                    :group => "DATE_FORMAT(posts.published_at, '%Y-%m-%d')").each do |post|
-      data[post.published_at.beginning_of_day] = post.num_posts.to_i
-    end
-    data = data.to_a
-    data.sort! { |a,b| a.first <=> b.first }
-    data = data.collect { |d| d.last }
-    peak = data.max
-    data = data.collect { |p| ((p/peak.to_f)*100).ceil }
-    "http://chart.apis.google.com/chart?chs=200x80&chd=t:#{data.join(',')}&cht=ls"
   end
   
   def before_save
@@ -157,6 +77,20 @@ class Stream < ActiveRecord::Base
     end
   end
   
+  def self.aggregate!
+    time = Time.now
+    streams = Stream.find(:all, :conditions => ["friendfeed_username IS NOT NULL AND is_active = 1"]) 
+    logger.info("Updating #{streams.size} streams")
+    streams.each do |stream|
+      begin
+        stream.aggregate!
+      rescue => e
+        logger.error(e)
+      end
+    end
+    logger.info("Stream.aggregate! took #{(Time.now - time).to_i} seconds")
+  end
+  
   def aggregate_services!(options = {})
     profile = Friendfeed.new(self.friendfeed_username).profile
     if !self.author
@@ -168,7 +102,7 @@ class Stream < ActiveRecord::Base
   end
   
   def aggregate!(options = {})
-    friendfeed = Friendfeed.new(Stream.current.friendfeed_url)
+    update_attribute(:aggregation_started_at, Time.now)
     entries = Friendfeed.new(self.friendfeed_username).activity
     update_attribute(:aggregation_progress, 50)
     entries_count = entries.size
@@ -201,7 +135,8 @@ class Stream < ActiveRecord::Base
     end
     
     update_attributes(:aggregation_progress => 100, 
-                      :aggregation_status => Stream::STATUS_READY)
+                      :aggregation_status => Stream::STATUS_READY,
+                      :aggregation_started_at => nil)
   rescue => e
     puts e.backtrace.join("\n")
   end
@@ -257,17 +192,31 @@ class Stream < ActiveRecord::Base
   end
   
   def friendly_url
-    self.blog_url.gsub(/^http:\/\//, '').gsub(/\//, '')
+    self.blog_url.to_s.gsub(/^http:\/\//, '').gsub(/\//, '')
   end
   
   def busy?
+    if self.aggregation_started_at && self.aggregation_started_at < 4.minutes.ago
+      update_attributes(:aggregation_progress => 100, 
+                        :aggregation_status => Stream::STATUS_READY,
+                        :aggregation_started_at => nil)
+    end
     self.aggregation_status != STATUS_READY
+  end
+  
+  def tag_counts(options = {})
+    @tag_counts ||= Tag.counts(
+      :limit => 40, 
+      :order => 'count DESC',
+      :joins => " JOIN posts ON taggable_type = 'Post' AND taggable_id = posts.id ",
+      :conditions => ["posts.stream_id = #{self.to_param}"]
+    )
   end
   
   protected
   
   def graph_colors
-    ['2a2a2a', '666666', '999999', 'cccccc']
+    ['173F1D', '3B9F49', '53DF66', 'A4EFAE', '6FDFD2', '2BAFA0', '0D6F64']
   end
   
   def find_or_create_service(ff_service)

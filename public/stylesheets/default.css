@@ -30,20 +30,6 @@ div.page {
 	margin: 2em auto;
 }
 
-.with_icon {
-	padding-left: 24px;
-	background-repeat: no-repeat;
-	background-position: left center;
-}
-
-.with_icon.bookmark { background-image: url('/images/icons/16-book-blue-mark.png'); }
-.with_icon.photo { background-image: url('/images/icons/16-image.png'); }
-.with_icon.video { background-image: url('/images/icons/16-video-square.png'); }
-.with_icon.message { background-image: url('/images/icons/16-comment-square.png'); }
-.with_icon.article { background-image: url('/images/icons/16-file-page.png'); }
-
-/* Layout */
-
 /* Title header */
 
 .header {
@@ -329,6 +315,7 @@ div.articles a.feedburner {
 	width: 500;
 	float: left;
 	margin: 0 2em 0 10px;
+	min-height: 600px;
 }
 
 .stream li {
@@ -418,6 +405,11 @@ div.articles a.feedburner {
 	margin-bottom: 0.8em;
 }
 
+div.show.message {
+	margin: 1em;
+	padding: 1em 0 0;
+}
+
 .show .message span {
 	display: block;
 	font-size: 22px;
@@ -458,7 +450,6 @@ div.articles a.feedburner {
 }
 
 .related ul {
-	margin-left: 2em;
 }
 
 .related li {

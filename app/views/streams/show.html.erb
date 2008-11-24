@@ -35,7 +35,7 @@
   
   <div class="tagcloud">
     <h3>Tags</h3>
-    <% Tag.counts(:limit => 40, :order => 'count DESC').sort{ |t1,t2| t1.name <=> t2.name }.each do |tag| %>
+    <% @stream.tag_counts.sort{ |t1,t2| t1.name <=> t2.name }.each do |tag| %>
       <%= link_to(tag.name, by_tag_url(:tag_name => tag.name), :class => 'tag', :rel => 'tag')%>
     <% end %>
   </div>

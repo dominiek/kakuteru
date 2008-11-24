@@ -20,3 +20,9 @@ config.action_controller.allow_forgery_protection    = false
 # The :test delivery method accumulates sent emails in the
 # ActionMailer::Base.deliveries array.
 config.action_mailer.delivery_method = :test
+
+config.active_record.allow_concurrency = false
+Spawn::method :thread, 'test'
+
+
+GOOGLE_JS_API_KEY = 'ABQIAAAASqqLEJlSYucb_3epkX6lmxQXS1IXKViAjlOeMd1_xQLyB7JDRxTn7en4S4ouFwJPYYIsoYTXqBmWsg'

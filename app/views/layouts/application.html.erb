@@ -10,6 +10,7 @@
     <%= auto_discovery_link_tag(:rss, stream_feed_url(:format => 'rss'), :title => 'Lifestream RSS') %>
     <%= auto_discovery_link_tag(:atom, stream_feed_url(:format => 'atom'), :title => 'Lifestream Atom') %>
     <%= stylesheet_link_tag('html') %>
+    <%= stylesheet_link_tag('application') %>
     <% if @stream.has_custom_css? %>
       <%= stylesheet_link_tag(@stream.subdomain) %>
     <% else %>
@@ -22,7 +23,7 @@
       <meta name="description" content="<%= @stream.subtitle %>" />
     <% end %>
     <%#TODO USE TAGS %>
-    <meta name="keywords" content="<%= @stream.subtitle %>" />
+    <meta name="keywords" content="<%= @stream.tag_counts.slice(0, 10).join(', ') %>" />
     <meta name="robots" content="index, follow" />
     <meta name="GOOGLEBOT" content="index, follow" />
     <meta name="MSSmartTagsPreventParsing" content="yes" />

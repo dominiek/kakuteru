@@ -17,7 +17,6 @@ class Post < ActiveRecord::Base
   def after_save
     if self.type == 'article' && self.is_draft == false && !self.published_at
       self.update_attribute(:published_at, Time.now)
-      puts "Publishing....."
       #send_aggregation_pings
     end
   end
@@ -68,7 +67,7 @@ class Post < ActiveRecord::Base
               :joins => " INNER JOIN taggings ON posts.id = taggings.taggable_id AND taggings.taggable_type = 'Post' AND taggings.tag_id IN (#{tags.collect(&:id).join(',')}) ",
               :group => 'posts.id HAVING num_tag_matches > 1',
               :order => 'num_tag_matches DESC',
-              :conditions => ["posts.id != ?", id],
+              :conditions => ["posts.id != ? AND stream_id = ?", id, self.stream.to_param],
               :limit => 5)
   end
   
@@ -89,7 +88,18 @@ class Post < ActiveRecord::Base
         'photo'
       when 'slideshare'
         'slide'
+      when 'wakoopa'
+        'software'
+      when 'lastfm'
+        'music'
     end
+  end
+  
+  def caption=(new_caption)
+    if self.caption != new_caption
+      add_tags_for(new_caption)
+    end
+    super(new_caption)
   end
   
   def auto_tag!
@@ -122,6 +132,17 @@ class Post < ActiveRecord::Base
   def send_aggregation_pings
     ping("rpc.technorati.com", Stream.current.title, Stream.current.blog_url)
     ping("rpc.pingomatic.com", Stream.current.title, Stream.current.blog_url)
+  end
+  
+  def add_tags_for(caption)
+    words = caption.split(/[^a-zA-Z\-]+/).find_all { |w| w =~ /[a-z]+/ }
+    extracted_tags = []
+    words.each do |word|
+      if word.size > 12 || word[0] == word.upcase[0]
+        extracted_tags << word.downcase
+      end
+    end
+    self.tag_list = self.tag_list + extracted_tags
   end
   
 end

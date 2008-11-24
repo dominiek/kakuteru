@@ -5,7 +5,7 @@
 # ENV['RAILS_ENV'] ||= 'production'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.1.1' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.1.2' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -48,12 +48,12 @@ Rails::Initializer.run do |config|
   # Make sure the secret is at least 30 characters and all random, 
   # no regular words or you'll be exposed to dictionary attacks.
   config.action_controller.session = {
-    :session_key => '_maitako_session',
+    :session_key => '_kakuteru_session',
     :secret      => '8b48cbf2302018a6878c54146f4af90ddc9842790d6979caad44c5bc82904653fe62ac686a130be80437865fd960e56ccefc9d8ad03a798a506aa7f5d78b473e'
   }
-  
-  config.active_record.allow_concurrency = true
 
+  config.active_record.allow_concurrency = true
+  
   # Use the database for sessions instead of the cookie-based default,
   # which shouldn't be used to store highly confidential information
   # (create the session table with "rake db:sessions:create")
@@ -74,7 +74,3 @@ APPLICATION_NAME = 'Kakuteru'
 ZEMENTA_API_KEY = '2ewhzg6vmdmnc5xbbyw6wmns'
 GNIP_EMAIL = 'kakuteru@dominiek.com'
 GNIP_PASSWORD = ''
-
-Spawn::method :thread, 'production'
-Spawn::method :fork, 'development'
-Spawn::method :yield, 'test'

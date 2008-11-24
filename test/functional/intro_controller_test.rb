@@ -1,8 +1,14 @@
-require 'test_helper'
+require RAILS_ROOT + '/test/test_helper'
 
 class IntroControllerTest < ActionController::TestCase
-  # Replace this with your real tests.
-  def test_truth
-    assert true
+  def test_index
+    get(:index, {}, {})
+    assert_response(:success)
+    
+    post(:index, {:stream => {}}, {})
+    assert_response(:success)
+    
+    post(:index, {:stream => {:subdomain => 'hello', :invite_code => 'hola'}}, {})
+    assert_redirected_to('http://hello.test.host/?invite_code=hola')
   end
 end

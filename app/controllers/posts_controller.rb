@@ -65,7 +65,7 @@ class PostsController < ApplicationController
   end
   
   def manage
-    @posts = Post.find(:all, :include => [:service], :conditions => ["services.identifier != 'articles'"], :order => 'posts.id DESC')
+    @posts = Post.find(:all, :include => [:service], :conditions => ["services.identifier != 'articles'"], :order => 'posts.published_at DESC')
     render(:layout => 'dashboard')
   end
   

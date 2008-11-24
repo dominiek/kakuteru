@@ -9,13 +9,13 @@
   
   <body>
     <div class="navigation">
-      <span><%= link_to(APPLICATION_NAME, '/') %></span>
+      <span><%= link_to(@stream.friendly_url, '/') %></span>
       <% if @authenticated %>
         <ul>
-          <li><%= link_to('settings', :controller => :dashboard) %></li>
-          <li><%= link_to('design', :controller => :design) %></li>
-          <li><%= link_to('activity', manage_stream_url) %></li>
-          <li><%= link_to('articles', manage_articles_url) %></li>
+          <li><%= link_to('settings', {:controller => :dashboard}, :class => (params[:controller] == 'dashboard') ? 'active' : '') %></li>
+          <li><%= link_to('design', {:controller => :design}, :class => (params[:controller] == 'design') ? 'active' : '') %></li>
+          <li><%= link_to('activity', manage_stream_path, :class => (current_page?(manage_stream_path)) ? 'active' : '') %></li>
+          <li><%= link_to('articles', manage_articles_path, :class => (current_page?(manage_articles_path)) ? 'active' : '') %></li>
         </ul>
       <% end %>
     </div>

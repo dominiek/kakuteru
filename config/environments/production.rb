@@ -20,3 +20,10 @@ config.action_view.cache_template_loading            = true
 
 # Disable delivery errors, bad email addresses will be ignored
 # config.action_mailer.raise_delivery_errors = false
+
+
+config.active_record.allow_concurrency = true
+Spawn::method :thread, 'production'
+
+
+GOOGLE_JS_API_KEY = 'ABQIAAAASqqLEJlSYucb_3epkX6lmxTSabCV_2pA3A-aceM5P82BnizBWRQFpVKjqWo4LdkMBpq7lyG54-ojOw'

@@ -1,7 +1,12 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-# one:
-#   column: value
-#
-# two:
-#   column: value
+dominiek:
+  id: 1
+  subdomain: dominiek
+  is_active: true
+peter:
+  id: 2
+  subdomain: peter
+  is_active: false
+kirk:
+  id: 3
+  subdomain: kirk
+  is_active: true
