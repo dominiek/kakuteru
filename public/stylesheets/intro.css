@@ -33,6 +33,7 @@ a {
 	padding-top: 44px;
 	text-indent: 100px;
 	height: 69px;
+	color: #111;
 }
 
 .facts li a.your_style { background: url('/images/intro_your_style_tn.png') no-repeat left center; }
