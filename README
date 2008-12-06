@@ -41,7 +41,11 @@ sudo gem install icalendar
 2. Start the rails server.
 3. Go to: http://url/dashboard/
 4. Make sure to configure your friendfeed_url
-5. To update the lifestream run: ./script/runner Post.fetch_from_friendfeed
+5. Make sure to register a Zemanta API key @ http://developer.zemanta.com/ and set it in config/environment.rb:
+
+  ZEMENTA_API_KEY = 'your key'
+  
+6. To update the lifestream run: ./script/runner Post.fetch_from_friendfeed
 
 == Migrate from Mephisto
 

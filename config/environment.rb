@@ -8,7 +8,7 @@
 RAILS_GEM_VERSION = '2.1.1' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
-require File.join(File.dirname(__FILE__), 'boot')
+require File.join(File.dirname(__FILE__), 'boot') 
 
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence over those specified here.
@@ -69,5 +69,5 @@ end
 require 'will_paginate'
 
 APPLICATION_NAME = 'Kakuteru'
-ZEMENTA_API_KEY = '2ewhzg6vmdmnc5xbbyw6wmns'
+
 
