@@ -18,7 +18,6 @@ class StreamsController < ApplicationController
   end
   
   def claim
-    puts session[:invite_code]
     if request.post? && !@stream.is_active
       @stream.verify_invite_code!(session[:invite_code])
       @stream.update_attributes(params[:stream]) if @stream.errors.blank?
@@ -33,6 +32,18 @@ class StreamsController < ApplicationController
   
   def setup
     respond_to(:html, :js)
+  end
+  
+  def delete
+    if request.post?
+      if @stream.authenticate(params[:password_verification])
+        Post.delete_all(['stream_id = ?', @stream.id])
+        #Media.delete_all(['stream_id = ?', @stream.id])
+        Service.delete_all(['stream_id = ?', @stream.id])
+        @stream.destroy
+        redirect_to('http://kakuteru.com/')
+      end
+    end
   end
   
   def confirm

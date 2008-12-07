@@ -5,11 +5,16 @@
     <p>
       Setting up your lifestream can take only a couple of seconds. 
       First we protect this domain by password and finally we suck in your digital life. <%= link_to('learn more', 'http://kakuteru.com/') %></p>
+    <% if params[:invite_code].blank? %>
+      <h2>0. Your invite code</h2>
+      <p><%= text_field_tag('invite_code', params[:invite_code]) %></p>
+    <% else %>
+      <p><%= hidden_field_tag('invite_code', params[:invite_code]) %></p>
+    <% end %>
     <h2>1. Pick a password</h2>
     <%= error_message_on(@stream, :password) %>
     <p><label for="password">Password:</password> <%= password_field(:stream, :new_password) %></p>
     <p><label for="password_repeat">Again:<label> <%= password_field(:stream, :new_password_repeat) %></p>
-    <p><%= hidden_field_tag('invite_code', params[:invite_code]) %></p>
     <%= submit_tag('continue') %>
   <% end %>
 </div>

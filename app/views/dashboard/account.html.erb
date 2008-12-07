@@ -1,15 +1,21 @@
 <% content_for(:settings) do %>
-  <% form_tag do %>
-    <div class="subsettings account">
-      <h2>Account Settings</h2>
-      <p class="description">Please make sure that you select a proper Friendfeed URL. eg: <a href="http://friendfeed.com/dominiek">http://friendfeed.com/dominiek</a>.</p>
+  <div class="subsettings account">
+    <h2>Account Settings</h2>
+    <p class="description">Please make sure that you select a proper Friendfeed URL. eg: <a href="http://friendfeed.com/dominiek">http://friendfeed.com/dominiek</a>.</p>
+    <% form_tag do %>
       <%= error_message_on(@stream, :password) %>
       <p><label for="new_password" class="required" title="Need this to get in.">New password: </label><%= password_field(:stream, :new_password) %></p>
       <p><label for="new_password_repeat" class="required" title="Need this to get in.">Retype password: </label><%= password_field(:stream, :new_password_repeat) %></p>
       <p><label for="friendfeed_username" class="required" title="Core backend of the lifestream feed must be in XML, eg: http://friendfeed.com/api/feed/user/dominiek?format=xml">Friendfeed username: </label><%= text_field(:stream, :friendfeed_username) %></p>
       <%= submit_tag('save') %>
-    </div>
-  <% end %>
+    <% end %>
+
+    <% form_tag(delete_stream_path, :method => :get) do %>
+      <h2>Delete Account</h2>
+      <p class="description">Remove all information and detach completely from <%= @stream.friendly_url %>.</p>
+      <%= submit_tag('delete account') %>
+    <% end %>    
+  </div>
 <% end %>
 
 <%= render(:partial => 'dashboard/settings') %>

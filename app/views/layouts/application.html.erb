@@ -34,6 +34,11 @@
   
   <body>
     <div class="header">
+      <% if session[:authenticated_subdomain] == @stream.subdomain %>
+        <ul class="dashboard menu">
+          <li><%= link_to('dashboard', '/dashboard') %></li>
+        </ul>
+      <% end %>
       <div class="inner">
         <%= link_to(@stream.to_s, '/', :rel => 'directory') %>
         <% unless @stream.subtitle.blank? %>

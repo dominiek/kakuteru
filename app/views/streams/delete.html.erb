@@ -1,0 +1,7 @@
+
+<h1>Delete all data and unclaim <%= @stream.friendly_url %>?</h1>
+
+<% form_tag(delete_stream_path) do %>
+  <label for="password_verification">Password: </label><%= password_field_tag(:password_verification) %>
+  <%= submit_tag('Delete everything!')%>
+<% end %>

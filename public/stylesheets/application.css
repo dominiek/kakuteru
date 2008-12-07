@@ -13,3 +13,22 @@
 .with_icon.slide { background-image: url('/images/icons/16-circle-blue.png'); }
 .with_icon.software { background-image: url('/images/icons/16-frame-add.png'); }
 .with_icon.music { background-image: url('/images/icons/16-arrow-right.png'); }
+
+
+.header ul.dashboard {
+	position: absolute;
+	right: 0;
+}
+
+.header ul.dashboard.menu li {
+	background: #111 url('/images/kakuteru_small.png') no-repeat center left;
+	height: 30px;
+	float: right;
+	text-indent: 40px;
+	padding-top: 15px;
+	width: 140px;
+}
+
+.header ul.dashboard.menu a {
+	color: #fff;
+}

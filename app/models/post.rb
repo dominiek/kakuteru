@@ -21,7 +21,7 @@ class Post < ActiveRecord::Base
     end
   end
   
-  def after_create
+  def after_save
     permalink!
   end
   
@@ -124,7 +124,7 @@ class Post < ActiveRecord::Base
     string.gsub!(/^-/, '')
     string.gsub!(/-$/, '')
     string.slice(0, 60)
-    update_attribute(:permalink, string)
+    self.permalink = string
   end
   
   private
