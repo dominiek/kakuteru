@@ -40,7 +40,7 @@ class Stream < ActiveRecord::Base
                 
   STATUS_READY = 0
   STATUS_AGGREGATING = 1
-  RESERVED_SUBDOMAINS = ['blog', 'admin', 'kakuteru', 'status', 'developer', 'api', 'wiki', 'help', 'dominiek', 'zemanta', 'friendfeed', 'iknow', 'reccoon']
+  RESERVED_SUBDOMAINS = ['blog', 'admin', 'kakuteru', 'status', 'developer', 'api', 'wiki', 'help', 'zemanta', 'friendfeed', 'iknow', 'reccoon']
   
   include Statistics
   
@@ -89,6 +89,47 @@ class Stream < ActiveRecord::Base
       end
     end
     logger.info("Stream.aggregate! took #{(Time.now - time).to_i} seconds")
+  end
+  
+  def self.aggregate_trips!
+    time = Time.now
+    streams = Stream.find(:all, :conditions => ["friendfeed_username IS NOT NULL AND is_active = 1 AND LENGTH(dopplr_ical_url) > 0"]) 
+    logger.info("Updating trips for #{streams.size} streams")
+    streams.each do |stream|
+      begin
+        stream.aggregate_trips!
+      rescue => e
+        logger.error(e)
+      end
+    end
+    logger.info("Stream.aggregate_trips! took #{(Time.now - time).to_i} seconds")
+  end
+  
+  def aggregate_trips!
+    require 'mechanize'
+    require 'icalendar'
+    agent = WWW::Mechanize.new
+    page = agent.get(self.dopplr_ical_url.gsub(/^webcal:\/\//, 'http://'))
+    calendars = Icalendar.parse(page.body)
+    events = calendars.first.events
+    sampled_dopplr_url = nil
+    events.each do |event|
+      trip = Trip.find_or_create_by_identifier_and_stream_id(event.uid, self.id)
+      trip.update_attributes(:travel_starts_at => event.dtstart,
+                             :travel_ends_at => event.dtend,
+                             :destination => event.location,
+                             :url => event.url.to_s,
+                             :description => event.description)
+      sampled_dopplr_url ||= event.url
+    end
+    
+    if sampled_dopplr_url
+      dopplr_username = sampled_dopplr_url.to_s.match(/\/trip\/([\w]+)\//)[1]
+      dopplr_service = Service.find_or_create_by_identifier_and_stream_id('dopplr', self.id)
+      dopplr_service.update_attributes(:icon_url => '/images/services/dopplr.png',
+                                       :name => 'Dopplr',
+                                       :profile_url => "http://www.dopplr.com/traveller/#{dopplr_username}")
+    end
   end
   
   def aggregate_services!(options = {})

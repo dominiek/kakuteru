@@ -25,37 +25,6 @@ class Post < ActiveRecord::Base
     permalink!
   end
   
-  def self.fetch_from_friendfeed
-    friendfeed = Friendfeed.new(Stream.current.friendfeed_url)
-    friendfeed.fetch do |entry|
-      service = Service.find_or_create_by_identifier_and_stream_id_and_profile_url(entry.service.identifier, Stream.current.id, entry.service.profileUrl)
-      service.update_attributes(:name => entry.service.name,
-                                :profile_url => entry.service.profileUrl,
-                                :icon_url => entry.service.iconUrl)
-                                
-                                
-      post = Post.find_or_create_by_identifier_and_stream_id(entry.identifier, Stream.current.id)
-      post.update_attributes(:caption => entry.title,
-                             :published_at => entry.published,
-                             :service => service)
-      post.auto_tag!
-      post.permalink!
-
-      if entry.link
-        post.links.find_or_create_by_url(entry.link)
-      end
-      unless entry.medias.blank?
-        entry.medias.each do |media_entry|
-          media = post.medias.find_or_create_by_url(media_entry.link)
-          embed_url = media_entry.content.blank? ? media_entry.enclosure : media_entry.content
-          media.update_attributes(:caption => media_entry.title,
-                                  :thumbnail_url => media_entry.thumbnail,
-                                  :embed_url => embed_url)
-        end
-      end
-    end
-  end
-  
   def url
     links.blank? ? '#' : links.first.url
   end
