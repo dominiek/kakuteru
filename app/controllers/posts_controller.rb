@@ -73,9 +73,10 @@ class PostsController < ApplicationController
     @media_posts = Post.paginate(:all, 
                                  :per_page => 12, 
                                  :page => params[:page], 
-                                 :include => [:medias],
-                                 :conditions => ["is_deleted IS false AND medias.id IS NOT NULL"], 
+                                 :include => [:medias, :service],
+                                 :conditions => ["is_deleted IS FALSE AND medias.id IS NOT NULL AND services.is_enabled = 1 AND services.identifier IN (?)", Media::SUPPORTED_SERVICES], 
                                  :order => 'posts.created_at DESC')
+                                 
   end
   
 end
