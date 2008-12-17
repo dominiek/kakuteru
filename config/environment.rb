@@ -71,6 +71,5 @@ end
 require 'will_paginate'
 
 APPLICATION_NAME = 'Kakuteru'
-ZEMENTA_API_KEY = '2ewhzg6vmdmnc5xbbyw6wmns'
 GNIP_EMAIL = 'kakuteru@dominiek.com'
 GNIP_PASSWORD = ''
