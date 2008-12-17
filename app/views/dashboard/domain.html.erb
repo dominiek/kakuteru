@@ -1,0 +1,12 @@
+<% content_for(:settings) do %>
+  <% form_tag do %>
+    <div class="subsettings integration">
+      <h2>Custom Domain name</h2>
+      <p class="description">Make sure to point your domain name to 67.207.134.80.</p>
+      <p><label for="domain" title="Your domain name, eg: dominiek.com">Domain name: </label><%= text_field(:stream, :domain) %></p>
+      <%= submit_tag('save') %>
+    </div>  
+  <% end %>
+<% end %>
+
+<%= render(:partial => 'dashboard/settings') %>
