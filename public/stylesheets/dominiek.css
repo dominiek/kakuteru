@@ -59,7 +59,7 @@ div.page {
 }
 
 .header .subtitle {
-	display: block;
+	display: none;
 }
 
 .about a.license {
