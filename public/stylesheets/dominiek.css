@@ -49,7 +49,7 @@ div.page {
 	padding: 40px 0 0 0;
 }
 
-.header a {
+.header a.title {
 	display: block;
 	width: 376px;
 	height: 94px;

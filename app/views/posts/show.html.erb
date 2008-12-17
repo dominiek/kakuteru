@@ -7,9 +7,9 @@
     <% if @post.type == 'article' %>
       <%= link_to('Tweet this', "http://twitter.com/home/?status=" + CGI.escape("Check out: #{File.join(@stream.blog_url.to_s, File.join(request.request_uri.to_s))}"), :class => 'tweet_this') %>
       <script type="text/javascript">
-      digg_url = '<%= File.join(@stream.blog_url.to_s, File.join(request.request_uri.to_s)) %>';
-      digg_skin = 'compact';
-      digg_window = 'new';
+        digg_url = '<%= File.join(@stream.blog_url.to_s, File.join(request.request_uri.to_s)) %>';
+        digg_skin = 'compact';
+        digg_window = 'new';
       </script>
       <script src="http://digg.com/tools/diggthis.js" type="text/javascript"></script>
       <% unless @stream.addthis_username.blank? %>
@@ -58,7 +58,6 @@
       <script type="text/javascript">
         var thread = $('disqus_thread');
         thread.insertBefore($('dsq-comments-count'), thread.firstChild);
-  
       </script>
     <% end %>
   </div>

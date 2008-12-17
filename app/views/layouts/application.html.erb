@@ -40,7 +40,7 @@
         </ul>
       <% end %>
       <div class="inner">
-        <%= link_to(@stream.to_s, '/', :rel => 'directory') %>
+        <%= link_to(@stream.to_s, '/', :rel => 'directory', :class => 'title') %>
         <% unless @stream.subtitle.blank? %>
           <span class="subtitle"><%= @stream.subtitle %></span>
         <% end %>
