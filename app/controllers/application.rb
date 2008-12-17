@@ -26,8 +26,11 @@ class ApplicationController < ActionController::Base
   
   def load_stream
     @subdomain = request.subdomains.first
-    if @subdomain && @subdomain != 'kakuteru'
+    @domain = request.domain
+    if @subdomain && @subdomain != 'kakuteru' && request.domain =~ /kakuteru|localhost/
       @stream = Stream.find_or_create_by_subdomain(@subdomain)
+    else
+      @stream = Stream.find_by_domain(@domain)
     end
   end
   

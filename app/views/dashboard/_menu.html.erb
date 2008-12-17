@@ -11,7 +11,10 @@
   <li class="<%= current_page?(:action => :content) ? 'active' : '' %>">
     <%= link_to('Content', '/dashboard/content') %>
   </li>
+  <li class="<%= current_page?(:action => :domain) ? 'active' : '' %>">
+    <%= link_to('My domain name', '/dashboard/domain') %>
+  </li>
   <li class="<%= current_page?(:action => :account) ? 'active' : '' %>">
-    <%= link_to('Account Settings', '/dashboard/account') %>
+    <%= link_to('Account settings', '/dashboard/account') %>
   </li>
 </ul>

@@ -56,6 +56,10 @@ class DashboardController < ApplicationController
     @stream.update_attributes(params[:stream]) if request.post?
   end
   
+  def domain
+    @stream.update_attributes(params[:stream]) if request.post?
+  end
+  
   def account
     @stream.update_attributes(params[:stream]) if request.post?
   end
