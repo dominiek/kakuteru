@@ -58,6 +58,10 @@ div.page {
 	margin: 0 0 0 40px;
 }
 
+.header .subtitle {
+	display: block;
+}
+
 .about a.license {
 	display: block;
 	float: left;
@@ -71,6 +75,10 @@ div.page {
 	height: 200px;
 	margin: 8em 0 0 0;
 	width: 100%;
+}
+
+.about .generator.attribution {
+	display: none;
 }
 
 .about .inner {
