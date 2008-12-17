@@ -1,7 +1,7 @@
 <div class="all media page">
   <h1>Recent Media</h1>
   <ul>
-    <%= render(:partial => 'media_post', :collection => @media_posts) %>
+    <%= render(:partial => 'posts/media', :collection => @media_posts) %>
   </ul>
 </div>
 <%= will_paginate(@media_posts) %>
