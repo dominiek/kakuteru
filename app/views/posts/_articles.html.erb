@@ -21,7 +21,7 @@
               <abbr class="published" title="<%= article.published_at.iso8601 %>"><%= article.published_at.strftime("%B, ") + article.published_at.strftime("%d").to_i.ordinalize %></abbr>
               <% unless @stream.disqus_forum_identifier.blank? %>
                 ·
-                <%= link_to(pluralize(0, 'comment'), read_url(:id => article) + '#comments', :rel => 'bookmark url') %>
+                <%= link_to(pluralize(0, 'comment'), read_url(:id => article) + '#disqus_thread', :rel => 'bookmark url') %>
               <% end %>
             </div>
           </li>
