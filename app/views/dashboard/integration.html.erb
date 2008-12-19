@@ -8,7 +8,7 @@
       <p class="description"><%= link_to('FeedBurner', 'http://feedburner.com/') %> is a way of keeping track of feed subscriptions and providing some extra SEO. Please make sure to set <%= link_to("#{@stream.blog_url}/articles.atom", "#{@stream.blog_url}/articles.atom") %> as the origin feed.</p>
       <p><label for="feedburner_feed_url" title="Make sure to set /articles.atom as your FeedBurner source!">Feed URL: </label><%= text_field(:stream, :feedburner_feed_url, :class => 'url') %></p>     
       <h2>Dopplr travel schedule</h2>
-      <p class="description"><%= link_to('Dopplr', 'http://dopplr.com/') %> allows you to share your travel schedule. On your Dopplr dashboard you can find an iCal URL for integration.</p>
+      <p class="description"><%= link_to('Dopplr', 'http://dopplr.com/') %> allows you to share your travel schedule. On your Dopplr dashboard you can find an iCal URL for integration. This gets updated once a day, so it might take a while for them to show :]</p>
       <p><label for="dopplr_ical_url" title="The iCal address of your Dopplr.com account - used for showing your travel schedule">iCal URL: </label><%= text_field(:stream, :dopplr_ical_url, :class => 'url') %></p>
       <h2>Addthis social bookmarking</h2>
       <p class="description"><%= link_to('Addthis', 'http://addthis.com/') %> is a way of letting people easily bookmark your articles, you need to register for an account there (they also provide tracking and stuff).</p>

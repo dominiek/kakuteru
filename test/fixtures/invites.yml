@@ -4,6 +4,11 @@ dominiek:
   code: 915536f4dd86d38a6334fd95e0845752
   used_for_stream: dominiek
   is_used: true
+  mail_sent: true
 peter:
   id: 2
   email: peter@reccoon.com
+kirk:
+  id: 3
+  email: kirk@dominiek.com
+  code: 915536f4dd86d38a6334fd95e0AAAAAA
