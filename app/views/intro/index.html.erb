@@ -15,7 +15,7 @@
   <div class="invite">
     <% form_tag do %>
       <p><label for="stream_subdomain">Pick a name: </label><%= text_field(:stream, :subdomain, :class => 'text') %><span>.kakuteru.com</span></p>
-      <p><label for="stream_invite_key">Invite code: </label><%= text_field(:stream, :invite_code, :class => 'invite code text') %></p>
+      <p><label for="stream_invite_key">Invite code: </label><%= text_field(:stream, :invite_code, :class => 'invite code text', :value => params[:invite_code]) %></p>
       <p><label></label><%= submit_tag('Get started!', :class => 'get started') %></p>
     <% end %>
     <% if false %>
