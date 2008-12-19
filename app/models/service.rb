@@ -10,6 +10,7 @@ class Service < ActiveRecord::Base
   end
   
   def actor
+    return 'unknown' unless profile_url
     case identifier
       when 'youtube'
         profile_url.match(/user=([^\/]+)$/)[1]

@@ -18,9 +18,14 @@ class StreamsController < ApplicationController
   end
   
   def claim
+    session[:invite_code] = params[:invite_code] if params[:invite_code]
     if request.post? && !@stream.is_active
       @stream.verify_invite_code!(session[:invite_code])
-      @stream.update_attributes(params[:stream]) if @stream.errors.blank?
+      if @stream.errors.blank?
+        @stream.update_attributes(params[:stream])
+      else
+        @invalid_invite_code = true
+      end
       if @stream.errors.blank?
         if @stream.authenticate(params[:stream][:new_password])
           session[:authenticated_subdomain] = @stream.subdomain

@@ -26,10 +26,10 @@ class Friendfeed
         entry.updated = DateTime.parse(xml_entry.elements['updated'].text).to_time
       end
       entry.service = OpenStruct.new
-      entry.service.identifier = xml_entry.elements['service/id'].text.to_s
-      entry.service.name = xml_entry.elements['service/name'].text.to_s
-      entry.service.profileUrl = xml_entry.elements['service/profileUrl'].text.to_s
-      entry.service.iconUrl = xml_entry.elements['service/iconUrl'].text.to_s
+      entry.service.identifier = text_or_nil(xml_entry.elements['service/id'])
+      entry.service.name = text_or_nil(xml_entry.elements['service/name'])
+      entry.service.profileUrl = text_or_nil(xml_entry.elements['service/profileUrl'])
+      entry.service.iconUrl = text_or_nil(xml_entry.elements['service/iconUrl'])
       
       entry.medias = []
       xml_entry.get_elements('media').each do |xml_media|
@@ -55,12 +55,18 @@ class Friendfeed
     profile[:services] = []
     xml.get_elements('user/service').each do |xml_entry|
       service = OpenStruct.new
-      service.identifier = xml_entry.elements['id'].text.to_s
-      service.name = xml_entry.elements['name'].text.to_s
-      service.profileUrl = xml_entry.elements['profileUrl'].text.to_s
-      service.iconUrl = xml_entry.elements['iconUrl'].text.to_s
+      service.identifier = text_or_nil(xml_entry.elements['id'])
+      service.name = text_or_nil(xml_entry.elements['name'])
+      service.profileUrl = text_or_nil(xml_entry.elements['profileUrl'])
+      service.iconUrl = text_or_nil(xml_entry.elements['iconUrl'])
       profile[:services] << service
     end
     return profile
+  end
+  
+  private
+  
+  def text_or_nil(element)
+    element.blank? ? nil : element.text.to_s
   end
 end

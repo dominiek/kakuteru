@@ -5,7 +5,7 @@
     <p>
       Setting up your lifestream can take only a couple of seconds. 
       First we protect this domain by password and finally we suck in your digital life. <%= link_to('learn more', 'http://kakuteru.com/') %></p>
-    <% if params[:invite_code].blank? %>
+    <% if params[:invite_code].blank? || @invalid_invite_code %>
       <h2>0. Your invite code</h2>
       <p><%= text_field_tag('invite_code', params[:invite_code]) %></p>
     <% else %>

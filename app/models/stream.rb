@@ -46,7 +46,6 @@ class Stream < ActiveRecord::Base
   include Statistics
   
   def verify_invite_code!(code)
-    puts code
     invite = Invite.find(:first, :conditions => ['is_used = 0 AND code = ?', code])
     if invite.blank?
       self.errors.add(:password, 'Invalid invite code mate!')

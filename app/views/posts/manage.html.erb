@@ -29,3 +29,6 @@
   </ul>
 
 </div>
+
+
+<%= javascript_tag(remote_function(:url => aggregation_status_path, :method => :get)) if @stream.busy? %>
