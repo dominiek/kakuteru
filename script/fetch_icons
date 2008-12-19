@@ -1,0 +1,13 @@
+#!/usr/bin/ruby
+
+html=`cat friendfeed_services.html | grep '/images/icons/'`
+html.split(/\n/).each do |line|
+  m = line.match(/url\((.+)?\)/)
+  if m
+    image_path = m[1].gsub(/'/, '')
+    icon = File.basename(image_path).gsub(/\?.+/, '')
+    unless File.exists?(File.join('public/images/services', icon))
+      `cd public/images/services; wget http://friendfeed.com/static/images/icons/#{icon}`
+    end
+  end
+end
