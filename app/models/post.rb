@@ -72,6 +72,7 @@ class Post < ActiveRecord::Base
   end
   
   def auto_tag!
+    puts "AUTO TAGGING!"
     case self.type
       when 'message'
         self.tag_list = self.tag_list + Zementa.new(ZEMENTA_API_KEY, self.caption).tags

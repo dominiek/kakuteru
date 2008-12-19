@@ -26,9 +26,10 @@ class Stream < ActiveRecord::Base
     :order => 'posts.published_at DESC', 
     :class_name => 'Post',
     :limit => 4
-  has_many :services do
+  has_many :services,
+    :conditions => ["services.identifier != 'articles'"] do
     def public(options = {})
-      find(:all, options.merge(:conditions => "is_enabled IS TRUE AND identifier != 'blog'"))
+      find(:all, options.merge(:conditions => "is_enabled IS TRUE AND identifier != 'blog' AND identifier != 'articles'"))
     end
   end
   has_many :upcoming_trips,

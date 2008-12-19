@@ -44,7 +44,6 @@
     <h3>Me elsewhere</h3>
     <ul>
       <% @stream.services.public.each do |service|
-        next if service.identifier == 'articles'
         %>
         <li><%= link_to("#{image_tag(service.icon_url)} #{service.name}", service.profile_url, :rel => 'me') %></li>
       <% end %>

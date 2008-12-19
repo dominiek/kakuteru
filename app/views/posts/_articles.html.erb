@@ -1,36 +1,38 @@
 <% unless articles.blank? %>
   <div class="articles summary">
-    <div class="latest_article">
-      <h2><%= link_to(articles.first.caption, read_url(:id => articles.first), :class => 'article') %></h2>
-      <%= articles.first.summary.blank? ? truncate_html(markup(articles.first).to_s, 244, '') : markup(articles.first, :summary) %>
-      <%= link_to('read full article', read_url(:id => articles.first), :class => 'read more') %>
-    </div>
-    <div class="previous_articles">
-      <% unless @stream.feedburner_feed_url.blank? %>
-        <a href="<%= @stream.feedburner_feed_url %>" title="Subscribe!" alt="Subscribe!" class="feedburner">
-        <img src="http://feeds.feedburner.com/~fc/dominiek?bg=E4712C&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border:0" alt="" /></a>
-      <% end %>
-      <h3>Previous articles</h3>
-      <ul>
-        <% articles.each_with_index do |article,i| 
-             next if i == 0
-          %>
-          <li>
-            <%= link_to(article.caption, read_url(:id => article), :class => 'article') %>
-            <div class="details">
-              <abbr class="published" title="<%= article.published_at.iso8601 %>"><%= article.published_at.strftime("%B, ") + article.published_at.strftime("%d").to_i.ordinalize %></abbr>
-              <% unless @stream.disqus_forum_identifier.blank? %>
-                ·
-                <%= link_to(pluralize(0, 'comment'), read_url(:id => article) + '#disqus_thread', :rel => 'bookmark url') %>
-              <% end %>
-            </div>
-          </li>
+    <div class="inner">
+      <div class="latest_article">
+        <h2><%= link_to(articles.first.caption, read_url(:id => articles.first), :class => 'article') %></h2>
+        <%= articles.first.summary.blank? ? truncate_html(markup(articles.first).to_s, 244, '') : markup(articles.first, :summary) %>
+        <%= link_to('read full article', read_url(:id => articles.first), :class => 'read more') %>
+      </div>
+      <div class="previous_articles">
+        <% unless @stream.feedburner_feed_url.blank? %>
+          <a href="<%= @stream.feedburner_feed_url %>" title="Subscribe!" alt="Subscribe!" class="feedburner">
+          <img src="http://feeds.feedburner.com/~fc/dominiek?bg=E4712C&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border:0" alt="" /></a>
         <% end %>
-        <li>
-          <%= link_to('view archive', archive_url, :class => 'more articles') %> 
-        </li>
-      </ul>
+        <h3>Previous articles</h3>
+        <ul>
+          <% articles.each_with_index do |article,i| 
+               next if i == 0
+            %>
+            <li>
+              <%= link_to(article.caption, read_url(:id => article), :class => 'article') %>
+              <div class="details">
+                <abbr class="published" title="<%= article.published_at.iso8601 %>"><%= article.published_at.strftime("%B, ") + article.published_at.strftime("%d").to_i.ordinalize %></abbr>
+                <% unless @stream.disqus_forum_identifier.blank? %>
+                  ·
+                  <%= link_to(pluralize(0, 'comment'), read_url(:id => article) + '#disqus_thread', :rel => 'bookmark url') %>
+                <% end %>
+              </div>
+            </li>
+          <% end %>
+          <li>
+            <%= link_to('view archive', archive_url, :class => 'more articles') %> 
+          </li>
+        </ul>
+      </div>
+      <div class="clear"></div>
     </div>
-    <div class="clear"></div>
   </div>
 <% end %>
