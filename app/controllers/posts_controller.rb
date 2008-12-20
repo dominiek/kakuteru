@@ -77,7 +77,7 @@ class PostsController < ApplicationController
                                  :per_page => 12, 
                                  :page => params[:page], 
                                  :include => [:medias, :service],
-                                 :conditions => ["is_deleted IS FALSE AND medias.id IS NOT NULL AND services.is_enabled = 1 AND services.identifier IN (?)", Media::SUPPORTED_SERVICES], 
+                                 :conditions => ["is_deleted IS FALSE AND medias.id IS NOT NULL AND services.is_enabled = 1 AND services.identifier IN (?) AND posts.stream_id = ?", Media::SUPPORTED_SERVICES, @stream.id], 
                                  :order => 'posts.created_at DESC')
                                  
   end
