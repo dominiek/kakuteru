@@ -61,13 +61,12 @@ class StreamsController < ApplicationController
     if request.post?
       aggregate!
     end
-    #@stream.aggregate!
     respond_to(:js)
   end
   
   def aggregate_services
-    puts @stream.services.inspect
     @stream.aggregate_services!
+    @stream.reload
     respond_to(:js)
   end
   
