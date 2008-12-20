@@ -1,2 +1,6 @@
 page.replace_html('friendfeed_aggregation_services', :partial => 'streams/service', :collection => @stream.services)
-page.show('friendfeed_setup')
+if @stream.services.blank?
+  page.replace_html('friendfeed_aggregation', "Woops, we couldn't find anything. If you're sure the URL is correct - <a href=\"javascript: document.localtion.reload();\">try again</a> - this machine needs a kick every now and then :]")
+else
+  page.show('friendfeed_setup')
+end
