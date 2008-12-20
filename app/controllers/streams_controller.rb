@@ -10,9 +10,9 @@ class StreamsController < ApplicationController
       redirect_to(claim_stream_path(:invite_code => params[:invite_code])) and return
     end
     if params[:tag_name].blank?
-      @posts = Post.paginate(:all, :per_page => 12, :page => params[:page], :conditions => ["is_deleted IS false AND services.is_enabled = 1"], :order => 'published_at DESC', :include => [:service])
+      @posts = Post.paginate(:all, :per_page => 12, :page => params[:page], :conditions => @stream.public_posts_conditions, :order => 'published_at DESC', :include => [:service])
     else
-      @posts = Post.find_tagged_with(params[:tag_name], :conditions => 'is_draft IS FALSE AND is_deleted IS FALSE AND services.is_enabled = 1', :include => [:service], :limit => 12)
+      @posts = Post.find_tagged_with(params[:tag_name], :conditions => @stream.public_posts_conditions, :include => [:service], :limit => 12, :order => 'published_at DESC')
     end
     render(:layout => 'application')
   end
@@ -66,6 +66,7 @@ class StreamsController < ApplicationController
   end
   
   def aggregate_services
+    puts @stream.services.inspect
     @stream.aggregate_services!
     respond_to(:js)
   end

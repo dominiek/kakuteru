@@ -1,6 +1,22 @@
 class Service < ActiveRecord::Base
   belongs_to :stream
   
+  TYPES            = {
+    'articles'     => :article,
+    'youtube'      => :video,
+    'vimeo'        => :video,
+    'twitter'      => :message,
+    #'internal'    => :message,
+    'delicious'    => :bookmark,
+    'digg'         => :bookmark,
+    'googlereader' => :bookmark,
+    'flickr'       => :photo,
+    'slideshare'   => :slide,
+    'wakoopa'      => :software,
+    'lastfm'       => :music
+  }
+
+  
   def after_create
     if identifier == 'twitter'
       # Fetch profile_image_url

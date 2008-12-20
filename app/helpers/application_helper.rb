@@ -95,4 +95,8 @@ module ApplicationHelper
     @stream.disqus_forum_identifier.blank? ? 'kakuteru' : @stream.disqus_forum_identifier
   end
   
+  def safe_truncate(text, options = {})
+    
+  end
+  
 end

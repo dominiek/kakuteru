@@ -42,26 +42,8 @@ class Post < ActiveRecord::Base
   
   def type
     return unless self.service
-    case self.service.identifier
-      when 'youtube'
-        'video'
-      when 'vimeo'
-        'video'
-      when 'twitter'
-        'message'
-      when 'delicious'
-        'bookmark'
-      when 'articles'
-        'article'
-      when 'flickr'
-        'photo'
-      when 'slideshare'
-        'slide'
-      when 'wakoopa'
-        'software'
-      when 'lastfm'
-        'music'
-    end
+    type = Service::TYPES[self.service.identifier.to_s]
+    type ? type.to_s : nil
   end
   
   def caption=(new_caption)
@@ -72,7 +54,6 @@ class Post < ActiveRecord::Base
   end
   
   def auto_tag!
-    puts "AUTO TAGGING!"
     case self.type
       when 'message'
         self.tag_list = self.tag_list + Zementa.new(ZEMENTA_API_KEY, self.caption).tags

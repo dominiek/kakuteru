@@ -7,7 +7,7 @@ class Stream < ActiveRecord::Base
     :order => 'published_at DESC'
   has_many :public_posts,
     :include => [:service],
-    :conditions => 'is_deleted IS FALSE AND services.is_enabled = true',
+    :conditions => ['is_deleted IS FALSE AND services.is_enabled = true AND services.identifier IN (?)', Service::TYPES.keys],
     :order => 'published_at DESC',
     :class_name => 'Post'
   has_many :articles, 
@@ -252,6 +252,10 @@ class Stream < ActiveRecord::Base
       :joins => " JOIN posts ON taggable_type = 'Post' AND taggable_id = posts.id ",
       :conditions => ["posts.stream_id = #{self.to_param}"]
     )
+  end
+  
+  def public_posts_conditions
+    ['is_draft IS FALSE AND is_deleted IS FALSE AND services.is_enabled = 1 AND services.identifier IN (?) AND posts.stream_id = ?', Service::TYPES.keys, self.id]
   end
   
   protected

@@ -1,11 +1,11 @@
 <html>
   <head profile="http://gmpg.org/xfn/11 http://www.w3.org/2006/03/hcard http://microformats.org/wiki/hcalendar-profile">
     <title><%= @stream.to_s %><% unless @stream.subtitle.blank? %> - <%= @stream.subtitle %><% end %></title>
-    <% if @stream.feedburner_feed_url.blank? %>
+    <% if !@stream.feedburner_feed_url.blank? %>
+      <%= auto_discovery_link_tag(:atom, @stream.feedburner_feed_url, :title => 'Articles Atom') %>
+    <% elsif @stream.articles.size > 0 %>
       <%= auto_discovery_link_tag(:rss, articles_feed_url(:format => 'rss'), :title => 'Articles RSS') %>
       <%= auto_discovery_link_tag(:atom, articles_feed_url(:format => 'atom'), :title => 'Articles Atom') %>
-    <% else %>
-      <%= auto_discovery_link_tag(:atom, @stream.feedburner_feed_url, :title => 'Articles Atom') %>
     <% end %>
     <%= auto_discovery_link_tag(:rss, stream_feed_url(:format => 'rss'), :title => 'Lifestream RSS') %>
     <%= auto_discovery_link_tag(:atom, stream_feed_url(:format => 'atom'), :title => 'Lifestream Atom') %>
