@@ -5,6 +5,7 @@ require 'rexml/document'
 require 'date'
 
 class Friendfeed
+  class UnknownProfileError < StandardError; end
   
   def initialize(username)
     @username = username
@@ -53,7 +54,11 @@ class Friendfeed
   def profile
     profile = {}
     agent = WWW::Mechanize.new
-    page = agent.get("http://friendfeed.com/api/user/#{@username}/profile?format=xml")
+    begin
+      page = agent.get("http://friendfeed.com/api/user/#{@username}/profile?format=xml")
+    rescue WWW::Mechanize::ResponseCodeError => e
+      raise UnknownProfileError.new
+    end
     xml = REXML::Document.new(page.body)
     profile[:name] = xml.elements['user/name'].text
     profile[:services] = []

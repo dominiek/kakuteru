@@ -65,9 +65,6 @@ class StreamsController < ApplicationController
   end
   
   def aggregate_services
-    puts @stream.services
-    @stream.aggregate_services!
-    @stream.reload
     respond_to(:js)
   end
   
