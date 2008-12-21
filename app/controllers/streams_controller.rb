@@ -77,18 +77,17 @@ class StreamsController < ApplicationController
   
   def finalize
     @stream.update_attribute(:is_active, true)
-    aggregate!
+    aggregate!(:first_time => true)
     redirect_to('/dashboard')
   end
   
   private
   
-  def aggregate!
+  def aggregate!(options = {})
     if @stream.aggregation_status == Stream::STATUS_READY
       @stream.update_attributes(:aggregation_status => Stream::STATUS_AGGREGATING, :aggregation_progress => 10)
       spawn do
-        puts "I am in teh SPAWN"
-        @stream.aggregate!
+        @stream.aggregate!(options)
       end
     end
   end

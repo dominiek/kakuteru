@@ -19,6 +19,8 @@ class Twitter
       return nil
     end
     ActiveSupport::JSON.decode(response.body)
+  rescue ActiveSupport::JSON::ParseError => pe
+    return nil
   end
   
 end

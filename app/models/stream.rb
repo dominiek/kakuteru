@@ -144,7 +144,8 @@ class Stream < ActiveRecord::Base
   
   def aggregate!(options = {})
     update_attribute(:aggregation_started_at, Time.now)
-    entries = Friendfeed.new(self.friendfeed_username).activity
+    limit = options[:first_time] ? 40 : nil # Friendfeed default = 10
+    entries = Friendfeed.new(self.friendfeed_username).activity(:limit => limit)
     update_attribute(:aggregation_progress, 50)
     entries_count = entries.size
     entries.each_with_index do |entry,i|

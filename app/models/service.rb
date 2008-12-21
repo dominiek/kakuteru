@@ -20,10 +20,14 @@ class Service < ActiveRecord::Base
 
   
   def after_create
-    if identifier == 'twitter'
-      # Fetch profile_image_url
-      twitter = Twitter.new(profile_url.match(/twitter\.com\/([^\/]+)/)[1])
-      self.update_attribute(:profile_image_url, twitter.profile_image_url)
+    fetch_profile_image! || true
+  end
+  
+  def fetch_profile_image!
+    case identifier
+      when 'twitter'
+        twitter = Twitter.new(profile_url.match(/twitter\.com\/([^\/]+)/)[1])
+        self.update_attribute(:profile_image_url, twitter.profile_image_url)
     end
   end
   

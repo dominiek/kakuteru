@@ -10,10 +10,14 @@ class Friendfeed
     @username = username
   end
   
-  def activity
+  def activity(options = {})
     entries = []
     agent = WWW::Mechanize.new
-    page = agent.get("http://friendfeed.com/api/feed/user/#{@username}?format=xml")
+    additional_parameters = ""
+    unless options[:limit].blank?
+      additional_parameters = "&num=#{options[:limit]}"
+    end
+    page = agent.get("http://friendfeed.com/api/feed/user/#{@username}?format=xml" + additional_parameters)
     xml = REXML::Document.new(page.body)
     xml.elements['/feed'].each do |xml_entry|
       next unless xml_entry.name == 'entry'

@@ -54,6 +54,7 @@ class Post < ActiveRecord::Base
   end
   
   def auto_tag!
+    return if RAILS_ENV == 'development'
     case self.type
       when 'message'
         self.tag_list = self.tag_list + Zementa.new(ZEMENTA_API_KEY, self.caption).tags
