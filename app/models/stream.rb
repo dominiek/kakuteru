@@ -258,6 +258,13 @@ class Stream < ActiveRecord::Base
     ['is_draft IS FALSE AND is_deleted IS FALSE AND services.is_enabled = 1 AND services.identifier IN (?) AND posts.stream_id = ?', Service::TYPES.keys, self.id]
   end
   
+  def feedburner_username
+    return nil unless feedburner_feed_url
+    md = feedburner_feed_url.match(/\/([^\/]+)$/)
+    return nil unless md
+    md[1]
+  end
+  
   protected
   
   def graph_colors

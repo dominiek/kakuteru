@@ -7,12 +7,12 @@ class Service < ActiveRecord::Base
     'vimeo'        => :video,
     'seesmic'      => :video,
     'twitter'      => :message,
-    #'internal'    => :message,
     'delicious'    => :bookmark,
     'digg'         => :bookmark,
     'googlereader' => :bookmark,
     'stumbleupon'  => :bookmark,
     'flickr'       => :photo,
+    'picasaweb'    => :photo,
     'slideshare'   => :slide,
     'wakoopa'      => :software,
     'lastfm'       => :music

@@ -9,7 +9,7 @@
       <div class="previous_articles">
         <% unless @stream.feedburner_feed_url.blank? %>
           <a href="<%= @stream.feedburner_feed_url %>" title="Subscribe!" alt="Subscribe!" class="feedburner">
-          <img src="http://feeds.feedburner.com/~fc/dominiek?bg=E4712C&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border:0" alt="" /></a>
+          <img src="http://feeds.feedburner.com/~fc/<%= @stream.feedburner_username %>?bg=E4712C&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border:0" alt="" /></a>
         <% end %>
         <h3>Previous articles</h3>
         <ul>
