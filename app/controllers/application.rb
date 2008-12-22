@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
     if session[:authenticated_subdomain] == request.subdomains.first
       @authenticated = true
     else
-      redirect_to(:action => :login)
+      redirect_to(:controller => :dashboard, :action => :login)
     end
   end
   
