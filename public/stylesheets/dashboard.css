@@ -122,6 +122,7 @@ span.submit.notice {
 	margin-top: 6px;
 }
 
+.subsettings form,
 .submit_tag_with_notice {
 	clear: both;
 }
@@ -228,10 +229,6 @@ div.formError {
 	float: left;
 	margin-right: 2em;
 	width: 140px;
-}
-
-.settings div {
-	padding: 0.8em;
 }
 
 .settings .base {

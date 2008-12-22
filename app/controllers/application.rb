@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
     if session[:authenticated_subdomain] == request.subdomains.first
       @authenticated = true
     else
-      redirect_to(:controller => :dashboard, :action => :login)
+      redirect_to("http://#{@stream.subdomain}.#{KAKUTERU_DOMAIN}/dashboard/login")
     end
   end
   
@@ -33,6 +33,7 @@ class ApplicationController < ActionController::Base
       @stream = Stream.find_or_create_by_subdomain(@subdomain)
     else
       @stream = Stream.find_by_domain(@domain)
+      @using_custom_domain = true
     end
   end
   

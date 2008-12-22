@@ -17,10 +17,6 @@ class DashboardController < ApplicationController
         if @stream.authenticate(params[:password])
           login_success
         end
-      else
-        # First time
-        @stream.update_attribute(:password, params[:password])
-        login_success
       end
     end  
   end

@@ -22,3 +22,5 @@ Spawn::method :fork, 'development'
 
 GOOGLE_JS_API_KEY = 'ABQIAAAASqqLEJlSYucb_3epkX6lmxQXS1IXKViAjlOeMd1_xQLyB7JDRxTn7en4S4ouFwJPYYIsoYTXqBmWsg'
 ZEMENTA_API_KEY = '2ewhzg6vmdmnc5xbbyw6wmns'
+
+KAKUTERU_DOMAIN = 'kakuteru.local:3000'

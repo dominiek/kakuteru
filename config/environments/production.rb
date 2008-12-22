@@ -28,3 +28,5 @@ Spawn::method :thread, 'production'
 
 
 GOOGLE_JS_API_KEY = 'ABQIAAAASqqLEJlSYucb_3epkX6lmxTSabCV_2pA3A-aceM5P82BnizBWRQFpVKjqWo4LdkMBpq7lyG54-ojOw'
+
+KAKUTERU_DOMAIN = 'kakuteru.com'

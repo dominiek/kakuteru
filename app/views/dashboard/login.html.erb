@@ -1,10 +1,6 @@
 
 <div class="login">
-  <% unless @stream.password %>
-    <h2>Set a password</h2>
-  <% else %>
-    <h2>Login to your dashboard</h2>
-  <% end %>
+  <h2>Login to your dashboard</h2>
 
   <% form_tag do %>
     <%= error_message_on(@stream, :password) %>
