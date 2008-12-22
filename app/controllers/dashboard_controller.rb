@@ -28,7 +28,7 @@ class DashboardController < ApplicationController
   def forgot_password
     if request.post?
       if @stream.forgot_password!(params[:email])
-        @notice = "An e-mail has been sent to #{@stream.email} - check your spam box!"
+        @notice = "An e-mail was sent out - check your spam box!"
       end
     end
   end
