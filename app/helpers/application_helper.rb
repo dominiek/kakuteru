@@ -81,7 +81,7 @@ module ApplicationHelper
     body.gsub!(/\#([^\s,]+)/, "<a href=\"#{hashtag_url}\\1\">#\\1</a>")
     
     # @username support
-    body.gsub!(/\@([^\s,]+)/, "<a href=\"#{service_base_url}/\\1\">@\\1</a>")
+    body.gsub!(/\@([^\s,]+)/, "<a href=\"http://#{service_base_url}/\\1\">@\\1</a>")
     
     body
   end

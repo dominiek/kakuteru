@@ -250,8 +250,9 @@ class Stream < ActiveRecord::Base
     @tag_counts ||= Tag.counts(
       :limit => 40, 
       :order => 'count DESC',
-      :joins => " JOIN posts ON taggable_type = 'Post' AND taggable_id = posts.id ",
-      :conditions => ["posts.stream_id = #{self.to_param}"]
+      :joins => " JOIN posts ON taggable_type = 'Post' AND taggable_id = posts.id " +
+                " JOIN services ON services.id = posts.service_id ",
+      :conditions => ActiveRecord::Base.send(:sanitize_sql_array, ['posts.stream_id = ? AND services.identifier IN (?)', self.id, Service::TYPES.keys])
     )
   end
   

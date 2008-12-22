@@ -8,13 +8,15 @@ module Statistics
       data = {}
       services = []
       self.posts.find(:all, 
-                         :select => 'COUNT(posts.id) AS num_posts, posts.service_id, published_at', 
+                         :select => 'COUNT(posts.id) AS num_posts, posts.service_id, published_at, caption', 
                          :conditions => ['posts.published_at > ?', 2.weeks.ago],
                          :group => "service_id,DATE_FORMAT(posts.published_at, '%Y-%m-%d')").each do |post|
         xlabel = post.published_at.strftime("%b-%d")
         data[xlabel] = {} unless data[xlabel]
         data[xlabel][post.service_id.to_i] = post.num_posts.to_i
-        services << post.service_id.to_i unless services.include?(post.service_id.to_i)
+        if post.service_id
+          services << post.service_id.to_i unless services.include?(post.service_id.to_i)
+        end
       end
       xlabels = []
       data_by_service = {}
@@ -53,7 +55,7 @@ module Statistics
                        :select => 'COUNT(posts.id) AS num_posts,service_id',
                        :conditions => ['posts.published_at > ?', 2.weeks.ago],
                        :group => 'service_id').each do |post|
-      services[post.service_id.to_i] = post.num_posts.to_i
+      services[post.service_id.to_i] = post.num_posts.to_i if post.service_id
     end
     GoogleChart::PieChart.new('320x200', "Services used", false) do |pc|
       color_i = 0
