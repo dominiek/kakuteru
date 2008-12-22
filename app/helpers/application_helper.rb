@@ -99,4 +99,18 @@ module ApplicationHelper
     
   end
   
+  def submit_tag_with_notice(value, options = {})
+    options[:class] ||= ''
+    options[:class] << " with_notice"
+    notice = @notice
+    notice ||= flash[:notice]
+    html = submit_tag(value, options)
+    unless notice.blank?
+      id = "submit_notice_#{notice.hash}"
+      html << content_tag(:span, notice, :class => 'submit notice', :id => id)
+      html << javascript_tag("setTimeout(function() { Effect.Fade('#{id}', { duration: 1.0 }); }, 3000);")
+    end
+    html
+  end
+  
 end

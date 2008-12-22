@@ -7,7 +7,7 @@
       <h2>About</h2>
       <p class="description">This is the content displayed at the bottom of your lifestream. You can use both Textile and HTML markup.</p>
       <%= text_area(:stream, :footer, :class => 'body') %>
-      <%= submit_tag('save') %>
+      <%= submit_tag_with_notice('save') %>
     </div>
   <% end %>
 <% end %>

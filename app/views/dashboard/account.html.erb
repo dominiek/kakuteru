@@ -7,7 +7,7 @@
       <p><label for="new_password" class="required" title="Need this to get in.">New password: </label><%= password_field(:stream, :new_password) %></p>
       <p><label for="new_password_repeat" class="required" title="Need this to get in.">Retype password: </label><%= password_field(:stream, :new_password_repeat) %></p>
       <p><label for="friendfeed_username" class="required" title="Core backend of the lifestream feed must be in XML, eg: http://friendfeed.com/api/feed/user/dominiek?format=xml">Friendfeed username: </label><%= text_field(:stream, :friendfeed_username) %></p>
-      <%= submit_tag('save') %>
+      <%= submit_tag_with_notice('save') %>
     <% end %>
 
     <% form_tag(delete_stream_path, :method => :get) do %>

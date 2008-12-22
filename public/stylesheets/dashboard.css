@@ -108,6 +108,23 @@ div.page {
 	display: none;
 }
 
+input.with_notice {
+	float: left;
+	margin-right: 10px;
+}
+
+span.submit.notice {
+	display: block;
+	float: left;
+	background: url('/images/icons/16-em-check.png') no-repeat center left;
+	padding-left: 20px;
+	color: #94AE6B;
+	margin-top: 6px;
+}
+
+.subsettings form {
+	clear: both;
+}
 
 .settings input[type=checkbox],
 input[type=text],
@@ -395,6 +412,26 @@ a.edit:hover {
 a.delete {
 	background: url('/images/icons/16-em-cross.png') no-repeat left center;
 	padding-left: 20px;
+}
+
+/* Design */
+
+.design .style_guide {
+	width: 280px;
+	float: right;
+	color: #333;
+	background-color: #D7EFC2;
+	padding: 1em;
+}
+
+.design .style_guide li {
+	list-style-type: disc;
+	margin-left: 1em;
+}
+
+.design .style_guide ul,
+.design .style_guide p {
+  margin-bottom: 0.8em;	
 }
 
 /* Write article */

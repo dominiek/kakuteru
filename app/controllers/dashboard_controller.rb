@@ -1,5 +1,6 @@
 class DashboardController < ApplicationController
   before_filter :require_authentication, :except => :login
+  before_filter :settings_notice, :only => [:index, :content, :services, :integration, :domain, :account]
   
   def index
     if @stream.blog_url.blank?
@@ -69,6 +70,12 @@ class DashboardController < ApplicationController
   def login_success
     session[:authenticated_subdomain] = @stream.subdomain
     redirect_to(manage_stream_url)
+  end
+  
+  def settings_notice
+    if request.post?
+      @notice = 'Settings saved'
+    end
   end
   
 end

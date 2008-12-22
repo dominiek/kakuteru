@@ -4,7 +4,7 @@
       <h2>Custom Domain name</h2>
       <p class="description">Make sure to point your domain name to 67.207.134.80. Note that DNS servers might take a while to show change.</p>
       <p><label for="domain" title="Your domain name, eg: dominiek.com">Domain name: </label><%= text_field(:stream, :domain) %></p>
-      <%= submit_tag('save') %>
+      <%= submit_tag_with_notice('save') %>
     </div>  
   <% end %>
 <% end %>

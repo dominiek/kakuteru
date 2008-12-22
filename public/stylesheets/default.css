@@ -190,7 +190,6 @@ div.articles a.feedburner {
 	width: 920px;
 	margin: 0 auto 2em auto;
 	padding-top: 1em;
-	/*padding: 2em 0 1em 0;*/
 	text-align: center;
 	height: 300px;
 }
@@ -227,7 +226,6 @@ div.articles a.feedburner {
 .media .slide span,
 .media .photo span,
 .media .video span {
- /* font-weight: bold;*/
   font-size: 12px;
   display: block;
   height: 30px;
@@ -329,6 +327,17 @@ div.articles a.feedburner {
 	padding: 15px 5px;
 }
 
+/* Custom stream styles */
+
+.stream li.bookmark { }
+.stream li.photo { }
+.stream li.video { }
+.stream li.message { }
+.stream li.article { }
+.stream li.slide { }
+.stream li.software { }
+.stream li.music { }
+
 .stream li:hover {
 	background-color: #F7F7F7;
 }
@@ -389,6 +398,17 @@ div.articles a.feedburner {
 .show h1 {
 	color: #e97f2a;
 }
+
+/* Custom page styles */
+
+.show .bookmark { }
+.show .photo { }
+.show .video { }
+.show .message { }
+.show .article { }
+.show .slide { }
+.show .software { }
+.show .music { }
 
 .show .video embed {
   width: 500px;

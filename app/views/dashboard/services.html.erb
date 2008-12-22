@@ -2,7 +2,7 @@
   <% form_tag do %>
   <div class="subsettings blog_information">
     <h2>Toggle Services</h2>
-    <p class="description">You can enable/disable services here.</p>
+    <p class="description">You can enable/disable services here. Please note that services get added automatically when updates are aggregated from them.</p>
     <ul class="services">
       <% @stream.services.each do |service| %>
         <li>
@@ -16,7 +16,7 @@
         </li>
       <% end %>
     </ul>
-  <%= submit_tag('save') %>
+    <%= submit_tag_with_notice('save') %>
   </div>
   <% end %>
 <% end %>

@@ -7,7 +7,7 @@
       <p><label for="title" class="required" title="Will be used for SEO and in the title $title - $subtitle.">Title: </label><%= text_field(:stream, :title) %></p>
       <p><label for="subtitle" class="required" title="Will be used for SEO and in the title $title - $subtitle.">Subtitle: </label><%= text_field(:stream, :subtitle) %></p>
       <p><label for="author" class="required" title="Used for feeds and for microformats.">Your name: </label><%= text_field(:stream, :author) %></p>
-      <%= submit_tag('save') %>
+      <%= submit_tag_with_notice('save') %>
     </div>
   <% end %>
 <% end %>

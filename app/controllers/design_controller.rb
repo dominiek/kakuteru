@@ -5,6 +5,7 @@ class DesignController < ApplicationController
   def index
     if request.post?
       @stream.update_attributes(params[:stream])
+      @notice = 'CSS updated'
     end
   end
 end

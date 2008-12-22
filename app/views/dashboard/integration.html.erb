@@ -13,7 +13,7 @@
       <h2>Addthis social bookmarking</h2>
       <p class="description"><%= link_to('Addthis', 'http://addthis.com/') %> is a way of letting people easily bookmark your articles, you need to register for an account there (they also provide tracking and stuff).</p>
       <p><label for="addthis_username" title="If set, will be used for voting mechanism next to digg and twitter.">username: </label><%= text_field(:stream, :addthis_username) %></p>
-      <%= submit_tag('save') %>
+      <%= submit_tag_with_notice('save') %>
     </div>
   <% end %>
 <% end %>
