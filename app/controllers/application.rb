@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   before_filter :load_stream
 
+  class KakuteruError < StandardError; end
+
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
   protect_from_forgery # :secret => '8894fc42900d096ee1572f6ee1bb3420'

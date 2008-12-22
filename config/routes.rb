@@ -30,6 +30,7 @@ ActionController::Routing::Routes.draw do |map|
   map.with_options(:controller => 'posts', :conditions => IS_STREAM_CONDITION) do |m|
     m.archive '/archive', :action => 'archive'
     m.manage_stream '/dashboard/stream', :action => 'manage'
+    m.post_caption '/dashboard/stream/caption/:id', :action => 'caption'
     m.manage_articles '/dashboard/articles', :action => 'articles'
     m.new_post '/dashboard/articles/write', :action => 'new'
     m.edit_post 'dashboard/edit/:id', :action => 'edit'

@@ -11,6 +11,7 @@ class PostsController < ApplicationController
   
   def edit
     @post = Post.find(params[:id])
+    raise KakuteruError.new if @post.stream_id != @stream.id
     if request.post?
       @post.update_attributes(params[:post])
       if !@post.is_draft?
@@ -68,8 +69,22 @@ class PostsController < ApplicationController
   end
   
   def manage
-    @posts = Post.find(:all, :include => [:service], :conditions => ["services.identifier != 'articles' AND posts.stream_id = ?", @stream.id], :order => 'posts.published_at DESC')
+    @posts = Post.paginate(:all, 
+                           :per_page => 20,
+                           :page => params[:page], 
+                           :include => [:service],
+                           :conditions => ["services.identifier != 'articles' AND posts.stream_id = ?", @stream.id], 
+                           :order => 'posts.published_at DESC')
     render(:layout => 'dashboard')
+  end
+  
+  def caption
+    @post = Post.find(params[:id])
+    raise KakuteruError.new if @post.stream_id != @stream.id
+    if request.post?
+      @post.update_attribute(:caption, params[:value])
+    end
+    render(:text => @post.caption)
   end
   
   def media
@@ -78,7 +93,7 @@ class PostsController < ApplicationController
                                  :page => params[:page], 
                                  :include => [:medias, :service],
                                  :conditions => ["is_deleted IS FALSE AND medias.id IS NOT NULL AND services.is_enabled = 1 AND services.identifier IN (?) AND posts.stream_id = ?", Media::SUPPORTED_SERVICES, @stream.id], 
-                                 :order => 'posts.created_at DESC')
+                                 :order => 'posts.published_at DESC')
                                  
   end
   

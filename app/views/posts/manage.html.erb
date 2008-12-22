@@ -1,8 +1,5 @@
 
 <div class="manage stream page">
-  
-
-
   <div class="heading actions">
     <% form_remote_tag(:url => aggregate_activity_path, :method => :post) do %>
       <%= submit_tag('Fetch new entries', :disabled => @stream.busy?, :id => 'aggregate_activity_submit') %>
@@ -21,13 +18,19 @@
      %>
       <li>
         <span class="actions">
+          <%= link_to('view public', read_url(:id => post), :class => 'view') %> · 
           <%= link_to(post.is_deleted? ? 'undelete' : 'delete', url_for(:controller => :dashboard, :action => :toggle, :id => post), :method => :delete, :class => post.is_deleted? ? 'toggle' : 'delete') %>
         </span>
-        <span class="caption with_icon <%= post.type %>"><%= link_to(truncate(post.caption, 70), read_url(:id => post)) %></span>
+        <span class="caption with_icon <%= post.type %>" id="edit_<%= post.id %>"><%= truncate(post.caption, 70) %></span>
+        <script type="text/javascript">
+         new Ajax.InPlaceEditor('edit_<%= post.id %>', '<%= post_caption_path(:id => post.id) %>', {
+           callback: function(form, value) { return 'value=' + encodeURIComponent(value) + '&authenticity_token=<%= form_authenticity_token %>' }
+         });
+        </script>
       </li>
     <% end %>
   </ul>
-
+  <%= will_paginate(@posts) %>
 </div>
 
 
