@@ -1,5 +1,5 @@
 class DashboardController < ApplicationController
-  before_filter :require_authentication, :except => :login
+  before_filter :require_authentication, :except => [:login, :forgot_password, :reset_password]
   before_filter :settings_notice, :only => [:index, :content, :services, :integration, :domain, :account]
   
   def index
@@ -23,6 +23,22 @@ class DashboardController < ApplicationController
         login_success
       end
     end  
+  end
+  
+  def forgot_password
+    if request.post?
+      if @stream.forgot_password!(params[:email])
+        @notice = "An e-mail has been sent to #{@stream.email}"
+      end
+    end
+  end
+  
+  def reset_password
+    if request.post?
+      if @stream.reset_password!(params)
+        login_success
+      end
+    end
   end
   
   def logout

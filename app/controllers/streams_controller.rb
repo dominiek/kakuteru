@@ -6,7 +6,6 @@ class StreamsController < ApplicationController
     end
     unless @stream.is_active?
       session[:invite_code] = params[:invite_code]
-      puts session[:invite_code]
       redirect_to(claim_stream_path(:invite_code => params[:invite_code])) and return
     end
     if params[:tag_name].blank?

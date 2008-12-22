@@ -30,6 +30,15 @@
       <% end %>
     <% end %>
   </div>
+  
+  <div class="my_dashboard">
+    <h3>My Dashboard</h3>
+    <% form_tag('/', :onsubmit => "document.location = 'http://' + $('subdomain').value + '.#{request.domain}/dashboard/'; return false;") do %>
+      <%= submit_tag('Login!', :class => 'login') %>
+      <%= text_field_tag(:subdomain, '', :class => 'text') %>.kakuteru.com
+    <% end %>
+    <div class="clear"></div>
+  </div>
 </div>
 
 <div class="about">

@@ -110,7 +110,7 @@ module ApplicationHelper
       html << content_tag(:span, notice, :class => 'submit notice', :id => id)
       html << javascript_tag("setTimeout(function() { Effect.Fade('#{id}', { duration: 1.0 }); }, 3000);")
     end
-    html
+    content_tag(:div, html, :class => 'submit_tag_with_notice')
   end
   
 end

@@ -2,6 +2,8 @@ dominiek:
   id: 1
   subdomain: dominiek
   is_active: true
+  email: info@dominiek.com
+  change_password_token: yeahbaby
 peter:
   id: 2
   subdomain: peter

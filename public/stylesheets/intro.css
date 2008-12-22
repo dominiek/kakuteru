@@ -112,6 +112,7 @@ a {
 	margin: 0.4em 0;
 }
 
+.my_dashboard input.text,
 .invite input.text {
 	font-size: 18px;
 	background-color: #333;
@@ -139,6 +140,27 @@ a {
 
 .invite form span {
 	font-size: 18px;
+}
+
+.my_dashboard {
+	background-color: #A3EF61;
+	padding: 1em;
+	color: #333;
+	width: 400px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	font-size: 16px;
+}
+
+.my_dashboard h3,
+.my_dashboard p {
+	margin-bottom: 0.8em;
+}
+
+.my_dashboard input.login {
+	font-size: 18px;
+	float: right;
 }
 
 .footer a {

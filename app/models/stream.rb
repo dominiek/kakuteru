@@ -1,5 +1,6 @@
 
 require 'digest/sha2'
+require 'md5'
 
 class Stream < ActiveRecord::Base
   has_many :posts, 
@@ -52,7 +53,28 @@ class Stream < ActiveRecord::Base
       return false
     end
     invite.update_attribute(:used_for_stream, subdomain)
+    self.update_attribute(:email, invite.email)
     true
+  end
+  
+  def forgot_password!(email)
+    if email != self.email
+      self.errors.add(:email, "Sorry, #{email} is not associated with this stream.")
+      return false
+    end
+    self.update_attribute(:change_password_token, MD5.hexdigest(self.subdomain + Time.now.to_i.to_s))
+    Mailer.deliver_forgot_password(self)
+    true
+  end
+  
+  def reset_password!(params)
+    if self.change_password_token != params[:token]
+      self.errors.add(:change_password_token, 'Invalid token, did you use the link as sent in the e-mail?')
+      return false
+    end
+    update_attributes(:new_password => params[:new_password], :new_password_repeat => params[:new_password_repeat])
+    puts params.inspect
+    self.errors.blank?
   end
   
   def authenticate(password)
