@@ -122,6 +122,10 @@ span.submit.notice {
 	margin-top: 6px;
 }
 
+.subsettings form {
+	margin-bottom: 1em;
+}
+
 .subsettings form,
 .submit_tag_with_notice {
 	clear: both;

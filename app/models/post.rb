@@ -79,6 +79,31 @@ class Post < ActiveRecord::Base
     self.permalink = string
   end
   
+  def to_xml(options = {})
+    xml = Builder::XmlMarkup.new(:indent => 2, :no_escape => true)
+    xml.post(:id => id, :identifier => identifier, :is_draft => is_draft?, :is_deleted => is_deleted?, :is_votable => is_votable?, :type => type, :created_at => created_at.to_s(:rfc822), :published_at => published_at.to_s(:rfc822)) do
+      xml.caption { xml.cdata!(caption) }
+      xml.summary { xml.cdata!(summary) }
+      xml.body { xml.cdata!(body) }
+      xml.permalink(permalink)
+      xml << self.service.to_xml(options)
+      unless self.medias.blank?
+        xml.medias do
+          self.medias.each do |media|
+            xml.media << media.to_xml(options)
+          end
+        end
+      end
+      unless self.links.blank?
+        xml.links do
+          self.links.each do |link|
+            xml << link.to_xml(options)
+          end
+        end
+      end
+    end
+  end
+  
   private
   
   def send_aggregation_pings

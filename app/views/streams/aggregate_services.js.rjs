@@ -8,5 +8,5 @@ begin
     page.show('friendfeed_setup')
   end
 rescue Friendfeed::UnknownProfileError => upe
-  page.replace_html('friendfeed_aggregation', "Woops, could not find profile #{@stream.friendfeed_username} - did you spell it correctly?, " + link_to('try a different username', setup_stream_path))
+  page.replace_html('friendfeed_aggregation', "Woops, could not find profile #{@stream.friendfeed_username} - did you spell it correctly? Is your FriendFeed public?, " + link_to('try a different username', setup_stream_path))
 end

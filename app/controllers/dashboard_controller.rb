@@ -77,6 +77,11 @@ class DashboardController < ApplicationController
     @stream.update_attributes(params[:stream]) if request.post?
   end
   
+  def export
+    response.headers['Content-disposition'] = "attachment; filename=#{@stream.subdomain}.xml"
+    respond_to(:xml)
+  end
+  
   private
   
   def login_success

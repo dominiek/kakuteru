@@ -10,6 +10,11 @@
       <%= submit_tag_with_notice('save') %>
     <% end %>
 
+    <% form_tag({:action => :export, :format => :xml}, :method => :get) do %>
+      <h2>Export Data</h2>
+      <p class="description">You can download all your updates/articles in one big XML file. You could potentially use this to import into a different lifestream software or just to keep a casual backup.</p>
+      <%= submit_tag('download XML file') %>
+    <% end %>
     <% form_tag(delete_stream_path, :method => :get) do %>
       <h2>Delete Account</h2>
       <p class="description">Remove all information and detach completely from <%= @stream.friendly_url %>.</p>

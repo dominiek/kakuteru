@@ -48,4 +48,10 @@ class Service < ActiveRecord::Base
   def icon_url
     "/images/services/#{identifier}.png"
   end
+  
+  def to_xml(options = {})
+    xml = Builder::XmlMarkup.new(:indent => 2, :no_escape => true)
+    xml.service(:id => id, :identifier => identifier, :name => name, :profile_url => profile_url)
+  end
+  
 end

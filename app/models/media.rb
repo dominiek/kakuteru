@@ -10,4 +10,14 @@ class Media < ActiveRecord::Base
       self.embed_url
     end
   end
+  
+  def to_xml(options = {})
+    xml = Builder::XmlMarkup.new(:indent => 2, :no_escape => true)
+    xml.media(:id => id) do
+      xml.caption { xml.cdata!(caption) }
+      xml.url(url)
+      xml.embed_url(embed_url)
+      xml.thumbnail_url(thumbnail_url)
+    end
+  end
 end

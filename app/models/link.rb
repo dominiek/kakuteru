@@ -12,4 +12,10 @@ class Link < ActiveRecord::Base
     uri = URI.parse(url)
     uri.host
   end
+  
+  def to_xml(options = {})
+    xml = Builder::XmlMarkup.new(:indent => 2, :no_escape => true)
+    xml.link(:id => id, :domain => domain, :url => url)
+  end
+  
 end
