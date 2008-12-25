@@ -305,7 +305,7 @@ class Stream < ActiveRecord::Base
   end
   
   def css_file_path
-    File.join(RAILS_ROOT, 'public/stylesheets', self.subdomain) + '.css'
+    File.join(RAILS_ROOT, 'public/stylesheets/custom', self.subdomain) + '.css'
   end
   
 end

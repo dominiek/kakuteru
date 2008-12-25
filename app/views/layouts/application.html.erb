@@ -12,7 +12,7 @@
     <%= stylesheet_link_tag('html') %>
     <%= stylesheet_link_tag('application') %>
     <% if @stream.has_custom_css? %>
-      <%= stylesheet_link_tag(@stream.subdomain) %>
+      <%= stylesheet_link_tag('custom/' + @stream.subdomain) %>
     <% else %>
       <%= stylesheet_link_tag('default') %>
     <% end %>
