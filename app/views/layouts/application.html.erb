@@ -1,6 +1,6 @@
 <html>
   <head profile="http://gmpg.org/xfn/11 http://www.w3.org/2006/03/hcard http://microformats.org/wiki/hcalendar-profile">
-    <title><%= @stream.to_s %><% unless @stream.subtitle.blank? %> - <%= @stream.subtitle %><% end %></title>
+    <title><%= @title %></title>
     <% if !@stream.feedburner_feed_url.blank? %>
       <%= auto_discovery_link_tag(:atom, @stream.feedburner_feed_url, :title => 'Articles Atom') %>
     <% elsif @stream.articles.size > 0 %>
@@ -19,10 +19,9 @@
     <%= stylesheet_link_tag('coderay') %>
     <%= javascript_include_tag(:defaults) %>
     <meta name="generator" content="<%= APPLICATION_NAME %>" />
-    <% unless @stream.subtitle.blank? %>
-      <meta name="description" content="<%= @stream.subtitle %>" />
+    <% unless @description.blank? %>
+      <meta name="description" content="<%= strip_tags(@description.gsub(/\n/, ' - ')) %>" />
     <% end %>
-    <%#TODO USE TAGS %>
     <meta name="keywords" content="<%= @stream.tag_counts.slice(0, 10).join(', ') %>" />
     <meta name="robots" content="index, follow" />
     <meta name="GOOGLEBOT" content="index, follow" />

@@ -7,6 +7,8 @@ class PostsController < ApplicationController
     else
       @post = Post.find(params[:id])
     end
+    @title = @post.caption
+    @description = @post.summary unless @post.summary.blank?
   end
   
   def edit
@@ -14,9 +16,6 @@ class PostsController < ApplicationController
     raise KakuteruError.new if @post.stream_id != @stream.id
     if request.post?
       @post.update_attributes(params[:post])
-      if !@post.is_draft?
-        @post.update_attribute(:published_at, Time.now) unless @post.published_at
-      end
       @post.auto_tag! if @post.tag_list.blank?
     end
     render(:layout => 'dashboard')

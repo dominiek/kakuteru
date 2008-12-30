@@ -3,7 +3,7 @@
 
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
-  before_filter :load_stream
+  before_filter :load_stream, :set_title_and_description
 
   class KakuteruError < StandardError; end
 
@@ -35,6 +35,14 @@ class ApplicationController < ActionController::Base
       @stream = Stream.find_by_domain(@domain)
       @using_custom_domain = true
     end
+  end
+  
+  def set_title_and_description
+    @title = @stream.to_s
+    unless @stream.subtitle.blank?
+      @title += " - #{@stream.subtitle}"
+    end
+    @description = @stream.subtitle || @stream.to_s
   end
   
 end

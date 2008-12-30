@@ -21,7 +21,7 @@ class Post < ActiveRecord::Base
     end
   end
   
-  def after_save
+  def before_save
     permalink!
   end
   
