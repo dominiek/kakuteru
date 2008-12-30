@@ -38,11 +38,13 @@ class ApplicationController < ActionController::Base
   end
   
   def set_title_and_description
-    @title = @stream.to_s
-    unless @stream.subtitle.blank?
-      @title += " - #{@stream.subtitle}"
+    unless @stream.blank?
+      @title = @stream.to_s
+      unless @stream.subtitle.blank?
+        @title += " - #{@stream.subtitle}"
+      end
+      @description = @stream.subtitle || @stream.to_s
     end
-    @description = @stream.subtitle || @stream.to_s
   end
   
 end
