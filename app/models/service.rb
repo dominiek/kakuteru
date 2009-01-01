@@ -10,6 +10,7 @@ class Service < ActiveRecord::Base
     'jaiku'        => :message,
     'plurk'        => :message,
     'identica'     => :message,
+    'facebook'     => :message,
     'tumblr'       => :mixed,
     'delicious'    => :bookmark,
     'digg'         => :bookmark,
