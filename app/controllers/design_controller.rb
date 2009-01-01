@@ -7,5 +7,9 @@ class DesignController < ApplicationController
       @stream.update_attributes(params[:stream])
       @notice = 'CSS updated'
     end
+    if request.delete?
+      @stream.clear_custom_css!
+      @notice = 'CSS restored'
+    end
   end
 end

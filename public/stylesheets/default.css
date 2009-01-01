@@ -431,6 +431,10 @@ div.articles a.feedburner {
 	margin-bottom: 0.8em;
 }
 
+.show div.player {
+	margin-top: 2em;
+}
+
 div.show.message {
 	margin: 1em;
 	padding: 1em 0 0;

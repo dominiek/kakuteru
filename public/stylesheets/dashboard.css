@@ -438,6 +438,10 @@ a.delete {
   margin-bottom: 0.8em;	
 }
 
+.design h2 {
+  clear: both;
+}
+
 /* Write article */
 
 .write input[type="text"],

@@ -104,6 +104,17 @@ class Post < ActiveRecord::Base
     end
   end
   
+  def artist_and_track
+    md = self.url.match(/\/music\/([^\/]+)\/_\/([^\/]+)/)
+    if md
+      [md[1], md[2]]
+    end
+  end
+  
+  def track
+    
+  end
+  
   private
   
   def send_aggregation_pings

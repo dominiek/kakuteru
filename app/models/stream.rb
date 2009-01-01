@@ -289,6 +289,11 @@ class Stream < ActiveRecord::Base
     md[1]
   end
   
+  def clear_custom_css!
+    FileUtils.rm(css_file_path)
+    self.update_attribute(:has_custom_css, false)
+  end
+  
   protected
   
   def graph_colors

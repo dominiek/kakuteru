@@ -1,1 +1,14 @@
 Favorited a track: <%= link_to(post.caption, post.url) %>
+
+<% if @post %>
+  <% content_for(:head) do %>
+    <%= javascript_include_tag('lastfm_player') %>
+  <% end %>
+  <% artist_and_track = post.artist_and_track %>
+  <% unless artist_and_track.blank? %>
+    <div id="player" class="player"></div>
+    <script type="text/javascript">
+      var lastfm_player = new LastfmPlayer('player', 'b25b959554ed76058ac220b7b2e0a026', '<%= artist_and_track.first %>', '<%= artist_and_track.last %>');
+    </script>
+  <% end %>
+<% end %>

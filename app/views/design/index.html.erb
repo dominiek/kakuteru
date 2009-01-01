@@ -11,8 +11,12 @@
         <% end %>
       </ul>
       <p>We'd like to enable you to customize your lifestream as much as possible, so please <%= link_to('let us know', "mailto: kakuteru_design@dominiek.com") %> if you need any extra data, content or functionality.</p>
+      <% if @stream.has_custom_css? %>
+        <%= link_to('restore default CSS', design_path, :method => :delete, :confirm => 'All CSS changes you made will be lost! Are you sure?', :class => 'restore') %>
+      <% end %>
     </div>
     <%= text_area(:stream, :css, :class => 'body') %>
-    <%= submit_tag_with_notice('save')%>
+    <%= submit_tag_with_notice('save') %>
   <% end %>
+
 </div>
