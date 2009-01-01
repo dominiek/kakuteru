@@ -28,7 +28,7 @@ class PostsController < ApplicationController
   end
   
   def archive
-    @posts = @stream.posts.find(:all, :include => [:service], :conditions => ["services.identifier = 'articles'"])
+    @posts = @stream.articles
   end
   
   def new

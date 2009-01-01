@@ -11,6 +11,9 @@ class Link < ActiveRecord::Base
   def self.domain_for_url(url)
     uri = URI.parse(url)
     uri.host
+  rescue => e
+    m = url.match(/http:\/\/([^\/]+)/)
+    m ? m[1] : nil
   end
   
   def to_xml(options = {})
