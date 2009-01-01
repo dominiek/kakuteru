@@ -1,0 +1,4 @@
+<%= sized_caption(post.caption, read_url(:id => post)) %>
+<% if @post %>
+  <%= link_to('read more on '+@post.service.identifier, @post.url) %>
+<% end %>

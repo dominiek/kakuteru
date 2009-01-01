@@ -59,7 +59,7 @@ module ApplicationHelper
   def thumbnail(post)
     #return image_tag('dodo.jpg')
     service = post.service
-    if post.type == 'photo' || post.type == 'slide' || post.type == 'software'
+    if (post.type == 'photo' || post.type == 'slide' || post.type == 'software' || post.type == 'mixed') && !post.medias.blank?
       image_tag(post.medias.first.thumbnail_url)
     elsif !service.profile_image_url.blank?
       image_tag(service.profile_image_url)
