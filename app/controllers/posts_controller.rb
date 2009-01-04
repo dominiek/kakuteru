@@ -9,6 +9,7 @@ class PostsController < ApplicationController
     end
     @title = @post.caption
     @description = @post.summary unless @post.summary.blank?
+    @keyword_list = @post.tags.slice(0, 10).join(', ')
   end
   
   def edit

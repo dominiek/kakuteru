@@ -22,7 +22,7 @@
     <% unless @description.blank? %>
       <meta name="description" content="<%= strip_tags(@description.gsub(/\n/, ' - ')) %>" />
     <% end %>
-    <meta name="keywords" content="<%= @stream.tag_counts.slice(0, 10).join(', ') %>" />
+    <meta name="keywords" content="<%= @keyword_list %>" />
     <meta name="robots" content="index, follow" />
     <meta name="GOOGLEBOT" content="index, follow" />
     <meta name="MSSmartTagsPreventParsing" content="yes" />

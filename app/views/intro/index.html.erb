@@ -3,84 +3,32 @@
   <%= javascript_include_tag('lightbox') %>
 <% end %>
 
-<div class="engage">
-  <%= link_to('Kakuteru', '/', :class => 'kakuteru') %>
-  <div class="status">
-    <p>
-      Right now Kakuteru is in a closed Beta. 
-      This will help us iron out the kinks and give us some time to scale up.
-      If you didn't manage to get an invite, keep your eyes and ears open - the second batch is coming soon!
-    </p>
-  </div>
-  <div class="invite">
-    <% form_tag do %>
-      <p><label for="stream_subdomain">Pick a name: </label><%= text_field(:stream, :subdomain, :class => 'text') %><span>.kakuteru.com</span></p>
-      <p><label for="stream_invite_key">Invite code: </label><%= text_field(:stream, :invite_code, :class => 'invite code text', :value => params[:invite_code]) %></p>
-      <p><label></label><%= submit_tag('Get started!', :class => 'get started') %></p>
-    <% end %>
-    <% if false %>
-      <% unless flash[:notice] %>
-        <% form_tag(invite_url) do %>
-          <label for="invite_email">E-mail: </label>
-          <%= text_field(:invite, :email) %>
-          <%= submit_tag('Sign me up!') %>
-        <% end %>
-      <% else %>
-        <p class="notice"><%= flash[:notice]%></p>
-      <% end %>
-    <% end %>
-  </div>
-  
-  <div class="my_dashboard">
-    <h3>My Dashboard</h3>
-    <% form_tag('/', :onsubmit => "document.location = 'http://' + $('subdomain').value + '.#{KAKUTERU_DOMAIN}/dashboard/'; return false;") do %>
-      <%= submit_tag('Login!', :class => 'login') %>
-      <%= text_field_tag(:subdomain, '', :class => 'text') %>.kakuteru.com
-    <% end %>
-    <div class="clear"></div>
-  </div>
+<h1>Hi there!</h1>
+
+<p class="description">
+  Kakuteru is an experimental lifestreaming service that pimps up your online activity. Kakuteru enhances your <%= link_to('FriendFeed') %> activity and throws some extra spices in the mix:
+</p>
+
+<div class="facts">
+  <% 
+    intro = [
+      [:your_style, "Lifestreaming, YOUR style"],
+      [:activity, "Activity all over the place"],
+      [:web30_enabled, "Web 3.0 Enabled"],
+      [:integration, "An Integration Behemoth"],
+      [:statistics, "Activity Stats"],
+      [:clusters, "Soon: Cluster Streams"]
+    ]
+   %>
+  <% intro.each do |key_caption| 
+      key,caption = key_caption
+    %>
+      <%= link_to(caption, "/images/intro_#{key.to_s}.png", :rel => "lightbox[intro]", :title => caption, :class => key.to_s) %>
+  <% end %>
 </div>
 
-<div class="about">
-  <div class="facts">
-    <div>
-      <ul>
-        <% 
-          intro = [
-            [:your_style, "Lifestreaming, YOUR style"],
-            [:activity, "Activity all over the place"],
-            [:web30_enabled, "Web 3.0 Enabled"],
-            [:integration, "An Integration Behemoth"],
-            [:statistics, "Activity Stats"],
-            [:clusters, "Soon: Cluster Streams"]
-          ]
-         %>
-        <% intro.each do |key_caption| 
-            key,caption = key_caption
-          %>
-          <li>
-            <%= link_to(caption, "/images/intro_#{key.to_s}.png", :rel => "lightbox[intro]", :title => caption, :class => key.to_s) %>
-          </li>
-        <% end %>
-    </div>
-  </div>
-</div>
-
-<%= javascript_tag("$('stream_subdomain').focus();") %>
-
-<div class="footer">
-  <h1>About</h1>
-  <p><%= link_to('Kakuteru', 'http://kakuteru.com/') %> is a part time endeavor initiated by <%= link_to('Dominiek ter Heide', 'http://dominiek.com/') %>. Kakuteru is a play-bed for new technologies and it started out because of the need to pimp up and lifestreamatize my blog. However, I think it can be much more.</p>
-  <p>Kakuteru is Open Source and can be freely downloaded from <%= link_to('Github', 'http://github.com/dominiek/kakuteru/tree') %>. Kakuteru.com is a way of turning that same piece of open source into an awesome and robust service. Kakuteru embraces openness and to continue along that same mindset, I intend to make Kakuteru an Open Business. That means anyone can jump in and make Kakuteru great and profitable - with ownership in return. How am I going to accomplish this? I have no freakin' idea! So if your interested, please pop me an email @ kakuteru [ monkeytail ] dominiek.com</p>
-<div style="float:right; margin-top: 30px">
-  <!-- AddThis Bookmark Button BEGIN -->
-  <script type="text/javascript">
-    addthis_url    = location.href;   
-    addthis_title  = document.title;  
-    addthis_pub    = 'dominiek';     
-  </script><script type="text/javascript" src="http://s7.addthis.com/js/addthis_widget.php?v=12" ></script>
-  <!-- AddThis Bookmark Button END -->
-</div>
-<small>Hosting provided by: </small><br/>
-<%= link_to(image_tag('/images/slicehost.png', :width => 100), 'http://slicehost.com/') %>
+<div class="closed_beta">
+  <p class="description">
+    Right now we're in a closed BETA, so please make sure to <a href="/signup">sign up for an invitation</a>.
+  </p>
 </div>

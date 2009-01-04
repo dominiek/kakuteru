@@ -1,86 +1,89 @@
 
 body {
-	background-color: #111;
+	background-color: #fff;
 	font-family: "Lucida Grande",Arial,Helvetica,sans serif;
 	font-size: 14px;
-	color: #999;
+	color: #666;
 }
 
-.about { 
-	
-}
-
-a {
-	color: #777;
-	text-decoration: none;
+a,
+a:visited,
+a:hover {
+	color: #2c94e4;
 	outline: none;
+	text-decoration: none;
 }
 
-.facts ul {
-	list-style-type: none;
+a:hover {
+	text-decoration: underline;
 }
 
-.facts li {
-	border-bottom: 1px dashed #999;
+input.text {
+	font-size: 18px;
+	margin-bottom: 0.8em;
+	padding: 2px;
+	width: 140px;
 }
 
-.facts li:last-child {
-	border-bottom: none !important;
+.page {
+	min-height: 520px;
+	padding: 2em 2em 0 2em;
 }
 
-.facts li a {
+.page.index .description {
+	font-size: 16px;
+}
+
+.facts {
+	width: 800px;
+}
+
+.facts a {
 	display: block;
+	float: left;
 	padding-top: 44px;
 	text-indent: 100px;
 	height: 69px;
-	color: #111;
+	width: 370px;
 }
 
-.facts li a.your_style { background: url('/images/intro_your_style_tn.png') no-repeat left center; }
-.facts li a.activity { background: url('/images/intro_activity_tn.png') no-repeat left center; }
-.facts li a.web30_enabled { background: url('/images/intro_web30_enabled_tn.png') no-repeat left center; }
-.facts li a.integration { background: url('/images/intro_integration_tn.png') no-repeat left center; }
-.facts li a.statistics { background: url('/images/intro_statistics_tn.png') no-repeat left center; }
-.facts li a.clusters { background: url('/images/intro_clusters_tn.png') no-repeat left center; }
+.facts a.your_style { background: url('/images/intro_your_style_tn.png') no-repeat left center; }
+.facts a.activity { background: url('/images/intro_activity_tn.png') no-repeat left center; }
+.facts a.web30_enabled { background: url('/images/intro_web30_enabled_tn.png') no-repeat left center; }
+.facts a.integration { background: url('/images/intro_integration_tn.png') no-repeat left center; }
+.facts a.statistics { background: url('/images/intro_statistics_tn.png') no-repeat left center; }
+.facts a.clusters { background: url('/images/intro_clusters_tn.png') no-repeat left center; }
 
-.header a {
-	background: url('/images/kakuteru.png') no-repeat left bottom;
-	display: block;
-	float: left;
-	height: 70px;
-	width: 300px;
-	text-indent: -3000;
+.closed_beta {
+	clear: both;
 }
 
-.header {
-	background: url('/images/shaken_not_stirred.png') no-repeat right 42px;
-	height: 70px;
-	width: 700px;
-	margin: 0px auto 0 auto;
-}
-
-.about {
-	background-color: #fff;
-	width: 40%;
-	margin: 0;
-	float: left;
-	color: #333;
-}
-
-.engage {
-	width: 58%;
-	float: right;
-	height: 100%;
-	margin-top: 1.4em;
-}
-
-.engage a.kakuteru {
+.header a.kakuteru {
 	display: block;
 	background: url('/images/kakuteru_shaken_not_stirred.png') no-repeat center center;
 	width: 355;
 	height: 74px;
 	text-indent: -3000px;
-	margin: 2em 0 3em 0;
+	margin: 0 0 0 2em;
+}
+
+.header {
+	background-color: #111;
+	height: 90px;
+	width: 100%;
+	margin: 0;
+	padding: 10px 0 0 0;
+}
+
+.header ul.menu {
+	float: right;
+	list-style-type: none;
+	margin: 60px 1em 0 0;
+}
+
+ul.menu li {
+	float: left;
+	margin: 0 0.8em;
 }
 
 .facts {
@@ -88,13 +91,17 @@ a {
 	font-size: 18px;
 }
 
-.status {
-	padding-right: 2em;
-	margin-bottom: 1em;
+.page div.signup,
+.page div.invite {
+	margin-bottom: 2em;
 }
 
-.get.started {
-	font-size: 20px;
+.page h1 {
+	margin-bottom: 0.8em;
+}
+
+.invite p {
+	margin-bottom: 0.8em;
 }
 
 .notice {
@@ -104,41 +111,37 @@ a {
 	color: #699742;
 }
 
-.invite h3 {
-	font-size: 20px;
-}
-
-.invite p {
-	margin: 0.4em 0;
-}
-
-.my_dashboard input.text,
-.invite input.text {
-	font-size: 18px;
+.my_dashboard input.text {
 	background-color: #333;
-	margin-bottom: 0.8em;
 	color: #A4F062;
-	padding: 2px;
-	width: 140px;
 	border: 1px solid #999;
 }
 
-.invite input.invite.code {
+.invite img {
+	float: left;
+	margin: 0 1em 0 0;
+}
+
+.page div.signup {
+	clear: both;
+}
+
+input.invite.code {
 	width: 266px;
 }
 
-.invite label {
+.signup label {
 	width: 100px;
 	display: block;
 	float: left;
 	padding-top: 4px;
 }
 
-.invite form {
-	padding: 2em 0;
+.signup form span {
+	font-size: 18px;
 }
 
-.invite form span {
+.signup input.get.started {
 	font-size: 18px;
 }
 
@@ -163,17 +166,14 @@ a {
 	float: right;
 }
 
-.footer a {
-	color: #A4F061;
-}
-
 .footer {
 	clear: both;
 	background-color: #333;
 	color: #eee;
-	padding: 2em 1em;
+	padding: 2em 2em;
 }
 
-.footer p,h1 {
-	margin-bottom: 1em;
+.about.page p {
+	font-size: 14px;
+	margin-bottom: 0.8em;
 }

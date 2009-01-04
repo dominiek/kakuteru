@@ -44,6 +44,7 @@ class ApplicationController < ActionController::Base
         @title += " - #{@stream.subtitle}"
       end
       @description = @stream.subtitle || @stream.to_s
+      @keyword_list = @stream.tag_counts.slice(0, 10).join(', ')
     end
   end
   

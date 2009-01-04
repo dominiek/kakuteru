@@ -1,0 +1,31 @@
+
+<div class="invite">
+  <%= link_to(image_tag('follow_on_twitter.png'), 'http://twitter.com/mykakuteru') %>
+  <h1>Invite only, for now.</h1>
+  <p>
+    Right now Kakuteru is in a closed Beta. This will help us iron out the kinks and give us some time to scale up.
+    Please follow the <a href="http://twitter.com/mykakuteru">twitter user 'mykakuteru'</a> to get access to Kakuteru at a later stage.
+  </p>
+</div>
+
+<div class="signup">
+  <h1>I have an invite code!</h1>
+  <% form_tag do %>
+    <p><label for="stream_subdomain">Pick a name: </label><%= text_field(:stream, :subdomain, :class => 'text') %><span>.kakuteru.com</span></p>
+    <p><label for="stream_invite_key">Invite code: </label><%= text_field(:stream, :invite_code, :class => 'invite code text', :value => params[:invite_code]) %></p>
+    <p><label></label><%= submit_tag('Fly little bird!', :class => 'get started') %></p>
+  <% end %>
+  <% if false %>
+    <% unless flash[:notice] %>
+      <% form_tag(invite_url) do %>
+        <label for="invite_email">E-mail: </label>
+        <%= text_field(:invite, :email) %>
+        <%= submit_tag('Sign me up!') %>
+      <% end %>
+    <% else %>
+      <p class="notice"><%= flash[:notice]%></p>
+    <% end %>
+  <% end %>
+</div>
+
+<%= javascript_tag("$('stream_subdomain').focus();") %>

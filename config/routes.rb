@@ -12,7 +12,9 @@ ActionController::Routing::Routes.draw do |map|
   #map.resources :gnip
   
   map.intro '/', :controller => 'intro', :conditions => IS_GLOBAL_CONDITION
-  map.invite '/invite', :controller => 'intro', :action => 'invite', :conditions => IS_GLOBAL_CONDITION
+  map.invite '/signup', :controller => 'intro', :action => 'signup', :conditions => IS_GLOBAL_CONDITION
+  map.login '/login', :controller => 'intro', :action => 'login', :conditions => IS_GLOBAL_CONDITION
+  map.login '/about', :controller => 'intro', :action => 'about', :conditions => IS_GLOBAL_CONDITION
   
   map.with_options(:controller => 'streams', :conditions => IS_STREAM_CONDITION) do |m|
     m.stream '/', :action => 'show'
