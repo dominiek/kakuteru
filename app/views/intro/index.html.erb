@@ -1,30 +1,45 @@
 <% content_for(:head) do %>
-  <%= stylesheet_link_tag('lightbox') %>
-  <%= javascript_include_tag('lightbox') %>
+  <%#= stylesheet_link_tag('lightbox') %>
+  <%#= javascript_include_tag('lightbox') %>
+  <script type="text/javascript">
+    var screenshots = <%= @intro.to_json %>;
+    var current_screenshot = 0;
+    var manually_skipped = false;
+    function next_screenshot(skip_transition) {
+      current_screenshot++;
+      var next = screenshots[(current_screenshot % screenshots.length)];
+      if(skip_transition == true) {
+        $('screenshot').className = "screenshot " + next[0];
+        $('screenshot_caption').innerHTML = next[1];
+        manually_skipped = true;
+      } else {
+        if(manually_skipped == true) {
+          current_screenshot--;
+          manually_skipped = false;
+          return;
+        }
+        $('screenshot').morph('opacity:0;', {duration: 0.8});
+        $('screenshot_caption').morph('opacity:0;', {duration: 0.8});
+        setTimeout(function() {
+          $('screenshot').className = "screenshot " + next[0];
+          $('screenshot_caption').innerHTML = next[1];
+          $('screenshot').appear();
+          $('screenshot_caption').appear();
+        }, 800);
+      }
+    }
+    new PeriodicalExecuter(next_screenshot, 4);
+  </script>
 <% end %>
-
-<h1>Hi there!</h1>
 
 <p class="description">
   Kakuteru is an experimental lifestreaming service that pimps up your online activity. Kakuteru enhances your <%= link_to('FriendFeed') %> activity and throws some extra spices in the mix:
 </p>
 
 <div class="facts">
-  <% 
-    intro = [
-      [:your_style, "Lifestreaming, YOUR style"],
-      [:activity, "Activity all over the place"],
-      [:web30_enabled, "Web 3.0 Enabled"],
-      [:integration, "An Integration Behemoth"],
-      [:statistics, "Activity Stats"],
-      [:clusters, "Soon: Cluster Streams"]
-    ]
-   %>
-  <% intro.each do |key_caption| 
-      key,caption = key_caption
-    %>
-      <%= link_to(caption, "/images/intro_#{key.to_s}.png", :rel => "lightbox[intro]", :title => caption, :class => key.to_s) %>
-  <% end %>
+  <%= link_to_function('next', "next_screenshot(true);", :class => 'next') %>
+  <h2 id="screenshot_caption"><%= @intro.first.last %></h2>
+  <div id="screenshot" class="screenshot your_style"></div>
 </div>
 
 <div class="closed_beta">

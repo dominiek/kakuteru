@@ -34,8 +34,10 @@ input.text {
 	font-size: 16px;
 }
 
+/*
 .facts {
 	width: 800px;
+	margin: 0 auto 240px auto;
 }
 
 .facts a {
@@ -53,9 +55,38 @@ input.text {
 .facts a.integration { background: url('/images/intro_integration_tn.png') no-repeat left center; }
 .facts a.statistics { background: url('/images/intro_statistics_tn.png') no-repeat left center; }
 .facts a.clusters { background: url('/images/intro_clusters_tn.png') no-repeat left center; }
+*/
+
+.facts {
+	background-color: #ddd;
+	width: 789px;
+	margin: 1em auto;
+	padding: 1em;
+}
+
+.facts h2 {
+	margin-bottom: 0.8em;
+}
+
+.facts a.next {
+	float: right;
+	font-size: 18px;
+}
+
+.facts div.screenshot {
+	width: 789px;
+	height: 412px;
+}
+
+.facts div.screenshot.your_style { background: url('/images/intro_your_style.png') no-repeat left center; }
+.facts div.screenshot.activity { background: url('/images/intro_activity.png') no-repeat left center; }
+.facts div.screenshot.web30_enabled { background: url('/images/intro_web30_enabled.png') no-repeat left center; }
+.facts div.screenshot.integration { background: url('/images/intro_integration.png') no-repeat left center; }
+.facts div.screenshot.statistics { background: url('/images/intro_statistics.png') no-repeat left center; }
+.facts div.screenshot.clusters { background: url('/images/intro_clusters.png') no-repeat left center; }
 
 .closed_beta {
-	clear: both;
+	margin-bottom: 2em;
 }
 
 .header a.kakuteru {
@@ -84,11 +115,6 @@ input.text {
 ul.menu li {
 	float: left;
 	margin: 0 0.8em;
-}
-
-.facts {
-	padding: 2em 1.5em;
-	font-size: 18px;
 }
 
 .page div.signup,
