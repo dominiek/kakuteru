@@ -1,0 +1,199 @@
+<html>
+  <head profile="http://gmpg.org/xfn/11 http://www.w3.org/2006/03/hcard http://microformats.org/wiki/hcalendar-profile">
+    <title>XML to JSONML Client-side Proxy</title>
+    
+      <link href="http://feeds.feedburner.com/dominiek" rel="alternate" title="Articles Atom" type="application/atom+xml" />
+    
+    <link href="http://dominiek.com/stream.rss" rel="alternate" title="Lifestream RSS" type="application/rss+xml" />
+    <link href="http://dominiek.com/stream.atom" rel="alternate" title="Lifestream Atom" type="application/atom+xml" />
+    <link href="/stylesheets/html.css?1231171270" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/application.css?1231171270" media="screen" rel="stylesheet" type="text/css" />
+    
+      <link href="/stylesheets/custom/dominiek.css?1230829845" media="screen" rel="stylesheet" type="text/css" />
+
+    
+    <link href="/stylesheets/coderay.css?1231171270" media="screen" rel="stylesheet" type="text/css" />
+    <script src="/javascripts/prototype.js?1231171270" type="text/javascript"></script>
+<script src="/javascripts/effects.js?1231171270" type="text/javascript"></script>
+<script src="/javascripts/dragdrop.js?1231171270" type="text/javascript"></script>
+<script src="/javascripts/controls.js?1231171270" type="text/javascript"></script>
+<script src="/javascripts/application.js?1231171270" type="text/javascript"></script>
+    <meta name="generator" content="Kakuteru" />
+    
+      <meta name="description" content="When integrating with other web services, there are often shortcomings in third-party API's. One of the most common ones I've had to deal with is the lack of JSON+callback support. To circumvent this problem, I wrote a tool that can use an API's XML calls to do the same trick. " />
+
+    
+    <meta name="keywords" content="xml, json, jsonml, proxy, api, hack, convert, integration" />
+    <meta name="robots" content="index, follow" />
+    <meta name="GOOGLEBOT" content="index, follow" />
+    <meta name="MSSmartTagsPreventParsing" content="yes" />
+    <meta http-equiv="expires" content="3600" />
+    
+    
+  </head>
+  
+  <body>
+    <div class="header">
+      
+      <div class="inner">
+
+        <a href="/" class="title" rel="directory">Dominiek</a>
+        
+          <span class="subtitle">web, technology and startups</span>
+        
+        <div class="hide vcard">
+          <a class="fn org url" href="/19592-xml-to-jsonml-client-side-proxy">Dominiek ter Heide</a>
+        </div>
+      </div>
+    </div>
+
+    
+<div class="read page">
+  <abbr class="published" title="2009-01-01T21:13:31Z">
+    4 days ago
+  </abbr>
+  <div class="share">
+    
+      <a href="http://twitter.com/home/?status=Check+out%3A+http%3A%2F%2Fdominiek.kakuteru.com%2F19592-xml-to-jsonml-client-side-proxy" class="tweet_this">Tweet this</a>
+      <script type="text/javascript">
+        digg_url = 'http://dominiek.kakuteru.com/19592-xml-to-jsonml-client-side-proxy';
+        digg_skin = 'compact';
+        digg_window = 'new';
+      </script>
+      <script src="http://digg.com/tools/diggthis.js" type="text/javascript"></script>
+
+      
+        <a href="http://www.addthis.com/bookmark.php" onclick="window.open('http://www.addthis.com/bookmark.php?wt=nw&pub=dominiek&url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title), 'addthis', 'scrollbars=yes,menubar=no,width=620,height=520,resizable=yes,toolbar=no,location=no,status=no,screenX=200,screenY=100,left=200,top=100'); return false;" title="Bookmark and Share" target="_blank"><img src="http://s9.addthis.com/button1-addthis.gif" width="125" height="16" border="0" alt="Bookmark and Share" /></a>
+      
+    
+  </div>
+
+
+  <div class="hentry show article tag-xml tag-json tag-jsonml tag-proxy tag-api tag-hack tag-convert tag-integration" rel="articles">
+    <abbr class="published hide" title="2009-01-01T21:13:31Z"></abbr>
+    <div class="entry-content article">
+      
+  <h1>XML to JSONML Client-side Proxy</h1>
+  <p id="super_paragraph"><p>When integrating with other web services, there are often shortcomings in third-party API&#8217;s. One of the most common ones I&#8217;ve had to deal with is the lack of JSON+callback support. To circumvent this problem, I wrote a tool that can use an API&#8217;s <span class="caps">XML</span> calls to do the same trick.</p>
+
+<p>JSON+callback allows you to do loose integrations in Javascript, requiring no development on the server-side of things. This is really useful if you for example, quickly want to fetch Lastfm&#8217;s track information and render a player, like on <a href="http://dominiek.com/19478-trentem-ller-miss-you#disqus_thread">this Kakuteru page</a>. Lastfm didn&#8217;t support JSON+callback support in their <span class="caps">API</span> until recently. After a lot of <a href="http://www.last.fm/group/Last.fm+Web+Services/forum/21604/_/427670" title="including me">whining by developers</a>, they finally dadded support.</p>
+<p>Still, services like Imeem, don&#8217;t support the <span class="caps">JSON</span> callback yet. So for those service, you can use this tool. Basically, it is a Adobe Flash based converter (written in ActionsScript 3) that converts the <span class="caps">XML</span> to a <a href="http://jsonml.org/"><span class="caps">JSONML</span></a> compatible Javascript Object (<span class="caps">JSON</span>).</p>
+
+<p>All you have to do is put a <a href="http://github.com/dominiek/xml-to-json-proxy/tree/master/xml_json_proxy.swf">swf_to_json.swf</a> and a <a href="http://github.com/dominiek/xml-to-json-proxy/tree/master/xml_json_proxy.js">swf_to_json.js</a> file in your codebase, and use simple Javascript syntax to do remote calls:</p>
+<table class="CodeRay"><tr>
+  <td class="line_numbers" title="click to toggle" onclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre>1<tt>
+</tt>2<tt>
+</tt>3<tt>
+</tt>4<tt>
+
+</tt>5<tt>
+</tt>6<tt>
+</tt>7<tt>
+</tt>8<tt>
+</tt>9<tt>
+</tt><strong>10</strong><tt>
+</tt></pre></td>
+  <td class="code"><pre ondblclick="with (this.style) { overflow = (overflow == 'auto' || overflow == '') ? 'visible' : 'auto' }">    <span class="ta">&lt;script</span> <span class="an">type</span>=<span class="s"><span class="dl">&quot;</span><span class="k">text/javascript</span><span class="dl">&quot;</span></span> <span class="an">src</span>=<span class="s"><span class="dl">&quot;</span><span class="k">xml_json_proxy.js</span><span class="dl">&quot;</span></span><span class="ta">&gt;</span><span class="ta">&lt;/script&gt;</span><tt>
+
+</tt>    <span class="ta">&lt;script</span> <span class="an">type</span>=<span class="s"><span class="dl">&quot;</span><span class="k">text/javascript</span><span class="dl">&quot;</span></span><span class="ta">&gt;</span><tt>
+</tt>      function callback_on_error(code, message) {<tt>
+</tt>        alert(code + ': '+ message);<tt>
+</tt>      }<tt>
+</tt>      function callback_on_success(url,　jsonml) {<tt>
+
+</tt>        alert(jsonml);<tt>
+</tt>      }<tt>
+</tt>      proxy = new XMLJSONProxy('error_callback');<tt>
+</tt>    <span class="ta">&lt;/script&gt;</span><tt>
+</tt></pre></td>
+</tr></table><p>Performing a <span class="caps">GET</span> call (<span class="caps">POST</span> support is yet to come):</p>
+
+<table class="CodeRay"><tr>
+  <td class="line_numbers" title="click to toggle" onclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre>1<tt>
+</tt></pre></td>
+  <td class="code"><pre ondblclick="with (this.style) { overflow = (overflow == 'auto' || overflow == '') ? 'visible' : 'auto' }">    proxy.get('callback_on_success', 'http://url.of.call.xml/');<tt>
+</tt></pre></td>
+</tr></table><p>Check the <a href="http://github.com/dominiek/xml-to-json-proxy/tree/master"><span class="caps">XML</span> to <span class="caps">JSON</span> Github repository</a> for more documentation, example code and the source code.</p>
+
+<p><em>Note: While developing this my stupid Flash <span class="caps">IDE</span> didn&#8217;t tell me that the crossdomain.xml was set to deny on video.google.com, so make sure that the crossdomain policy on the <span class="caps">API</span> side is set to open.</em></p></p>
+
+    </div>
+    <div class="attribution">
+      
+    </div>
+  </div>
+
+  <div class="related_and_tags">
+    
+    <div class="tags">
+      <label for="tags">tags</label> <a href="/tag/api" class="tag-api" rel="tag directory">api</a>, <a href="/tag/convert" class="tag-convert" rel="tag directory">convert</a>, <a href="/tag/hack" class="tag-hack" rel="tag directory">hack</a>, <a href="/tag/integration" class="tag-integration" rel="tag directory">integration</a>, <a href="/tag/json" class="tag-json" rel="tag directory">json</a>, <a href="/tag/jsonml" class="tag-jsonml" rel="tag directory">jsonml</a>, <a href="/tag/proxy" class="tag-proxy" rel="tag directory">proxy</a>, <a href="/tag/xml" class="tag-xml" rel="tag directory">xml</a>
+
+    </div>
+    
+  </div>
+  
+  
+    <div class="related">
+      <h3>Related Content</h3>
+      <ul>
+        
+          <li class="with_icon message"><a href="http://dominiek.com/420-cool-jsonml-is-exactly-what-i-needed-for-my-xml-to-json-flash-proxy-http-jsonml-org">Cool! JsonML is exactly what I needed for my XML-to-JSON Flash proxy. http://jsonml.org/</a> <!-- 3 tags matched --></li>
+        
+          <li class="with_icon article"><a href="http://dominiek.com/107-radical-transparency-and-web-integration">Radical Transparency and Web Integration</a> <!-- 2 tags matched --></li>
+
+        
+          <li class="with_icon article"><a href="http://dominiek.com/121-next-opportunities-in-seamless-web-integration">Next Opportunities in Seamless Web Integration</a> <!-- 2 tags matched --></li>
+        
+          <li class="with_icon article"><a href="http://dominiek.com/131-actual-contact-finder-using-the-social-graph-api">Actual Contact Finder using the Social Graph API</a> <!-- 2 tags matched --></li>
+        
+          <li class="with_icon message"><a href="http://dominiek.com/19928-today-i-finished-my-xml-to-jsonml-client-side-proxy-http-tinyurl-com-7k4728">Today I finished my XML to JSONML Client-side Proxy. http://tinyurl.com/7k4728</a> <!-- 2 tags matched --></li>
+        
+      </ul>
+    </div>
+  
+
+  <a name="disqus_thread"/>
+
+  <div class="discussion">
+    <div id="disqus_thread"></div>
+    <noscript><a href="http://dominiek.disqus.com/?url=ref">View the discussion thread.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+  </div>
+
+</div>
+    
+    <div class="clear"></div>
+
+    <div class="about">
+      <div class="inner">
+                <h2>About</h2>
+        <p>I'm a 22 year old Web Developer who is currently engaged in RubyOnRails consulting.  
+         Apart from obsessing about many technology related topics, I enjoy traveling and international life. 
+         In the coming months I intend to boost up my entrepreneurial activities, so stay tuned!</p>
+         <a rel="license" class="license" href="http://creativecommons.org/licenses/by/3.0/nl/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/nl/88x31.png" /></a>
+        <p>All content on this blog is available under the <a href="http://creativecommons.org/licenses/by/3.0/" rel="license">Creative Commons Attribution 3.0 License</a>. Dominiek.com is running <a href="http://github.com/dominiek/kakuteru/tree">Kakuteru</a> a new Semantic-Web enabled lifestreamer. Design and interaction inspired by <a href="http://yongfook.com/">Yonfook's Sweetcron</a>. Most icons used are by <a href="http://sweetie.sublink.ca/">Joseph North</a>.</p>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-2485654-2");
+pageTracker._trackPageview();
+</script>
+        <div class="generator attribution">
+          <a href="http://dominiek.kakuteru.com/">dominiek.kakuteru.com</a> is powered by <a href="http://kakuteru.com/">Kakuteru</a>, <a href="http://friendfeed.com/">Friendfeed</a> and <a href="http://zementa.com/">Zemanta</a>.
+        </div>
+
+      </div>
+    </div>
+    
+      <script type="text/javascript" src="http://disqus.com/forums/dominiek/embed.js"></script>
+      <script type="text/javascript">
+        var thread = $('disqus_thread');
+        thread.insertBefore($('dsq-comments-count'), thread.firstChild);
+      </script>
+    
+  </body>
+</html>

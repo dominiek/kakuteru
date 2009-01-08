@@ -1,0 +1,1421 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="http://www.typepad.com/" />
+
+
+<title>dog or higher: Semantics in the wild</title>
+
+<link rel="stylesheet" href="http://westciv.typepad.com/dog_or_higher/styles.css" type="text/css" />
+<link rel="alternate" type="application/atom+xml" title="Atom" href="http://westciv.typepad.com/dog_or_higher/atom.xml" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://westciv.typepad.com/dog_or_higher/index.rdf" />
+
+<link rel="start" href="http://westciv.typepad.com/dog_or_higher/" title="Home" />
+<link rel="prev" href="http://westciv.typepad.com/dog_or_higher/2005/10/site_watch_new_.html" title="Site watch: New Age and SMH online designs - much to like, but work to be done" />
+
+<link rel="next" href="http://westciv.typepad.com/dog_or_higher/2005/11/web_blandards.html" title="Web Blandards" />
+
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://westciv.typepad.com/dog_or_higher/2005/11/real_world_sema.html"
+    trackback:ping="http://www.typepad.com/t/trackback/6131/3520365"
+    dc:title="Semantics in the wild"
+    dc:identifier="http://westciv.typepad.com/dog_or_higher/2005/11/real_world_sema.html"
+    dc:description="Regular readers will I hope by now have guessed that I am less of a fan of &quot;handwaving&quot; and more of research when it comes to reasoning about and understanding what developers actually do. For a long time now, I&#39;ve..."
+    dc:creator="John Allsopp"
+    dc:date="2005-11-05T11:39:53+11:00" />
+</rdf:RDF>
+-->
+
+
+
+
+<script type="text/javascript" src="/.shared-typepad/comments.js"></script>
+<script type="text/javascript">
+hostName = '.typepad.com';
+</script>
+
+</head>
+
+<body>
+
+<div id="container">
+
+<a id="banner-img" href="http://westciv.typepad.com/dog_or_higher/"><span class="banner-alt">&nbsp;</span></a>
+<div id="banner">
+<h1><a href="http://westciv.typepad.com/dog_or_higher/" accesskey="1">dog or higher</a></h1>
+<h2>thoughts on software, technology, fatherhood, and other stuff</h2>
+</div>
+
+<div id="center">
+<div class="content">
+
+<p align="right">
+<a href="http://westciv.typepad.com/dog_or_higher/2005/10/site_watch_new_.html">&laquo; Site watch: New Age and SMH online designs - much to like, but work to be done</a> |
+
+
+<a href="http://westciv.typepad.com/dog_or_higher/">Main</a>
+| <a href="http://westciv.typepad.com/dog_or_higher/2005/11/web_blandards.html">Web Blandards &raquo;</a>
+
+</p>
+
+<h2>November 05, 2005</h2>
+
+
+<h3>Semantics in the wild</h3>
+
+
+<p>Regular readers will I hope by now have guessed that I am less of a fan of "handwaving" and more of research when it comes to reasoning about and understanding what developers actually do.</p>
+
+<p>For a long time now, I've been very interested in how developers use semantics in their pages - not just the semantics provided by HTML, like headings, but also the semantics developers create through the use of class and id values.</p>
+
+<p>Afterall, for a long time developers have been using classes and ids to create informal semantics (as well as to provide "hooks" for CSS).</p>
+
+<p>So, how are they actually doing this? In particular, I am interested to know whether common semantics emerge from what developers are doing in their code. Are there a set of frequently semantic class and id values we can "standardize" on (by convention)? Afterall, there are many common patterns (multi-column layouts, headers and footers, one, two and more order navigation systems, and many others) which sites feature over and over. You might think that perhaps by osmosis, conscious or unconscious emulation, or even <a href="http://en.wikipedia.org/wiki/Morphic_resonance">morphic resonance</a>, developers might have started using the same or similar class and id values for the same patterns.</p>
+
+<p>So in my new found phase of experimentation, I wrote a very simple search engine. What it does is takes a URL, grabs all the class and id values for that page, then gets all the external links in that page, and visits these, and recursively does the same thing. I also tried to make sure that it did not visit any given domain (even where the server was different) more than once.</p>
+
+<p>Thus equipped with this magnificent vessel of exploration (the equal at least of the Nina, Pinta or Santa Maria) I set sail for places unknown from my port of embarkation, stopdesign.com. I chose that domain because Douglas Bowman and I had discussed this whole issue in great detail last year while in New Zealand, and because I felt that at least in resources close to stopdesign I'd find sites that were developed by people with similar sensibilities.</p>
+
+<p>So on this maiden voyage, what did I discover?</p>
+
+<p>The crawl visited 1315 sites. In these sites it found 5374 different class values and 4789 different id values. So, what exactly emerged from all these values?</p>
+
+<p>First that the noise to signal ratio is high - table 1 and 2 below, with their measure of how many id and class values appear a single time (88% of all id values, and 80% of all class values), as opposed to even 5 or more times (ids less than 1%, class about 5%) demonstrate that there is very little agreement as to specific class and id values for semantics. </p>
+
+<p>Secondly, the class and id values reflect a very presentational way of viewing the contents of a page - with values including the words top, left, right, bottom, color names, sizes like small, words like spacer, style, all indicating that for most developers their informal "semantics" is highly presentational.</p>
+
+<p>A very unscientific survey of values which appear 5 or more times finds that presentational class and ids values are at least as likely as non presentational ones, let alone strictly semantic one.
+People also appear frequently to be creating class and id values which are either identical to, or clearly very close to existing HTML elements, like menu, submit, heading, and even body. A good many of the values appear by and large to be meaningless, probably created by applications. The number 1 id value afterall is "D27CDB6E-AE6D-11cf-96B8-444553540000" </p>
+
+<p>But why don't I throw this over to you now? Much like <a href="http://www.simplebits.com/notebook/simplequiz/">Dan Cederholm's simplequiz</a> - based on the data here, and also your own experiences, what class and id values are (or at least should be) commonly used. In essence, what's missing from HTML/XHTML in terms of semantics - not in theory, but in the practical sense of the kinds of constructs developers use all the time.</p>
+
+<p>Some pieces that that come straight to mind, based on this survey, include </p>
+
+<ul>
+	<li>Navigation - this appears under many guises, as both id and class values, including navbar, nav, navigation (the #1 class value) and others. There are a number of different kinds of navigation, including site level navigation, page level navigation and doubtless others as well. Where these physically appear on a page should not be important (top, left and so on are presentational, not semantic)</li>
+	<li>breadcrumb trails</li>
+	<li>page header (is h1 enough for this, to revisit a SimpleQuiz?) In the sites surveyed this appears as all kinds of things like masthead, title, pagehead, header, logo </li>
+	<li>page footer (is this really semantic, or just a presentational chunk? Is there a more semantic name like "fine print". Yes I know that the term fine print is ironic. ) "footer" appears as a class value 73 times, fourth highest, and as the second highest id value, with 89 occurrences, making it overall the winner when combining class and id values.</li>
+
+	<li>Main content for a page. This appears quite frequently, in one guise or another.</li>
+	<li>Author  - would the HTML address element be better for this? </li>
+</ul>
+
+<p><br />
+<p>I could go on for some time I am sure, but I am much more interested in other people's take on this, based both on your experiences, and the data at hand. Fire away with your suggestions.</p></p>
+
+<h3>Table 1</h3>
+<table border="0" cellpadding="0" cellspacing="0">
+<caption>Frequency of id values</caption>
+
+<tr><th>Frequency id value appears</th><th>count </th></tr>
+<tr><td>1</td><td>4203</td></tr>
+<tr><td>2</td><td>302</td></tr>
+<tr><td>3</td><td>220</td></tr>
+<tr><td>4</td><td>41</td></tr>
+<tr><td>5</td><td>26</td></tr>
+
+<tr><td>6</td><td>13</td></tr>
+<tr><td>7</td><td>17</td></tr>
+<tr><td>8</td><td>8</td></tr>
+<tr><td>9</td><td>25</td></tr>
+<tr><td>10</td><td>5</td></tr>
+<tr><td>11-20</td><td>15</td></tr>
+
+<tr><td>21-30</td><td>6</td></tr>
+<tr><td>31-40</td><td>2</td></tr>
+<tr><td>41-50</td><td>1</td></tr>
+<tr><td>51-60</td><td>5</td></tr>
+<tr><td>61-70</td><td>3</td></tr>
+<tr><td>71-80</td><td>0</td></tr>
+
+<tr><td>81-90</td><td>1</td></tr>
+<tr><td>91-100</td><td>1</td></tr>
+<tr><td>100+</td><td>0</td></tr>
+</table>
+
+<h3>Table 2</h3>
+
+<table border="0" cellpadding="0" cellspacing="0">
+<caption>Frequency of class values</caption>
+
+<tr><th>Frequency class value appears</th><th>count</th></tr>
+<tr><td>1</td><td>4325</td></tr>
+<tr><td>2</td><td>507</td></tr>
+<tr><td>3</td><td>174</td></tr>
+<tr><td>4</td><td>108</td></tr>
+<tr><td>5</td><td>55</td></tr>
+
+<tr><td>6</td><td>29</td></tr>
+<tr><td>7</td><td>16</td></tr>
+<tr><td>8</td><td>22</td></tr>
+<tr><td>9</td><td>34</td></tr>
+<tr><td>10</td><td>12</td></tr>
+<tr><td>11-20</td><td>43</td></tr>
+
+<tr><td>21-30</td><td>11</td></tr>
+<tr><td>31-40</td><td>4</td></tr>
+<tr><td>41-50</td><td>9</td></tr>
+<tr><td>51-60</td><td>5</td></tr>
+<tr><td>61-70</td><td>4</td></tr>
+<tr><td>71-80</td><td>4</td></tr>
+
+<tr><td>81-90</td><td>0</td></tr>
+<tr><td>91-100</td><td>0</td></tr>
+<tr><td>100+</td><td>2</td></tr>
+</table>
+
+<h3>Table 3</h3>
+
+<table border="0" cellpadding="0" cellspacing="0">
+<caption>id values which appeared 5 or more times (a couple of syntax errors have been removed)</caption><tr><th>Value</th><th>Count</th></tr>
+
+<tr><td>clsidD27CDB6E-AE6D-11cf-96B8-444553540000</td><td>90</td></tr>
+<tr><td>footer</td><td>89</td></tr>
+<tr><td>BTAMarker</td><td>65</td></tr>
+<tr><td>header</td><td>63</td></tr>
+<tr><td>content</td><td>63</td></tr>
+<tr><td>areaTitle</td><td>57</td></tr>
+
+<tr><td>layout</td><td>52</td></tr>
+<tr><td>noBulletContent</td><td>50</td></tr>
+<tr><td>sqBulletContent</td><td>50</td></tr>
+<tr><td>logo</td><td>50</td></tr>
+<tr><td>search</td><td>42</td></tr>
+<tr><td>main</td><td>33</td></tr>
+
+<tr><td>banner</td><td>30</td></tr>
+<tr><td>container</td><td>29</td></tr>
+<tr><td>Top</td><td>26</td></tr>
+<tr><td>sidebar</td><td>26</td></tr>
+<tr><td>nav</td><td>23</td></tr>
+<tr><td>wrapper</td><td>23</td></tr>
+
+<tr><td>+</td><td>23</td></tr>
+<tr><td>left</td><td>19</td></tr>
+<tr><td>Table1</td><td>18</td></tr>
+<tr><td>searchform</td><td>17</td></tr>
+<tr><td>right</td><td>17</td></tr>
+<tr><td>menu</td><td>17</td></tr>
+
+<tr><td>home</td><td>16</td></tr>
+<tr><td>Layer1</td><td>16</td></tr>
+<tr><td>searchbox</td><td>15</td></tr>
+<tr><td>Copyright</td><td>14</td></tr>
+<tr><td>page</td><td>13</td></tr>
+<tr><td>topMenu</td><td>12</td></tr>
+
+<tr><td>AutoNumber1</td><td>12</td></tr>
+<tr><td>Layer2</td><td>11</td></tr>
+<tr><td>bottom</td><td>11</td></tr>
+<tr><td>submit</td><td>11</td></tr>
+<tr><td>Table2</td><td>11</td></tr>
+<tr><td>Body</td><td>10</td></tr>
+
+<tr><td>Image1</td><td>10</td></tr>
+<tr><td>news</td><td>10</td></tr>
+<tr><td>toptabs</td><td>10</td></tr>
+<tr><td>breadcrumbs</td><td>10</td></tr>
+<tr><td>ebGallery</td><td>9</td></tr>
+<tr><td>links</td><td>9</td></tr>
+
+<tr><td>menuitem</td><td>9</td></tr>
+<tr><td>topNav</td><td>9</td></tr>
+<tr><td>s</td><td>9</td></tr>
+<tr><td>Table3</td><td>9</td></tr>
+<tr><td>id-10</td><td>9</td></tr>
+<tr><td>id-11</td><td>9</td></tr>
+
+<tr><td>all-m</td><td>9</td></tr>
+<tr><td>top-m</td><td>9</td></tr>
+<tr><td>id-8</td><td>9</td></tr>
+<tr><td>visual</td><td>9</td></tr>
+<tr><td>l-m</td><td>9</td></tr>
+<tr><td>id-7</td><td>9</td></tr>
+
+<tr><td>id-6</td><td>9</td></tr>
+<tr><td>id-height</td><td>9</td></tr>
+<tr><td>id-b-1</td><td>9</td></tr>
+<tr><td>id-b-2</td><td>9</td></tr>
+<tr><td>id-b-3</td><td>9</td></tr>
+<tr><td>id-b-4</td><td>9</td></tr>
+
+<tr><td>id-b-5</td><td>9</td></tr>
+<tr><td>id-9</td><td>9</td></tr>
+<tr><td>Masthead</td><td>9</td></tr>
+<tr><td>q</td><td>9</td></tr>
+<tr><td>navBar</td><td>9</td></tr>
+<tr><td>globalNav</td><td>9</td></tr>
+
+<tr><td>Table_01</td><td>8</td></tr>
+<tr><td>Image2</td><td>8</td></tr>
+<tr><td>topmain</td><td>8</td></tr>
+<tr><td>topmenu-b</td><td>8</td></tr>
+<tr><td>gmo_foot</td><td>8</td></tr>
+<tr><td>gmo_logo</td><td>8</td></tr>
+
+<tr><td>main2</td><td>8</td></tr>
+<tr><td>wrap</td><td>8</td></tr>
+<tr><td>orphus</td><td>8</td></tr>
+<tr><td>gmo_link</td><td>7</td></tr>
+<tr><td>Title</td><td>7</td></tr>
+<tr><td>Image4</td><td>7</td></tr>
+
+<tr><td>password</td><td>7</td></tr>
+<tr><td>AutoNumber5</td><td>7</td></tr>
+<tr><td>gmo_img</td><td>7</td></tr>
+<tr><td>gmo_ul</td><td>7</td></tr>
+<tr><td>tophban</td><td>7</td></tr>
+<tr><td>Table4</td><td>7</td></tr>
+
+<tr><td>gmo_service</td><td>7</td></tr>
+<tr><td>current</td><td>7</td></tr>
+<tr><td>AutoNumber2</td><td>7</td></tr>
+<tr><td>navigation</td><td>7</td></tr>
+<tr><td>podlogo</td><td>7</td></tr>
+<tr><td>binfo</td><td>7</td></tr>
+
+<tr><td>banbox</td><td>7</td></tr>
+<tr><td>email</td><td>7</td></tr>
+<tr><td>Form1</td><td>6</td></tr>
+<tr><td>query</td><td>6</td></tr>
+<tr><td>Image5</td><td>6</td></tr>
+<tr><td>searchsubmit</td><td>6</td></tr>
+
+<tr><td>about</td><td>6</td></tr>
+<tr><td>Image3</td><td>6</td></tr>
+<tr><td>leftcol</td><td>6</td></tr>
+<tr><td>AutoNumber3</td><td>6</td></tr>
+<tr><td>maincol</td><td>6</td></tr>
+<tr><td>jobs</td><td>6</td></tr>
+
+<tr><td>AutoNumber4</td><td>6</td></tr>
+<tr><td>login</td><td>6</td></tr>
+<tr><td>gmo_copy</td><td>6</td></tr>
+<tr><td>pas-m</td><td>6</td></tr>
+<tr><td>contact</td><td>5</td></tr>
+<tr><td>_x0000_i1025</td><td>5</td></tr>
+
+<tr><td>site-switch</td><td>5</td></tr>
+<tr><td>subhead</td><td>5</td></tr>
+<tr><td>navright</td><td>5</td></tr>
+<tr><td>intro</td><td>5</td></tr>
+<tr><td>inseguitore</td><td>5</td></tr>
+<tr><td>brdbott</td><td>5</td></tr>
+
+<tr><td>ROOF</td><td>5</td></tr>
+<tr><td>mainnav</td><td>5</td></tr>
+<tr><td>WTL_TAG</td><td>5</td></tr>
+<tr><td>udm</td><td>5</td></tr>
+<tr><td>Image6</td><td>5</td></tr>
+<tr><td>name</td><td>5</td></tr>
+
+<tr><td>location</td><td>5</td></tr>
+<tr><td>headernav</td><td>5</td></tr>
+<tr><td>Company</td><td>5</td></tr>
+<tr><td>Products</td><td>5</td></tr>
+<tr><td>rightcol</td><td>5</td></tr>
+<tr><td>newsletter</td><td>5</td></tr>
+
+<tr><td>press</td><td>5</td></tr>
+<tr><td>navcontainer</td><td>5</td></tr>
+<tr><td>leftmenu</td><td>5</td></tr>
+<tr><td>CONTENTBODY</td><td>5</td></tr>
+<tr><td>calendar</td><td>5</td></tr>
+<tr><td>Table5</td><td>5</td></tr></table>
+
+<h3>Table 4</h3>
+
+<p></p>
+
+<table border="0" cellpadding="0" cellspacing="0">
+<caption>Class values which appeared 5 or more times (a couple of syntax errors have been removed)</caption><tr><th>Value</th><th>Count</th></tr>
+<tr><td>navigation</td><td>131</td></tr>
+<tr><td>title</td><td>113</td></tr>
+
+<tr><td>help</td><td>80</td></tr>
+<tr><td>footer</td><td>73</td></tr>
+<tr><td>content</td><td>71</td></tr>
+<tr><td>pipe</td><td>71</td></tr>
+<tr><td>noMargin</td><td>69</td></tr>
+<tr><td>prefill</td><td>68</td></tr>
+
+<tr><td>ebay</td><td>68</td></tr>
+<tr><td>novisited</td><td>68</td></tr>
+<tr><td>button</td><td>60</td></tr>
+<tr><td>standard</td><td>58</td></tr>
+<tr><td>section</td><td>58</td></tr>
+<tr><td>Menu</td><td>57</td></tr>
+
+<tr><td>text</td><td>55</td></tr>
+<tr><td>searchFormSection</td><td>50</td></tr>
+<tr><td>rightAnchor</td><td>50</td></tr>
+<tr><td>catTable</td><td>50</td></tr>
+<tr><td>metaCat</td><td>50</td></tr>
+<tr><td>seeAllLink</td><td>50</td></tr>
+
+<tr><td>seeAllBullet</td><td>50</td></tr>
+<tr><td>adSpacer</td><td>50</td></tr>
+<tr><td>boxSection</td><td>50</td></tr>
+<tr><td>nav</td><td>43</td></tr>
+<tr><td>ocDCP</td><td>42</td></tr>
+<tr><td>white</td><td>39</td></tr>
+
+<tr><td>Date</td><td>39</td></tr>
+<tr><td>body</td><td>37</td></tr>
+<tr><td>module</td><td>31</td></tr>
+<tr><td>CIPpromo</td><td>30</td></tr>
+<tr><td>small</td><td>29</td></tr>
+<tr><td>main</td><td>28</td></tr>
+
+<tr><td>header</td><td>28</td></tr>
+<tr><td>copyright</td><td>26</td></tr>
+<tr><td>tiny</td><td>26</td></tr>
+<tr><td>hdr</td><td>24</td></tr>
+<tr><td>clear</td><td>23</td></tr>
+<tr><td>headline</td><td>23</td></tr>
+
+<tr><td>link</td><td>22</td></tr>
+<tr><td>search</td><td>22</td></tr>
+<tr><td>links</td><td>22</td></tr>
+<tr><td>v</td><td>20</td></tr>
+<tr><td>style1</td><td>20</td></tr>
+<tr><td>v1</td><td>19</td></tr>
+
+<tr><td>topMenu</td><td>19</td></tr>
+<tr><td>left</td><td>19</td></tr>
+<tr><td>more</td><td>19</td></tr>
+<tr><td>smalltext</td><td>18</td></tr>
+<tr><td>prnav</td><td>18</td></tr>
+<tr><td>prred</td><td>18</td></tr>
+
+<tr><td>copy</td><td>18</td></tr>
+<tr><td>box</td><td>18</td></tr>
+<tr><td>hide</td><td>18</td></tr>
+<tr><td>trans</td><td>17</td></tr>
+<tr><td>news</td><td>17</td></tr>
+<tr><td>logo</td><td>17</td></tr>
+
+<tr><td>top</td><td>16</td></tr>
+<tr><td>right</td><td>16</td></tr>
+<tr><td>center</td><td>16</td></tr>
+<tr><td>item</td><td>16</td></tr>
+<tr><td>entry</td><td>15</td></tr>
+<tr><td>gray</td><td>15</td></tr>
+
+<tr><td>style2</td><td>15</td></tr>
+<tr><td>spacer</td><td>15</td></tr>
+<tr><td>description</td><td>15</td></tr>
+<tr><td>bodytext</td><td>14</td></tr>
+<tr><td>head</td><td>14</td></tr>
+<tr><td>blue</td><td>14</td></tr>
+
+<tr><td>MsoNormal</td><td>14</td></tr>
+<tr><td>searchbox</td><td>13</td></tr>
+<tr><td>post</td><td>13</td></tr>
+<tr><td>posted</td><td>12</td></tr>
+<tr><td>block</td><td>12</td></tr>
+<tr><td>style3</td><td>12</td></tr>
+
+<tr><td>yellow</td><td>12</td></tr>
+<tr><td>gallery</td><td>12</td></tr>
+<tr><td>home</td><td>11</td></tr>
+<tr><td>subtitle</td><td>11</td></tr>
+<tr><td>submit</td><td>11</td></tr>
+<tr><td>leftnav</td><td>11</td></tr>
+
+<tr><td>inputbox</td><td>11</td></tr>
+<tr><td>topnav</td><td>11</td></tr>
+<tr><td>author</td><td>11</td></tr>
+<tr><td>back</td><td>10</td></tr>
+<tr><td>option</td><td>10</td></tr>
+<tr><td>caption</td><td>10</td></tr>
+
+<tr><td>black</td><td>10</td></tr>
+<tr><td>searchinput</td><td>10</td></tr>
+<tr><td>border</td><td>10</td></tr>
+<tr><td>side</td><td>10</td></tr>
+<tr><td>selected</td><td>10</td></tr>
+<tr><td>tbTitle</td><td>10</td></tr>
+
+<tr><td>s2</td><td>10</td></tr>
+<tr><td>bold</td><td>10</td></tr>
+<tr><td>icons</td><td>10</td></tr>
+<tr><td>helpblk</td><td>10</td></tr>
+<tr><td>ebcPic</td><td>9</td></tr>
+<tr><td>ebPicture</td><td>9</td></tr>
+
+<tr><td>visual</td><td>9</td></tr>
+<tr><td>topmenu-spacer</td><td>9</td></tr>
+<tr><td>c-right</td><td>9</td></tr>
+<tr><td>block1</td><td>9</td></tr>
+<tr><td>s1</td><td>9</td></tr>
+<tr><td>read</td><td>9</td></tr>
+
+<tr><td>block2</td><td>9</td></tr>
+<tr><td>ebDetails</td><td>9</td></tr>
+<tr><td>ebPrc</td><td>9</td></tr>
+<tr><td>projectsTable</td><td>9</td></tr>
+<tr><td>bottomLine1</td><td>9</td></tr>
+<tr><td>bottomRed</td><td>9</td></tr>
+
+<tr><td>bottomAboutText</td><td>9</td></tr>
+<tr><td>bottomAbout</td><td>9</td></tr>
+<tr><td>bottomLine2</td><td>9</td></tr>
+<tr><td>block-text</td><td>9</td></tr>
+<tr><td>bottom-menu</td><td>9</td></tr>
+<tr><td>style4</td><td>9</td></tr>
+
+<tr><td>green</td><td>9</td></tr>
+<tr><td>normal</td><td>9</td></tr>
+<tr><td>style5</td><td>9</td></tr>
+<tr><td>submenu</td><td>9</td></tr>
+<tr><td>input</td><td>9</td></tr>
+<tr><td>navbar</td><td>9</td></tr>
+
+<tr><td>calendar</td><td>9</td></tr>
+<tr><td>heading</td><td>9</td></tr>
+<tr><td>foot</td><td>9</td></tr>
+<tr><td>red</td><td>9</td></tr>
+<tr><td>category</td><td>9</td></tr>
+<tr><td>blogbody</td><td>9</td></tr>
+
+<tr><td>divider</td><td>9</td></tr>
+<tr><td>cnnLarge</td><td>9</td></tr>
+<tr><td>cnnLeft</td><td>9</td></tr>
+<tr><td>bottomSearchTable</td><td>8</td></tr>
+<tr><td>bottomInput100</td><td>8</td></tr>
+<tr><td>bottomSelect</td><td>8</td></tr>
+
+<tr><td>BottomWhite</td><td>8</td></tr>
+<tr><td>bottomAdv</td><td>8</td></tr>
+<tr><td>summary</td><td>8</td></tr>
+<tr><td>smaller</td><td>8</td></tr>
+<tr><td>cnnEndCell</td><td>8</td></tr>
+<tr><td>bottomDot</td><td>8</td></tr>
+
+<tr><td>bottomServices</td><td>8</td></tr>
+<tr><td>formbut</td><td>8</td></tr>
+<tr><td>related</td><td>8</td></tr>
+<tr><td>breadcrumb</td><td>8</td></tr>
+<tr><td>style7</td><td>8</td></tr>
+<tr><td>orange</td><td>8</td></tr>
+
+<tr><td>navlinks</td><td>8</td></tr>
+<tr><td>nwslink</td><td>8</td></tr>
+<tr><td>leftmenu</td><td>8</td></tr>
+<tr><td>maintext</td><td>8</td></tr>
+<tr><td>txt</td><td>8</td></tr>
+<tr><td>secondary</td><td>8</td></tr>
+
+<tr><td>rub1</td><td>7</td></tr>
+<tr><td>whitetext</td><td>7</td></tr>
+<tr><td>container</td><td>7</td></tr>
+<tr><td>cbox</td><td>7</td></tr>
+<tr><td>ta-c</td><td>7</td></tr>
+<tr><td>formtext</td><td>7</td></tr>
+
+<tr><td>blurb</td><td>7</td></tr>
+<tr><td>highlight</td><td>7</td></tr>
+<tr><td>mainmenu</td><td>7</td></tr>
+<tr><td>cal</td><td>7</td></tr>
+<tr><td>searchtext</td><td>7</td></tr>
+<tr><td>sidebar</td><td>7</td></tr>
+
+<tr><td>s</td><td>7</td></tr>
+<tr><td>bottom</td><td>7</td></tr>
+<tr><td>blog</td><td>7</td></tr>
+<tr><td>style</td><td>7</td></tr>
+<tr><td>powered</td><td>7</td></tr>
+<tr><td>footertext</td><td>6</td></tr>
+
+<tr><td>mini</td><td>6</td></tr>
+<tr><td>pagetitle</td><td>6</td></tr>
+<tr><td>imagealign</td><td>6</td></tr>
+<tr><td>grey</td><td>6</td></tr>
+<tr><td>row1</td><td>6</td></tr>
+<tr><td>catlist</td><td>6</td></tr>
+
+<tr><td>ckCol</td><td>6</td></tr>
+<tr><td>binImg</td><td>6</td></tr>
+<tr><td>rubr</td><td>6</td></tr>
+<tr><td>none</td><td>6</td></tr>
+<tr><td>tm</td><td>6</td></tr>
+<tr><td>LastItem</td><td>6</td></tr>
+
+<tr><td>tagline</td><td>6</td></tr>
+<tr><td>searchform</td><td>6</td></tr>
+<tr><td>separator</td><td>6</td></tr>
+<tr><td>btn</td><td>6</td></tr>
+<tr><td>menu2</td><td>6</td></tr>
+<tr><td>titre</td><td>6</td></tr>
+
+<tr><td>foot_alt</td><td>6</td></tr>
+<tr><td>module-content</td><td>6</td></tr>
+<tr><td>bannerAd</td><td>6</td></tr>
+<tr><td>smalllist</td><td>6</td></tr>
+<tr><td>subject</td><td>6</td></tr>
+<tr><td>sidetitle</td><td>6</td></tr>
+
+<tr><td>subhead</td><td>6</td></tr>
+<tr><td>alignleft</td><td>6</td></tr>
+<tr><td>alignright</td><td>6</td></tr>
+<tr><td>cnnData1</td><td>6</td></tr>
+<tr><td>tabs</td><td>5</td></tr>
+<tr><td>icomtb</td><td>5</td></tr>
+
+<tr><td>last</td><td>5</td></tr>
+<tr><td>ContentBorder</td><td>5</td></tr>
+<tr><td>timestamp</td><td>5</td></tr>
+<tr><td>Byline</td><td>5</td></tr>
+<tr><td>TextAd</td><td>5</td></tr>
+<tr><td>Label</td><td>5</td></tr>
+
+<tr><td>default</td><td>5</td></tr>
+<tr><td>banner</td><td>5</td></tr>
+<tr><td>navtext</td><td>5</td></tr>
+<tr><td>udm</td><td>5</td></tr>
+<tr><td>hr</td><td>5</td></tr>
+<tr><td>pagenav</td><td>5</td></tr>
+
+<tr><td>style6</td><td>5</td></tr>
+<tr><td>info</td><td>5</td></tr>
+<tr><td>bottomnav</td><td>5</td></tr>
+<tr><td>B</td><td>5</td></tr>
+<tr><td>alt</td><td>5</td></tr>
+<tr><td>entry-header</td><td>5</td></tr>
+
+<tr><td>entry-body</td><td>5</td></tr>
+<tr><td>entry-footer</td><td>5</td></tr>
+<tr><td>permalink</td><td>5</td></tr>
+<tr><td>TextBox</td><td>5</td></tr>
+<tr><td>nav3</td><td>5</td></tr>
+<tr><td>text2</td><td>5</td></tr>
+
+<tr><td>m</td><td>5</td></tr>
+<tr><td>rights</td><td>5</td></tr>
+<tr><td>current</td><td>5</td></tr>
+<tr><td>bot</td><td>5</td></tr>
+<tr><td>narrowcolumn</td><td>5</td></tr>
+<tr><td>postmetadata</td><td>5</td></tr>
+
+<tr><td>cnnHeader</td><td>5</td></tr>
+<tr><td>cnnNoBold</td><td>5</td></tr>
+<tr><td>dark</td><td>5</td></tr>
+<tr><td>clickPath</td><td>5</td></tr>
+<tr><td>formbutt</td><td>5</td></tr>
+<tr><td>pt-10</td><td>5</td></tr>
+
+<tr><td>lnav</td><td>5</td></tr>
+<tr><td>footmsg</td><td>5</td></tr>
+<tr><td>navcolor</td><td>5</td></tr>
+<tr><td>f-11</td><td>5</td></tr>
+<tr><td>navMainSections</td><td>5</td></tr>
+<tr><td>portletContent</td><td>5</td></tr>
+
+<tr><td>stitle</td><td>5</td></tr>
+<tr><td>mmsmall</td><td>5</td></tr>
+<tr><td>mastertable</td><td>5</td></tr>
+<tr><td>sidebarad</td><td>5</td></tr>
+<tr><td>cattitle</td><td>5</td></tr>
+<tr><td>f-gray</td><td>5</td></tr>
+
+<tr><td>ens</td><td>5</td></tr>
+<tr><td>toptab</td><td>5</td></tr>
+<tr><td>fivevert</td><td>5</td></tr>
+<tr><td>disclaimer</td><td>5</td></tr>
+<tr><td>disclaimerlink</td><td>5</td></tr>
+<tr><td>tenvert</td><td>5</td></tr></table>
+
+<a id="more"></a>
+
+
+<p class="posted">
+November  5, 2005   | <a href="http://westciv.typepad.com/dog_or_higher/2005/11/real_world_sema.html">Permalink</a>
+</p>
+
+<h2><a id="trackback"></a>TrackBack</h2>
+<p>TrackBack URL for this entry:<br />http://www.typepad.com/services/trackback/6a00d8341cbf7d53ef00e55021085b8833</p>
+
+<p>Listed below are links to weblogs that reference <a href="http://westciv.typepad.com/dog_or_higher/2005/11/real_world_sema.html">Semantics in the wild</a>:</p>
+
+<p><a id="p973163"></a>
+&raquo; <a href="http://mar.anomy.net/entry/2006/04/28/10.58.08/">IceWeb 2006 notes - David Shea, "CSS Project Management"</a> from Már Örlygsson<br />
+ Uses his own site Mezzoblue.com as an hands-on example. Hey, Dave uses BBEdit to write CSS and HTML! I remember using BBEdit back in my Macintosh days (in the MacOs 7  8 era). Recommends commenting your CSS code.... <a href="http://mar.anomy.net/entry/2006/04/28/10.58.08/">[Read More]</a>
+</p>
+<p class="posted">Tracked on Apr 28, 2006 9:26:25 PM</p>
+
+
+
+<h2><a id="comments"></a>Comments</h2>
+
+<a id="c10939480"></a>
+<p>John, are you proposing the adoption of a standardised set of naming conventions for CSS ids and classes to ensure semanticity, for lack of a better word (BTW that is a derivative of specificity which I picked up at the Canberra CSS workshop) in page layout and stylesheets?</p>
+
+<p>Within reason if everyone was using the same naming conventions you could have some interesting experiments by applying other people's stylesheets to your site knowing that it will restyle your information fairly accurately.</p>
+
+<p>Whilst I like the idea, is it going to be achievable, in a practical sense?</p>
+
+<p>damo</p>
+<p class="posted">Posted by: <a rel="nofollow" target="_blank" title="http://damo.otenko.com" href="http://damo.otenko.com">damo</a> | Nov 7, 2005 9:49:33 AM</p>
+
+<a id="c10939584"></a>
+<p>Damo,</p>
+
+<p>got it in one.</p>
+
+<p>Is it doable? I think that is in the realm of the imponderable. I certainly don't think that you could say it is impossible. It's really a social issue, in the sense that, what would motivate people to do it? </p>
+
+<p>I think it would require</p>
+
+<p>1. knowledge - people would need to know about the possibility, and the options<br />
+2. motivation - people would need to see a benefit in doing it</p>
+
+<p>I think a "top down" approach, of getting the major blog apps to adopt a common set of semantics would be a great start - but would that fly?</p>
+
+<p>I know one or two smart people looking at this aspect, hopefully there will be some word of their efforts soon.</p>
+
+<p>Thanks for the note,</p>
+
+<p>j<br />
+</p>
+<p class="posted">Posted by: <a rel="nofollow" target="_blank" title="http://westciv.com" href="http://westciv.com">John Allsopp</a> | Nov 7, 2005 9:55:54 AM</p>
+
+<a id="c10942309"></a>
+<p>john, </p>
+
+<p>I agree that if it can be and does get adopted it will be fantastic. Unfortunately web design/development is still a fledgling industry and it is only geeks like ourselves that keep up to speed on standards and find new/better ways of implementing code. Unfortunately, a lot of "designers/developers" are unaware of better practice.</p>
+
+<p>The biggest problem facing "us" is ensuring adoption and compliance. As you mention, there will be a need to filter down the why's, how's and where's of semantic CSS and XHTML. It is in the best interests of everyone that uses the Net from casual surfers to coders, if only we can agree on a standard and implement it. I agree that top down is probably going to be the only way to successfully implement it however we are still learning ourselves. I think we are off to a good start.</p>
+
+<p>damo</p>
+<p class="posted">Posted by: <a rel="nofollow" target="_blank" title="http://damo.otenko.com" href="http://damo.otenko.com">damo</a> | Nov 7, 2005 12:19:31 PM</p>
+
+<a id="c10961225"></a>
+<p>John, this is really interesting. Here's an idea from the "weird and wacky" shelf:</p>
+
+<p>I wonder if one could take your search engine results and create a del.icio.us-style app where one could browse all the class or id values the same as del.icio.us tags. When doing so, you would be presented with a representation of the tagged code. Might be an interesting way to see *what* developers are applying these tags to.</p>
+
+<p>Probably useless, but as you mentioned that this is a "social" problem, why not experiment with social solutions?</p>
+<p class="posted">Posted by: <a rel="nofollow" target="_blank" title="http://redmonk.net" href="http://redmonk.net">Steve Ivy</a> | Nov 8, 2005 6:29:55 AM</p>
+<a id="c10962934"></a>
+<p>It may be worth noting that clsidD27CDB6E-AE6D-11cf-96B8-444553540000 generally refers to the SWF classid attribute. Most likely a parsing error with your spider.</p>
+
+<p class="posted">Posted by: Craig Bovis | Nov 8, 2005 7:23:05 AM</p>
+<a id="c10963104"></a>
+<p>This has all along been a concept that I have tried to work with... One standardized way to mark up all my website... That way I can swap style sheets on different sites all I want.  I actually started my base nameing conventions from CSSZenGarden.  It seemed they had more than enough blocks to create a universal layout framework.</p>
+<p class="posted">Posted by: Rod Kesselring | Nov 8, 2005 7:27:23 AM</p>
+<a id="c10964967"></a>
+<p>This sounds similar to microformats <a href="http://microformats.org/," rel="nofollow">http://microformats.org/,</a> tho defining an entire page structure is a bit more ambitious. As you say, there would need to be some benefit for it to take hold.</p>
+<p class="posted">Posted by: Brian | Nov 8, 2005 8:25:17 AM</p>
+<a id="c10965306"></a>
+<p>Just because quite a number of (english speaking) developers use the same class or id for something doesn't make it semantic.</p>
+
+<p>Also, why would you? What would it help if all headers were marked 'header' ? (It'd also push people into a certain design mindset, resulting in sites that all look the same.)</p>
+<p class="posted">Posted by: <a rel="nofollow" target="_blank" title="http://akaxaka.gameover.com/" href="http://akaxaka.gameover.com/">AkaXakA</a> | Nov 8, 2005 8:36:03 AM</p>
+<a id="c10965628"></a>
+<p>This is really great work - I've been thinking about subject this for ages too. It always seemed strange that XHTML and CSS are 'standards' but that they get applied in anything but a standard way when it comes to the links between them - the id and class names. I'd love to stop reinventing the wheel all the time with my reused names like 'nav' and 'footer' and 'container' etc. The benefits of standardising these things might be more than just cos you could swap stylesheets, and that things would be more efficient. It might be handy for search engines to only trawl the 'content' div, for example, rather than trawling though menus and adverts and other stuff.</p>
+
+<p>My small comment (for what it's worth) is that the very broad, automated approach to your sampling may be less interesting than doing this sampling in a more directed way. By allowing the spider to go everywhere, you are looking at the web as a whole and the amount of noise in the data is inevitably going to drown out the revealing bits. Of course, it's interesting to know about the web as a whole, but for the purposes of finding out what the people who are actually *thinking* about it are doing, which I think would be more useful, your spider is too wide-ranging.</p>
+
+<p>If, say, we knew that the 'title' 'nav' 'main' 'content' and 'footer' ids are found in the vast majority of sites where those id attributes were set by hand, then that might encourage more people to consider using those.</p>
+
+<p>I don't know how an automated system might go about narrowing down to the more useful sites... maybe the spider should check to see if the page was done with BBEdit or similar editor before looking further? Not really possible in the vast majority of cases. Or maybe it could check for validity (which might be a good correlate with having been written by someone more deliberately?)... but that might not be very easy, and might lead to a small dataset.</p>
+
+<p>All I'm getting at is that the sites that have automated id names (like 'Layer2' etc.) are just not that useful for what you're trying to find out - which is what people who are interested in semantics are using - and instead it tells us about the state of the web on average, semantic sites lumped in with the completely unsemantic.</p>
+
+<p>What do you reckon?<br />
+</p>
+<p class="posted">Posted by: rich | Nov 8, 2005 8:45:27 AM</p>
+<a id="c10966561"></a>
+<p>I would quite gladly adopt a standardized set of class and id naming rules.</p>
+
+<p>Can it be achieved? Yes and No.<br />
+
+Like so many things we deal with penetration will only ever be limited.  But like webstandards and microformats and so many other things we love, it can be done if we spread the word.</p>
+<p class="posted">Posted by: <a rel="nofollow" target="_blank" title="http://www.kerihenare.com/" href="http://www.kerihenare.com/">Keri Henare</a> | Nov 8, 2005 9:15:59 AM</p>
+<a id="c10967073"></a>
+<p>Would you consider opening the source of your spider?</p>
+
+<p>Slightly off topic, but I've been looking for a utility that would allow me to crawl a site and index all ids and classes. The output I seek is a list of all URLs where a given id or class occurs.</p>
+
+<p>I need this because I don't always know which pages will be effected by a CSS edit.</p>
+
+<p>I need an id/class search engine for a single (large) site. Your code is a step in that direction. Or can you suggest some other tool?</p>
+<p class="posted">Posted by: <a rel="nofollow" target="_blank" title="http://crastinate.jonwiley.com/" href="http://crastinate.jonwiley.com/">Jon</a> | Nov 8, 2005 9:33:12 AM</p>
+<a id="c10969652"></a>
+<p>A standard, and semantically rich, format for naming CSS is a good idea, although I imagine the debate when trying to agree names will be lively.  </p>
+
+<p>I can't help thinking that although CSS is the only place to do this at present, it's fundamentally the wrong place - semantics should come from XHTML (or whichever markup language), not CSS.   A page's header (if that's what you call it) should be it's -header-, not it's -div class="header"-.  Shouldn't CSS be about applying styles to a page, and utilising the semantics of the page to do it?  I'm not trying to devalue the exercise, just venting my frustration at HTML's lack of sophistication after all these years. </p>
+
+<p>However, until XHTML modularisation and/or XAML comes along it definitely makes sense to agree this naming convention and then carry it across to the tags, otherwise we'll each end up modularising different markup code for exactly the same function - something we should really try avoid otherwise we'll have standards, and lots of them!</p>
+<p class="posted">Posted by: Wholesome | Nov 8, 2005 11:18:30 AM</p>
+
+<a id="c10971331"></a>
+<p>Sorry to reply to all the comments in one - is this bad?</p>
+
+<p>Steve,</p>
+
+<p>>John, this is really interesting. Here's an idea from the "weird and wacky" shelf:<br />
+>I wonder if one could take your search engine results and create a del.icio.us-style app where one could browse all the class or id values the same as del.icio.us tags. When doing so, you would be presented with a representation of the tagged code. Might be an interesting way to see *what* developers are applying these tags to.<br />
+><br />
+>Probably useless, but as you mentioned that this is a "social" problem, why not experiment with social solutions?</p>
+
+<p>I've actually been playing around with the idea of "semantic search" for a while now. Indeed this project was an initial step in the direction. At present it would seem to be of no great value, as the noise to signal is so high. If however, there were standardizes semantics we could rely on, then it would be a more useful possibility.</p>
+
+<p>j</p>
+
+<p>>It may be worth noting that clsidD27CDB6E-AE6D-11cf-96B8-444553540000 generally refers to the SWF classid attribute. Most likely a parsing error with your spider.</p>
+
+<p>Craig,</p>
+
+<p>thanks for that, I'll adapt the spider to ignore these (I knew it was something, just couldn't workout what)</p>
+
+<p>>This has all along been a concept that I have tried to work with... One standardized way to mark up all my website... That way I can swap style sheets on different sites all I want. I actually started my base naming conventions from CSSZenGarden. It seemed they had more than enough blocks to create a universal layout framework.</p>
+
+<p>Rod,</p>
+
+<p>the problem is that Dave's original class and id values were much more structural/presentational than semantic. I also don't think they really reflect the most common patterns people are using (though I don't really know what they are, look out for a post soon on that).</p>
+
+<p>Someone we all know is looking at this issue to do something like the Zen Garden but for semantics, I've spoken with him at length about this for some time. Hopefully this research and subsequent conversations will be useful for that project.</p>
+
+<p>thanks,</p>
+
+<p>john</p>
+
+<p>>This sounds similar to microformats <a href="http://microformats.org/," rel="nofollow">http://microformats.org/,</a> tho defining an entire page structure is a bit more ambitious. As you say, there would need to be some benefit for it to take hold.</p>
+
+<p>Brian,</p>
+
+<p>Tantek and I have spoken at length about some of these issues, and I spoke in Japan and WWW2005 on Microformats at the developer day. I think that Microformats focus on a particular level of granularity, and also on existing published, or essentially formal semantics (like vCard and iCalendar). The interest I have is helping to formalize by convention existing conventional uses. A kind of bottom up semantics. Of course this simplifies µF considerably, and is far from accurate. I certainly think you are right that there is at the every least a lot of inspiration to be drawn from what Tantek and others with µF have achieved.</p>
+
+<p>>Just because quite a number of (english speaking) developers use the same class or id for something doesn't make it semantic.</p>
+
+<p>AkaXakA,</p>
+
+<p>I appreciate the point that semantics is not about English. This actually came up with Tantek at SxSW last year when he was talking about microformats and other ways of adding semantics to HTML. Douglas Bowman in particular raised the issue of internationalization. I believe that an approach like this is amenable to internationalization. But that would require a whole 'nother conversation (which I am happy to have).</p>
+
+<p>I do however think that laving aside the issue of language, "quite a number of developers using the same class or id for something" does indeed make it semantic - it seems to me almost the definition of language - using the same signs to signify the same things gives meaning, and hence semantics.</p>
+
+<p>>Also, why would you? What would it help if all headers were marked 'header' ? (It'd also push people into a certain design mindset, resulting in sites that all look the same.)</p>
+
+<p>There is a fair bit here to unpack. Why would you? People already use the same patterns over and over - both personally, in organizations, and indeed across the web. So this is merely a suggestion that perhaps there is value in formalizing current practice (what Adam Bosworth calls "paving the cowpaths").</p>
+
+<p>It is not proscriptive - you must have sites that use these elements, but rather descriptive of what people actually do.<br />
+And unlike HTML, which is closed in terms of the elements is contains, this i pen ended, it allows for new patterns to be formalized with the existing HTML language and semantics unchanged.</p>
+
+<p>Thanks for the thoughts,</p>
+
+<p>john</p>
+
+<p>Rich,</p>
+
+<p>>This is really great work</p>
+
+<p>many thanks</p>
+
+<p>>I've been thinking about subject this for ages too. It always seemed strange that XHTML and CSS are 'standards' but that they get applied in anything but a standard way when it comes to the links between them - the id and class names. I'd love to stop reinventing the wheel all the time with my reused names like 'nav' and 'footer' and 'container' etc. The benefits of standardising these things might be more than just cos you could swap stylesheets, and that things would be more efficient. It might be handy for search engines to only trawl the 'content' div, for example, rather than trawling though menus and adverts and other stuff.</p>
+
+<p>yes to all :-)</p>
+
+<p><br />
+
+>My small comment (for what it's worth) is that the very broad, automated approach to your sampling may be less interesting than doing this sampling in a more directed way.</p>
+
+<p>Ah, stage two :-) Yes, that is something I am currently working on. What I wanted to do with the automated approach was to see just how much signal there was out there. This would show me the cowpaths, which Tantek Celik and Adam Bosworth (Tantek quotes Adam in this regard) talk about paving - look to where people are walking, and make them the path, rather than arbitrarily laying down paths, and "keep off the grass" signs, and hoping they stick to your plan, rather than theirs.</p>
+
+<p>Now, I have found that there aren't too may paths in the sense of id and class values, but there are patterns people are using over andover. What I want to do next (with your help dear readers) is start cataloguing these patterns (I know others have done this, most notably Martijn van Welie [<a href="http://www.welie.com/patterns]," rel="nofollow">http://www.welie.com/patterns],</a> I'll talk more about why I think it warrants another go in a post shortly). Then, we can start looking for some consensus regarding these patterns.</p>
+
+<p>%gt;By allowing the spider to go everywhere, you are looking at the web as a whole and the amount of noise in the data is inevitably going to drown out the revealing bits. Of course, it's interesting to know about the web as a whole, but for the purposes of finding out what the people who are actually *thinking* about it are doing, which I think would be more useful, your spider is too wide-ranging.</p>
+
+<p><br />
+As mentioned above, I don't disagree at all (only my goal was perhaps a little different for this particular phase). One reason I tried to cluster the spidering around stopdesign was the hope that this would at least give us a reasonable chance of sites that knew about this stuff.</p>
+
+<p>>If, say, we knew that the 'title' 'nav' 'main' 'content' and 'footer' ids are found in the vast majority of sites where those id attributes were set by hand, then that might encourage more people to consider using those.<br />
+></p>
+
+<p>Precisely. But as we see from my results, that while people are doing this, there is no consensus (for example, probably well over a dozen ways of people specifying navigation in id and class values)</p>
+
+<p>>I don't know how an automated system might go about narrowing down to the more useful sites... maybe the spider should check to see if the page was done with BBEdit or similar editor before looking further? Not really possible in the vast majority of cases. Or maybe it could check for validity (which might be a good correlate with having been written by someone more deliberately?)... but that might not be very easy, and might lead to a small dataset.</p>
+
+<p>Good thoughts, I'll have a post soon about the next phases, we can return to this issue then!</p>
+
+<p><br />
+>All I'm getting at is that the sites that have automated id names (like 'Layer2' etc.) are just not that useful for what you're trying to find out - which is what people who are interested in semantics are using - and instead it tells us about the state of the web on average, semantic sites lumped in with the completely unsemantic.</p>
+
+<p>Sure, but it is interesting to know what the id and class values are (my guess is that "layer" values come from dreamweaver, for instance). But as mentioned, the next phase should start focussing on meaningful semantics more specifically. </p>
+
+<p>thanks for thoughts, hope to hear more in subsequent posts</p>
+
+<p><br />
+Keri,</p>
+
+<p>>I would quite gladly adopt a standardized set of class and id naming rules.<br />
+><br />
+>Can it be achieved? Yes and No.<br />
+
+>Like so many things we deal with penetration will only ever be limited. But like webstandards and microformats and so many other things we love, it can be done if we spread the word.</p>
+
+<p>Indeed. I think if there is value, people will do it. Is there value in it? The consensus of the people I speak to about it is yes, but it does remain to be seen whether in reality that is the case</p>
+
+<p>thanks</p>
+
+<p>john</p>
+
+<p>Jon,</p>
+
+<p>>Would you consider opening the source of your spider?</p>
+
+<p>I'd love to but it is a platform specific executable at present. I really should do it in Rails or something to get some practice in that :-)</p>
+
+<p>>Slightly off topic, but I've been looking for a utility that would allow me to crawl a site and index all ids and classes. The output I seek is a list of all URLs where a given id or class occurs.</p>
+
+<p>What I did is easily adaptable to that. I was thinking too of which elements get which values (for example, are people using dis for fotters, paragraphs? ...)</p>
+
+<p>><br />
+>I need this because I don't always know which pages will be effected by a CSS edit.</p>
+
+<p>makes sense</p>
+
+<p>><br />
+>I need an id/class search engine for a single (large) site. Your code is a step in that direction. Or can you suggest some other tool?</p>
+
+<p>Not off the top of my head, sadly. But it really isn't all that hard to do. Afterall, I managed it :-)</p>
+
+<p>j</p>
+
+<p><br />
+Wholesome,</p>
+
+<p>&>A standard, and semantically rich, format for naming CSS is a good idea, although I imagine the debate when trying to agree names will be lively.</p>
+
+<p>indeed!</p>
+
+<p>>I can't help thinking that although CSS is the only place to do this at present, it's fundamentally the wrong place - semantics should come from XHTML (or whichever markup language), not CSS. A page's header (if that's what you call it) should be it's -header-, not it's -div class="header"-. Shouldn't CSS be about applying styles to a page, and utilising the semantics of the page to do it? I'm not trying to devalue the exercise, just venting my frustration at HTML's lack of sophistication after all these years.</p>
+
+<p>It's not really in the SS, its actually in the values of the attributes of your HTML. CSS just potentially uses this for styling hooks.</p>
+
+<p>><br />
+>However, until XHTML modularisation and/or XAML comes along it definitely makes sense to agree this naming convention and then carry it across to the tags, otherwise we'll each end up modularising different markup code for exactly the same function - something we should really try avoid otherwise we'll have standards, and lots of them!</p>
+
+<p>I think in reality it will be a very very long time before we have XML on the web in any way shape or form, beyond the simplest mechanism of XHTML 1.x</p>
+
+<p>The question is, do you really need semantics embedded in the elements, when there is a perfectly serviceable mechanism that works right now?</p>
+
+<p>john</p>
+<p class="posted">Posted by: <a rel="nofollow" target="_blank" title="http://westciv.com" href="http://westciv.com">john Allsopp</a> | Nov 8, 2005 12:27:12 PM</p>
+<a id="c10971739"></a>
+<p>All I know is... I'm worried about anyone who names a class "blue", "white", "gray", "orange" etc. Think a lot of people must still be missing the point of CSS...</p>
+<p class="posted">Posted by: Alex | Nov 8, 2005 12:45:18 PM</p>
+<a id="c11000367"></a>
+
+<p>In my current redevelopment of my site I'm taking this kind of information quite seriously. I found What's In a Name (<a href="http://www.stuffandnonsense.co.uk/archives/whats_in_a_name_pt2.html)" rel="nofollow">http://www.stuffandnonsense.co.uk/archives/whats_in_a_name_pt2.html)</a> by Andy Clarke quite good and the names were similar to the ones I was already using. I think these set of names are pretty standard.</p>
+
+<p>Maybe someone should publish some best practices on these class names/ids</p>
+<p class="posted">Posted by: <a rel="nofollow" target="_blank" title="http://www.trovster.com" href="http://www.trovster.com">trovster</a> | Nov 8, 2005 9:04:03 PM</p>
+<a id="c11001457"></a>
+<p>If everyone uses the same tags, the same attributes and the same attribute values, guess what you'll end up with? Either:</p>
+
+<p>a) An entire internets worth of the CSS Zen Garden?</p>
+
+<p>b) A boring bland internet where design can on longer get around the mediums limitations?</p>
+
+<p>Which do you think is more likely? Are there not enough bland default-styled blogs out there already?</p>
+
+<p>While interesting simply for nerd quotient value ("who can come up with the nerdiest meme this week?", I see no benefit whatsoever to suggesting conformity in the use of id attributes which are intended to be *unique* markers. </p>
+
+<p>CSS is for visual style and presentation, not semantics. <br />
+</p>
+<p class="posted">Posted by: hostyle | Nov 8, 2005 10:37:30 PM</p>
+
+<a id="c11001596"></a>
+<p>The conversation you had with Douglas Bowman must have been the result of you both drinking New Zealand water.  I'm pretty sure it's where all the ingenuity comes from.</p>
+<p class="posted">Posted by: <a rel="nofollow" target="_blank" title="http://www.kerihenare.com/" href="http://www.kerihenare.com/">Keri Henare</a> | Nov 8, 2005 10:47:19 PM</p>
+<a id="c11013080"></a>
+<p>Actually, hostyle, there is a c) alluded to by damo and Rod.<br />
+c)An Internet where you can see all the pages in your own favourite style.</p>
+<p class="posted">Posted by: <a rel="nofollow" target="_blank" title="http://www.threeld.info/" href="http://www.threeld.info/">Mike WS</a> | Nov 9, 2005 5:16:43 AM</p>
+
+<a id="c11015731"></a>
+<p>Semantic name conventions could make things easier, also for reusing classes and id's in a team collaboration. Then you have to give meaning to your style-elements which every body understands immediatly. </p>
+
+<p>I think we should take a look at the DTP industry to begin. They have been naming their layout-elements in a traditional manner for a long time.</p>
+
+<p><a href="http://www.tameri.com/dtp/elements.html" rel="nofollow">http://www.tameri.com/dtp/elements.html</a></p>
+
+<p>for ecample:</p>
+
+<p>h1.hammer {...}<br />
+p.sig {...}<br />
+
+p.byline img {..}<br />
+a.kicker {..}</p>
+
+<p><br />
+</p>
+<p class="posted">Posted by: <a rel="nofollow" target="_blank" title="http://www.ict-id.nl" href="http://www.ict-id.nl">wisbin</a> | Nov 9, 2005 6:02:56 AM</p>
+<a id="c11017143"></a>
+<p>Has anyone started a naming convention yet?</p>
+
+<p>How about this?</p>
+
+<p>div#wrapper<br />
+div#container</p>
+
+<p>div#intro<br />
+  h1#title<br />
+  ul#nav_page<br />
+  ul#nav_site</p>
+
+<p>div#content<br />
+  div#content_main<br />
+  div#content_supp</p>
+
+<p>div#supp<br />
+  ul#nav_global<br />
+  p#info_credits_photo<br />
+
+  address#info_street_address<br />
+  address#info_phone_number<br />
+  address#info_email<br />
+  address#info_copyright</p>
+<p class="posted">Posted by: BrainO | Nov 9, 2005 7:04:41 AM</p>
+<a id="c11017218"></a>
+<p>Semantic name conventions could make things easier, also for reusing classes and id's in a team collaboration. Then you have to give meaning to your style-elements which every body understands immediatly. </p>
+
+<p>I think we should take a look at the DTP industry to begin. They have been naming their layout-elements in a traditional manner for a long time.</p>
+
+<p><a href="http://www.tameri.com/dtp/elements.html" rel="nofollow">http://www.tameri.com/dtp/elements.html</a></p>
+
+<p>for ecample:</p>
+
+<p>h1.hammer {...}<br />
+p.sig {...}<br />
+p.byline img {..}<br />
+a.kicker {..}</p>
+
+<p><br />
+</p>
+<p class="posted">Posted by: <a rel="nofollow" target="_blank" title="http://www.ict-id.nl" href="http://www.ict-id.nl">wisbin</a> | Nov 9, 2005 7:12:08 AM</p>
+<a id="c11035320"></a>
+<p>I agree with wisbin!</p>
+<p class="posted">Posted by: <a rel="nofollow" target="_blank" title="http://www.hyperwhat.com" href="http://www.hyperwhat.com">Adrian D.</a> | Nov 9, 2005 11:24:33 PM</p>
+<a id="c11038706"></a>
+
+<p>So many of the DTP elements are identified based on their place within a visual design. Elements like header, footer and sidebar don't make sense because they don't express their relationship to the whole.</p>
+<p class="posted">Posted by: BrainO | Nov 10, 2005 1:48:38 AM</p>
+<a id="c11052919"></a>
+<p>Well, I am not sure what the div#content stands for, but in my opinion, you should be able to name the classes and id's in their context, the DOM tree. The place of the layout-elements is what makes them semantic imo.  </p>
+
+<p><br />
+For example, if you layout your template, you could give meaning to the tree by using meaningfull relations, in your code.</p>
+
+<p><br />
+»like a logo and text within a Header to the top of your template:</p>
+
+<p>div#header<br />
+
+  p.nameplate<br />
+  img.logo<br />
+-----------  </p>
+
+<p>» Or a Heading with some classifications (crumbs) and a subheader with a byline and a small summary to start an article:</p>
+
+<p>div#article<br />
+  a.kicker<br />
+
+  h1.hammer<br />
+  h2.subhead<br />
+  p.byline <br />
+  p.deck<br />
+-----------</p>
+
+<p>I think you should not use #sidebar for a column, but instead .sidebar for containers you want to place besides the maintext:</p>
+
+<p>div#bodycopy<br />
+  div.sidebar<br />
+  p.pullquote<br />
+  a.teaser</p>
+
+<p><br />
+...</p>
+
+<p><br />
+</p>
+<p class="posted">Posted by: <a rel="nofollow" target="_blank" title="http://www.ict-id.nl" href="http://www.ict-id.nl">wisbin</a> | Nov 10, 2005 9:11:30 AM</p>
+<a id="c11100338"></a>
+<p>Very interesting, thank you for this analysis.</p>
+
+<p>By the way, scanning the comments: Well, there is certain CSS semantics in respect of class and ID naming (compare "error" and "redtext"). Regarding naming conventions, no, there is no real agreed-on set of names for common page elements (qed). And finally, use class and ID names which describe the function of the element, not its visualization (colors, position, etc.), or use at least "generic" names (for example, "alt" or "aux", some of my favorites).</p>
+<p class="posted">Posted by: <a rel="nofollow" target="_blank" title="http://meiert.com/" href="http://meiert.com/">Jens Meiert</a> | Nov 11, 2005 9:44:11 PM</p>
+
+
+
+<h2>Post a comment</h2>
+
+<form onsubmit="handleSubmit(this)" method="post" action="http://www.typepad.com/t/comments" name="comments_form">
+<input type="hidden" name="static" value="1" />
+<input type="hidden" name="entry_id" value="7255439" />
+
+<div id="comment-data">
+<p><label for="author">Name:</label><br />
+<input onchange="handleChange(this)" tabindex="1" id="author" name="author" /></p>
+
+<p><label for="email">Email Address:</label><br />
+
+<input onchange="handleChange(this)" tabindex="2" id="email" name="email" /></p>
+
+<p><label for="url">URL:</label><br />
+<input onchange="handleChange(this)" tabindex="3" id="url" name="url" /></p>
+</div>
+
+<p><label><input tabindex="5" onclick="handleCheck(this)" type="checkbox" id="bakecookie" name="bakecookie" value="1" /> Remember personal info?</label></p>
+<br style="clear: both;" />
+
+<p><label for="comment-text">Comments:</label><br />
+<textarea tabindex="4" id="comment-text" name="text" rows="10" cols="50"></textarea></p>
+
+<div align="center">
+<input tabindex="6" type="submit" name="preview" value="&nbsp;Preview&nbsp;" />
+<input tabindex="7" style="font-weight: bold;" type="submit" name="post" value="&nbsp;Post&nbsp;" />
+</div>
+
+</form>
+
+
+
+
+</div>
+</div>
+
+<div id="right">
+<div class="sidebar">
+
+<div id="right">
+
+<h2>About</h2>
+
+<ul>
+<li><a href="http://johnfallsopp.com">Read more about John Allsopp (that's me)</li>
+
+<li><a href="http://north08.webdirections.org" style="border:none"><img src="http://westciv.com/images/bannerads/wdn08_blue.gif" alt="Web Directions North Conference" /></a></li>
+<li>Web Direction North Conference, Jan 2008, Vancouver</li>
+
+<li><a href="http://microformatique.com/book/" style="border:none"><img src="http://microformatique.com/book/images/bookcoverdrop.png" alt="Microformats book cover" /></a></li>
+<li>My book on Microformats</li>
+</ul>
+
+<div id="smlogo">
+<a href="http://westciv.com/style_master/">STYLE MASTER</a>
+</div>
+
+<p align="center"><a href="http://claimid.com/johnallsopp" rel="me"><img src="http://claimid.com/images/claimid_badge.gif" border="0" alt="John Allsopp" title="John Allsopp"/></a></p>
+
+<p align=center><a href="http://www.technorati.com/claim/27wgrb25ty" rel="me">Technorati Profile</a></p>
+
+<h2>Brought to you by</h2>
+<ul>
+<li><a href="http://www.westciv.com/style_master/">Style Master: <strong>the</strong> CSS editor for Windows and Mac OS X</a></li>
+
+<li><a href="http://www.westciv.com/courses/index.html">westciv's renowned standards based design courses</a></li>
+</ul>
+<h2>Subscribe</h2>
+<ul>
+<li><a href="http://feeds.feedburner.com/DogOrHigher" title="Subscribe to my feed"><img src="http://www.feedburner.com/fb/images/pub/fbapix.gif" alt="Feedburner icon" style="border:0"/><br />Subscribe to Dog or Higher</a></a></li>
+
+<li><a onclick="window.open(this.href, 'blogroll', 'width=500,height=600,scrollbars=yes'); return false;" href="http://www.typepad.com/t/app/lists?__mode=quickpost&amp;is_qp=1&amp;type=1&amp;qp_href=http%3A%2F%2Fwestciv.typepad.com%2Fdog_or_higher%2F">Add me to your TypePad People list</a></li>
+<li><script type="text/javascript">
+<!--
+document.write('<a href="ma' + 'ilto:&#115;&#97;&#114;&#97;&#64;&#119;&#101;&#115;&#116;&#99;&#105;&#118;&#46;&#99;&#111;&#109;">Email Me</a>');
+// -->
+</script>
+</li>
+<li></li>
+</ul>
+
+<h2><a href="http://westciv.com/podcasts/Takethenoise.xml">My music [XML]</a></h2>
+<ul>
+<li><a href="http://westciv.com/podcasts/youmayknowmypoetry.mp3">you may know my poetry</a></li>
+<li><a href="http://we05.com/podcast/mp3/we05-17-we05-upbeat-remix.mp3">WE05 upbeat remix</a></li>
+<li><a href="http://we05.com/podcast/mp3/we05-16-we05-remixed-deep.mp3"> WE05 deep remix </a></li>
+
+</ul>
+<h2>Recent Posts</h2>
+
+<ul>
+<li><a href="http://westciv.typepad.com/dog_or_higher/2008/10/ok-ok-wayyyyy-t.html">OK OK, wayyyyy too long</a></li>
+
+<li><a href="http://westciv.typepad.com/dog_or_higher/2008/09/yes-its-been-a.html">Yes, it's been a long time</a></li>
+<li><a href="http://westciv.typepad.com/dog_or_higher/2008/07/annals-of-trans.html">Annals of transport safety cluelessness</a></li>
+<li><a href="http://westciv.typepad.com/dog_or_higher/2008/06/in-fairness-to.html">In fairness to the SCOTUS</a></li>
+<li><a href="http://westciv.typepad.com/dog_or_higher/2008/05/speaking-dates.html">Speaking dates in Japan in June</a></li>
+<li><a href="http://westciv.typepad.com/dog_or_higher/2008/05/can-we-please.html">Can we please</a></li>
+<li><a href="http://westciv.typepad.com/dog_or_higher/2008/05/holiday-destina.html">Holiday destination Question</a></li>
+<li><a href="http://westciv.typepad.com/dog_or_higher/2008/05/on-marriage.html">On marriage</a></li>
+<li><a href="http://westciv.typepad.com/dog_or_higher/2008/04/deranged.html">Deranged</a></li>
+<li><a href="http://westciv.typepad.com/dog_or_higher/2008/04/apophenia.html">apophenia*?</a></li>
+
+</ul>
+
+<h2>Recent Comments</h2>
+
+<ul>
+<li><a href="http://westciv.typepad.com/dog_or_higher/2008/10/ok-ok-wayyyyy-t.html#c143920998">blafband</a> on <a href="http://westciv.typepad.com/dog_or_higher/2008/10/ok-ok-wayyyyy-t.html">OK OK, wayyyyy too long</a></li>
+<li><a href="http://westciv.typepad.com/dog_or_higher/2007/08/web-directions-.html#c6a00d8341cbf7d53ef010536a6f447970c">digital dissertation</a> on <a href="http://westciv.typepad.com/dog_or_higher/2007/08/web-directions-.html">Web Directions student discounts</a></li>
+
+<li><a href="http://westciv.typepad.com/dog_or_higher/2005/12/why_socialnetwo.html#c143213432">Glampaimajene</a> on <a href="http://westciv.typepad.com/dog_or_higher/2005/12/why_socialnetwo.html">Why social/networking sites will never really work</a></li>
+<li><a href="http://westciv.typepad.com/dog_or_higher/2005/11/webpatterns_and.html#c143212076">Increase Penis Size</a> on <a href="http://westciv.typepad.com/dog_or_higher/2005/11/webpatterns_and.html">WebPatterns and WebSemantics</a></li>
+<li><a href="http://westciv.typepad.com/dog_or_higher/2008/04/apophenia.html#c6a00d8341cbf7d53ef010536814265970c">pricewis</a> on <a href="http://westciv.typepad.com/dog_or_higher/2008/04/apophenia.html">apophenia*?</a></li>
+<li><a href="http://westciv.typepad.com/dog_or_higher/2004/03/windows_bug_run.html#c142333634">mass</a> on <a href="http://westciv.typepad.com/dog_or_higher/2004/03/windows_bug_run.html">Windows bug: Run-time error '339'
+Component 'GraphicsMil20Dialogs.dll'
+
+</a></li>
+<li><a href="http://westciv.typepad.com/dog_or_higher/2004/03/windows_bug_run.html#c142333438">mass</a> on <a href="http://westciv.typepad.com/dog_or_higher/2004/03/windows_bug_run.html">Windows bug: Run-time error '339'
+Component 'GraphicsMil20Dialogs.dll'
+</a></li>
+<li><a href="http://westciv.typepad.com/dog_or_higher/2004/03/windows_bug_run.html#c142333414">mass</a> on <a href="http://westciv.typepad.com/dog_or_higher/2004/03/windows_bug_run.html">Windows bug: Run-time error '339'
+Component 'GraphicsMil20Dialogs.dll'
+</a></li>
+<li><a href="http://westciv.typepad.com/dog_or_higher/2004/03/windows_bug_run.html#c142333394">mass</a> on <a href="http://westciv.typepad.com/dog_or_higher/2004/03/windows_bug_run.html">Windows bug: Run-time error '339'
+Component 'GraphicsMil20Dialogs.dll'
+</a></li>
+<li><a href="http://westciv.typepad.com/dog_or_higher/2004/03/windows_bug_run.html#c142333290">mass</a> on <a href="http://westciv.typepad.com/dog_or_higher/2004/03/windows_bug_run.html">Windows bug: Run-time error '339'
+Component 'GraphicsMil20Dialogs.dll'
+
+</a></li>
+
+</ul>
+<h2><a href="/dog_or_higher/archives.html">Archives</a></h2>
+
+<ul>
+<li><a href="http://westciv.typepad.com/dog_or_higher/2008/10/index.html">October 2008</a></li>
+<li><a href="http://westciv.typepad.com/dog_or_higher/2008/09/index.html">September 2008</a></li>
+<li><a href="http://westciv.typepad.com/dog_or_higher/2008/07/index.html">July 2008</a></li>
+<li><a href="http://westciv.typepad.com/dog_or_higher/2008/06/index.html">June 2008</a></li>
+<li><a href="http://westciv.typepad.com/dog_or_higher/2008/05/index.html">May 2008</a></li>
+
+<li><a href="http://westciv.typepad.com/dog_or_higher/2008/04/index.html">April 2008</a></li>
+<li><a href="http://westciv.typepad.com/dog_or_higher/2008/03/index.html">March 2008</a></li>
+<li><a href="http://westciv.typepad.com/dog_or_higher/2008/02/index.html">February 2008</a></li>
+<li><a href="http://westciv.typepad.com/dog_or_higher/2008/01/index.html">January 2008</a></li>
+<li><a href="http://westciv.typepad.com/dog_or_higher/2007/12/index.html">December 2007</a></li>
+
+</ul>
+
+<div class="module-typelist module">
+	<h2 class="module-header">need to read</h2>
+
+	<div class="module-content">
+		<ul class="module-list">
+							<li class="module-list-item"><a href="http://www.csszengarden.com">css Zen Garden: The Beauty in CSS Design</a><br />abandon all tables ye who enter here. <strong>Outstanding</strong></li>
+							<li class="module-list-item"><a href="http://westciv.typepad.com/standards/">redemption through standards</a><br />my partner at westciv's eclectic, readable, informative round up of the freshest web standards reading and more</li>
+							<li class="module-list-item"><a href="http://www.meyerweb.com/">meyerweb.com</a><br />The guy to read about CSS</li>
+
+							<li class="module-list-item"><a href="http://www.zeldman.com">Jeffrey Zeldman Presents: The Daily Report</a><br />things you have to know about web design and development</li>
+			
+		</ul>
+	</div>
+</div>
+
+<div class="module-typelist module">
+	<h2 class="module-header">words words words</h2>
+	<div class="module-content">
+		<ul class="module-list">
+
+							<li class="module-list-item"><a title="" href="https://sitepoint.com/bookstore/go/3/4250ba">HTML Utopia: Designing Without Tables Using CSS</a></li>
+							<li class="module-list-item"><a title="" href="http://www.amazon.com/exec/obidos/ASIN/020172149X/ref%3Dnosim/thehouseofstyle">The Design of Sites: Patterns, Principles, and Processes for Crafting a Customer-Centered Web Experience</a></li>
+							<li class="module-list-item"><a title="" href="http://www.amazon.com/exec/obidos/ASIN/073571245X/ref%3Dnosim/thehouseofstyle">Eric Meyer on CSS: Mastering the Language of Web Design</a></li>
+							<li class="module-list-item"><a title="" href="http://www.amazon.com/exec/obidos/ASIN/0735712018/ref%3Dnosim/thehouseofstyle">Jeffrey Zeldman : Designing With Web Standards</a></li>
+			
+		</ul>
+	</div>
+</div>
+
+<div class="link-note">
+<p><a href="http://www.technorati.com/profile/westciv/1050434/1d79eb236bd26c08dc8b7fe10c9b03b0">Technorati Profile</a></p></div>
+
+<div><script lang="javascript" src="http://www.feedmap.net/blogmap/blogapi.ashx?method=blogmapbadge&feed=http://westciv.typepad.com/dog_or_higher/index.rdf"></script></div>
+
+</div>
+</div>
+
+<div style="clear: both;">&#160;</div>
+
+</div>
+
+<script type="text/javascript">
+<!--
+var extra_happy = Math.floor(1000000000 * Math.random());
+document.write('<img src="http://www.typepad.com/t/stats?blog_id=9227&amp;user_id=6131&amp;page=' + escape(location.href) + '&amp;referrer=' + escape(document.referrer) + '&amp;i=' + extra_happy + '" width="1" height="1" alt="" style="position: absolute; top: 0; left: 0;" />');
+// -->
+</script>
+
+<script type="text/javascript"><!--
+if(!mmposts){var mmposts=[];}mmposts[mmposts.length]="7255439";
+//--></script>
+<!-- mmp mmid:7255439 mmdate:20051105113953 mmurl:http://westciv.typepad.com/dog_or_higher/2005/11/real_world_sema.html mmtitle:Semantics in the wild -->
+<script type="text/javascript"><!--
+if(!mmcomments){var mmcomments=[];}mmcomments[mmcomments.length]="10939480";
+//--></script>
+<!-- mmc mmid:10939480 mmdate:20051107094933 mmauthor:damo -->
+<script type="text/javascript"><!--
+if(!mmcomments){var mmcomments=[];}mmcomments[mmcomments.length]="10939584";
+//--></script>
+<!-- mmc mmid:10939584 mmdate:20051107095554 mmauthor:John Allsopp -->
+<script type="text/javascript"><!--
+if(!mmcomments){var mmcomments=[];}mmcomments[mmcomments.length]="10942309";
+//--></script>
+<!-- mmc mmid:10942309 mmdate:20051107121931 mmauthor:damo -->
+<script type="text/javascript"><!--
+if(!mmcomments){var mmcomments=[];}mmcomments[mmcomments.length]="10961225";
+//--></script>
+<!-- mmc mmid:10961225 mmdate:20051108062955 mmauthor:Steve Ivy -->
+<script type="text/javascript"><!--
+if(!mmcomments){var mmcomments=[];}mmcomments[mmcomments.length]="10962934";
+//--></script>
+
+<!-- mmc mmid:10962934 mmdate:20051108072305 mmauthor:Craig Bovis -->
+<script type="text/javascript"><!--
+if(!mmcomments){var mmcomments=[];}mmcomments[mmcomments.length]="10963104";
+//--></script>
+<!-- mmc mmid:10963104 mmdate:20051108072723 mmauthor:Rod Kesselring -->
+<script type="text/javascript"><!--
+if(!mmcomments){var mmcomments=[];}mmcomments[mmcomments.length]="10964967";
+//--></script>
+<!-- mmc mmid:10964967 mmdate:20051108082517 mmauthor:Brian -->
+<script type="text/javascript"><!--
+if(!mmcomments){var mmcomments=[];}mmcomments[mmcomments.length]="10965306";
+//--></script>
+<!-- mmc mmid:10965306 mmdate:20051108083603 mmauthor:AkaXakA -->
+<script type="text/javascript"><!--
+if(!mmcomments){var mmcomments=[];}mmcomments[mmcomments.length]="10965628";
+//--></script>
+<!-- mmc mmid:10965628 mmdate:20051108084527 mmauthor:rich -->
+<script type="text/javascript"><!--
+if(!mmcomments){var mmcomments=[];}mmcomments[mmcomments.length]="10966561";
+//--></script>
+<!-- mmc mmid:10966561 mmdate:20051108091559 mmauthor:Keri Henare -->
+<script type="text/javascript"><!--
+if(!mmcomments){var mmcomments=[];}mmcomments[mmcomments.length]="10967073";
+//--></script>
+
+<!-- mmc mmid:10967073 mmdate:20051108093312 mmauthor:Jon -->
+<script type="text/javascript"><!--
+if(!mmcomments){var mmcomments=[];}mmcomments[mmcomments.length]="10969652";
+//--></script>
+<!-- mmc mmid:10969652 mmdate:20051108111830 mmauthor:Wholesome -->
+<script type="text/javascript"><!--
+if(!mmcomments){var mmcomments=[];}mmcomments[mmcomments.length]="10971331";
+//--></script>
+<!-- mmc mmid:10971331 mmdate:20051108122712 mmauthor:john Allsopp -->
+<script type="text/javascript"><!--
+if(!mmcomments){var mmcomments=[];}mmcomments[mmcomments.length]="10971739";
+//--></script>
+<!-- mmc mmid:10971739 mmdate:20051108124518 mmauthor:Alex -->
+<script type="text/javascript"><!--
+if(!mmcomments){var mmcomments=[];}mmcomments[mmcomments.length]="11000367";
+//--></script>
+<!-- mmc mmid:11000367 mmdate:20051108210403 mmauthor:trovster -->
+<script type="text/javascript"><!--
+if(!mmcomments){var mmcomments=[];}mmcomments[mmcomments.length]="11001457";
+//--></script>
+<!-- mmc mmid:11001457 mmdate:20051108223730 mmauthor:hostyle -->
+<script type="text/javascript"><!--
+if(!mmcomments){var mmcomments=[];}mmcomments[mmcomments.length]="11001596";
+//--></script>
+
+<!-- mmc mmid:11001596 mmdate:20051108224719 mmauthor:Keri Henare -->
+<script type="text/javascript"><!--
+if(!mmcomments){var mmcomments=[];}mmcomments[mmcomments.length]="11013080";
+//--></script>
+<!-- mmc mmid:11013080 mmdate:20051109051643 mmauthor:Mike WS -->
+<script type="text/javascript"><!--
+if(!mmcomments){var mmcomments=[];}mmcomments[mmcomments.length]="11015731";
+//--></script>
+<!-- mmc mmid:11015731 mmdate:20051109060256 mmauthor:wisbin -->
+<script type="text/javascript"><!--
+if(!mmcomments){var mmcomments=[];}mmcomments[mmcomments.length]="11017143";
+//--></script>
+<!-- mmc mmid:11017143 mmdate:20051109070441 mmauthor:BrainO -->
+<script type="text/javascript"><!--
+if(!mmcomments){var mmcomments=[];}mmcomments[mmcomments.length]="11017218";
+//--></script>
+<!-- mmc mmid:11017218 mmdate:20051109071208 mmauthor:wisbin -->
+<script type="text/javascript"><!--
+if(!mmcomments){var mmcomments=[];}mmcomments[mmcomments.length]="11035320";
+//--></script>
+<!-- mmc mmid:11035320 mmdate:20051109232433 mmauthor:Adrian D. -->
+<script type="text/javascript"><!--
+if(!mmcomments){var mmcomments=[];}mmcomments[mmcomments.length]="11038706";
+//--></script>
+
+<!-- mmc mmid:11038706 mmdate:20051110014838 mmauthor:BrainO -->
+<script type="text/javascript"><!--
+if(!mmcomments){var mmcomments=[];}mmcomments[mmcomments.length]="11052919";
+//--></script>
+<!-- mmc mmid:11052919 mmdate:20051110091130 mmauthor:wisbin -->
+<script type="text/javascript"><!--
+if(!mmcomments){var mmcomments=[];}mmcomments[mmcomments.length]="11100338";
+//--></script>
+<!-- mmc mmid:11100338 mmdate:20051111214411 mmauthor:Jens Meiert -->
+
+<script type="text/javascript" src="http://tracker.measuremap.com/a/780"></script>
+<!-- Start Quantcast tag -->
+<script type="text/javascript" src="http://edge.quantserve.com/quant.js"></script>
+<script type="text/javascript">_qoptions = { tags:"typepad.core" }; _qacct="p-fcYWUmj5YbYKM"; quantserve();</script>
+<noscript>
+<a href="http://www.quantcast.com/p-fcYWUmj5YbYKM" target="_blank"><img src="http://pixel.quantserve.com/pixel/p-fcYWUmj5YbYKM.gif?tags=typepad.core" style="display: none" border="0" height="1" width="1" alt="Quantcast"/></a>
+</noscript>
+
+<!-- End Quantcast tag -->
+</body>
+</html>
+<script type="text/javascript">
+var captchaImgAttempts = 0;
+var allowAnonComments = '0';
+var registrationRequired = 0;
+var registrationOptional = 1;
+var emailRequired = 1;
+var jsonURL = "/.services/json-rpc";
+
+var captchaSrc = "/.services/captcha?code_encrypted=";
+var alertCommentCannotBeBlank = "You can not leave an empty comment. Please enter some text in the Comment field.";
+
+var alertAuthorCannotBeBlank = "Name must not be blank.";
+var alertEmailCannotBeBlank = "Email Address must not be blank.";
+var alertAuthorAndEmailCannotBeBlank = "Name and email address are both required!";
+var alertEmailIsInvalid = "The Email Address you entered is invalid. Please enter a valid email address.";
+var alertUnauthorizedAction = "The comments on this post are closed.";
+var msgPostReplyTo = "Reply to ";  
+var msgInReplyTo = "In reply to ";
+var msgPostAComment = "Post a comment ";
+var atpCommentsPath = "/.shared/js/atpcomments_yui.js?v=2";
+var hasChanged = 0;
+var hostName = "westciv.typepad.com";
+var tp_comment_token = "1231267240-65f7af0313d607f8231eb55163332c2afd0bad2e:Zr4NALv2nmsctC6A";
+
+var isPage = 0;
+var blog_xid = "6a00d8341cbf7d53ef00e5502107298833";
+var xid = "";
+var injectCode = '<div id=\"comment-preview\" class=\"hiddenBox\">\n\t<h3 id=\"header-verify-comment\" class=\"comments-header hiddenBox\">Verify your Comment<\/h3>\n    <h3 id=\"header-preview-comment\" class=\"comments-header hiddenBox\">Previewing your Comment<\/h3>\n\t<div class=\"comments-content\">\n\t\t<div class=\"comment\">\n\t\t\t<div id=\"comment-preview-content\" class=\"comment-content\">\n\t\t\t<\/div>\n\t\t\t<p class=\"comment-footer\">\n\t\t\t\tPosted by: \n\t\t\t\t<span id=\"comment-preview-author\"><\/span>&nbsp;|&nbsp;<span id=\"comment-preview-datetime\"><\/span>\n\t\t\t<\/p>\n\t\t<\/div>\n\t<\/div>\n<\/div>\n<div id=\"comment-preview-confirmation\" class=\"hiddenBox yellowBox\">\n    <p>This is only a preview. Your comment has not yet been posted.<\/p>\n   \t<form id=\"comment-preview-form\"\n   \t\tmethod=\"post\"\n   \t\tonsubmit=\"atpComments.interceptPost(commentFormNum); return false;\">\n\t\t<input type=\"submit\" name=\"post\" id=\"comment-confirm-post\" value=\"&nbsp;Post&nbsp;\" onclick=\"atpComments.interceptPost(commentFormNum); return false;\"/>\t\t    \n\t\t<input type=\"submit\" name=\"edit\" id=\"comment-edit\" value=\"&nbsp;&nbsp;Edit&nbsp;&nbsp;\" onclick=\"atpComments.previewOnly(commentFormNum, 2); return false;\"/>\n        <span id=\"previewFormSpinner\" class=\"hiddenBox\"><img src=\"/.shared/images/spinner.gif\" alt=\"Working...\" /><\/span>\n\t<\/form>\n<\/div>\n<div id=\"comment-error\" class=\"hiddenBox redBox\">\t    \n   Your comment could not be posted. Error type: <span id=\"comment-error-msg\"><\/span> \n<\/div>\t\n<div id=\"comment-complete\" class=\"hiddenBox yellowGreenBox\">\n    Your comment has been posted. <a href=\"javascript:void 0;\" onclick=\"window.location.hash=\'#comment-form\';window.location.reload(false)\">Post another comment<\/a>\n<\/div>\t\n<div id=\"comment-captcha\" class=\"hiddenBox yellowBox\">\t\n    <div id=\"captchaText\">\n\t    <p id=\"captchaFailMsg\" class=\"captchaErrorText hiddenBox\">The letters and numbers you entered did not match the image. Please try again.<\/p>\t    \t        \n\t    <p>As a final step before posting your comment, enter the letters and numbers you see in the image below. This prevents automated programs from posting comments.<\/p>\n\t    <p><span id=\"comment-captcha-viewalt\">Having trouble reading this image? <a href=\"#comment-captcha\" onClick=\"atpComments.generateCaptcha(commentFormNum);\">View an alternate.<\/a><\/span><\/p>\n    <\/div>\n    <p class=\"\"><img id=\"captchaImg\" /><\/p>\t\t\n    <form id=\"comment-captcha-form\" \n\t\t  method=\"post\"\n\t\t  onsubmit=\"atpComments.submitWithCaptcha(commentFormNum); return false;\">\n\t\t<input type=\"hidden\" name=\"captcha_chal\" id=\"comment-captcha-chal\" value=\"\" />\n        <p>\n\t        <input id=\"comment-captcha-text\" name=\"captcha_text\" size=\"10\" />\n        <\/p>\n        <p>\n            <input type=\"submit\" name=\"continue\" id=\"captcha-continue\" value=\"&nbsp;Continue&nbsp;\" />\n            <span id=\"captchaFormSpinner\" class=\"commentSpinner hiddenBox\"><img src=\"/.shared/images/spinner.gif\" alt=\"Working...\" /><\/span>\n        <\/p>\n    <\/form>\n<\/div>\n'; 
+var commentFormNum;
+var entryPermalink = "http://westciv.typepad.com/dog_or_higher/2005/11/real_world_sema.html";
+var inlineReply = document.createElement("div");
+var commentFooterLinks;
+var commentHeader;
+var commentReplyXID;
+var commentReplyAuthor;
+var commentReplyComplete;
+var inlineReplyLoaded = 0;
+</script>
+<script type="text/javascript" src="/.shared/js/yui/yuiloader-beta-min.js"></script>
+<script type="text/javascript" src="/.shared/js/atpcomments.js?v=2"></script>
+<!-- ph=1 -->
+<!-- nhm:from_kauri -->
