@@ -115,7 +115,7 @@ module ApplicationHelper
   
   def render_dynamic_layout
     design = @stream.design || Design.new
-    layout = design.layout
+    layout = design.layout.dup
     requested_sections = []
     layout.scan(/\$(\w+)/).each do |match|
       requested_sections << match[0] if match && match[0]

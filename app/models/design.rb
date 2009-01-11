@@ -22,7 +22,7 @@ class Design < ActiveRecord::Base
   
   def layout
     html = super
-    html.blank? ? Design::DEFAULT_LAYOUT : html
+    html.blank? ? Design::DEFAULT_LAYOUT.dup : html
   end
 
 end
