@@ -1,0 +1,1 @@
+<%= render(:partial => 'posts/articles', :locals => {:articles => @stream.articles.find(:all, :limit => 4)}) unless params[:tag_name] %>

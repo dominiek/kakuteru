@@ -113,4 +113,18 @@ module ApplicationHelper
     content_tag(:div, html, :class => 'submit_tag_with_notice')
   end
   
+  def render_dynamic_layout
+    design = @stream.design || Design.new
+    layout = design.layout
+    requested_sections = []
+    layout.scan(/\$(\w+)/).each do |match|
+      requested_sections << match[0] if match && match[0]
+    end
+    sections = (requested_sections & Design::VALID_SECTIONS)
+    sections.each do |section|
+      layout.gsub!("$#{section}", render(:partial => "design/#{section}"))
+    end
+    layout
+  end
+  
 end

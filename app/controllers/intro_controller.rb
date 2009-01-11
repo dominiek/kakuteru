@@ -16,6 +16,7 @@ class IntroController < ApplicationController
   end
   
   def design
+    @title = 'Win 5% ownership of Kakuteru.com by making a Kick-ass Design'
     render(:layout => false)
   end
   

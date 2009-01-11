@@ -18,5 +18,11 @@
     <%= text_area(:stream, :css, :class => 'body') %>
     <%= submit_tag_with_notice('save') %>
   <% end %>
-
+  
+  <% form_tag do %>
+    <h2>Custom HTML</h2>
+    <p class="description">This is an advanced feature to change the order of content blocks. Currently supported: (<%= Design::VALID_SECTIONS.collect { |s| "$#{s}" } .join(', ') %>).</p>
+    <%= text_area(:design, :layout, :class => 'body', :value => @design.layout) %>
+    <%= submit_tag('save') %>
+  <% end %>
 </div>

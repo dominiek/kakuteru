@@ -5,7 +5,7 @@
   <% form_tag do %>
     <%= error_message_on(@stream, :password) %>
     <%= password_field_tag(:password) %>
-    <%= submit_tag('Remember me!') %>
+    <%= submit_tag('Log in!') %>
     <%= link_to('I lost my password', {:action => :forgot_password}, :class => 'forgot_password') %>
   <% end %>
 </div>

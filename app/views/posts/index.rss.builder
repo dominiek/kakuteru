@@ -4,7 +4,7 @@ xml.rss('version' => '2.0',
         'xmlns:content' => 'http://purl.org/rss/1.0/modules/content/',
         'xmlns:dc' => 'http://purl.org/dc/elements/1.1/') do |xml|
   xml.channel do |xml|
-    xml.title("#{@stream.title} - #{@stream.subtitle}")
+    xml.title(@title)
     xml.description("#{@stream.subtitle}")
     xml.link("http://#{request.host_with_port}/")
     xml.tag!('atom:link', :href => "http://#{request.host_with_port}#{request.request_uri}", :rel => 'self', :type => 'application/rss+xml')

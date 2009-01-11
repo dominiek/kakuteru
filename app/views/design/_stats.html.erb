@@ -1,0 +1,5 @@
+<div class="stats">
+  <h3>Activity Stats</h3>
+  <%= link_to(image_tag(@stream.activity_summary_sparkline_url), statistics_url) %>
+  <%= link_to('more', statistics_url, :class => 'more') %>
+</div>

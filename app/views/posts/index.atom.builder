@@ -1,6 +1,6 @@
 xml.instruct!(:xml, :version => "1.0")
 xml.feed(:xmlns => "http://www.w3.org/2005/Atom") do |feed|
-  feed.title("#{@stream.title} - #{@stream.subtitle}")
+  feed.title(@title)
   feed.id("tag:#{request.host},#{Time.now.year}:#{APPLICATION_NAME}")
   feed.link(:href => "http://#{request.host_with_port}/", :rel => "alternate", :type => "text/html")
   feed.link(:href => "http://#{request.host_with_port}#{request.request_uri}", :rel => "self", :type => "application/atom+xml")

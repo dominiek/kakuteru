@@ -1,0 +1,27 @@
+<div class="hfeed stream">
+  <% if params[:tag_name] %>
+    <h2>Updates tagged with <%= h(params[:tag_name]) %></h2>
+  <% else %>
+    <h2>Recent Activity</h2>
+  <% end %>
+  <ul class="posts">
+    <% @posts.each do |post| 
+         next unless post.type
+      %>
+      <li class="hentry <%= post.type %>" rel="<%= post.type.pluralize %>">
+        <%= content_tag(:div, link_to(thumbnail(post), read_url(:id => post)), :class => 'icon') %>
+          <div class="entry-content body">
+            <%= render(:partial => "posts/#{post.type}", :locals => {:post => post}) %>
+          </div>
+          <div class="details">
+            <abbr class="published" title="<%= post.published_at.iso8601 %>"><%= distance_of_time_in_words_to_now(post.published_at) %> ago</abbr>
+            <% service_icon = post.service.icon_url.blank? ? '' : image_tag(post.service.icon_url, :width => '12px')+' ' %>
+            from <%= link_to("#{service_icon}#{post.service.name}", post.service.profile_url, :rel => 'me') %>
+            ·
+            <%= link_to(pluralize(0, 'comment'), read_url(:id => post) + '#disqus_thread', :rel => 'bookmark url') %>
+            <address class="hide vcard author"><a class="url fn" href="<%= @stream.blog_url %>"><%= @stream.author %></a></address>
+          </div>
+      </li>
+    <% end %>
+  </ul>
+</div>

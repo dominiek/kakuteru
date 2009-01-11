@@ -60,12 +60,12 @@ class PostsController < ApplicationController
   def index
     if params[:tag_name].blank?
       #
-      @posts = Post.paginate(:all, :per_page => 12, :page => params[:page], :conditions => @stream.public_posts_conditions, :order => 'published_at DESC', :include => [:service])
+      @posts = Post.paginate(:all, :per_page => 20, :page => params[:page], :conditions => @stream.public_posts_conditions, :order => 'published_at DESC', :include => [:service, :tags])
       #@posts = @stream.posts.paginate(:all, :limit => 12)
     else
-      @posts = Post.find_tagged_with(params[:tag_name], :conditions => @stream.public_posts_conditions, :limit => 12, :include => [:service])
+      @posts = Post.find_tagged_with(params[:tag_name], :conditions => @stream.public_posts_conditions, :limit => 20, :include => [:service, :tags])
     end
-    respond_to(:html, :rss, :atom)
+    respond_to(:rss, :atom, :activity)
   end
   
   def manage

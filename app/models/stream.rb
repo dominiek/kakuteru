@@ -37,6 +37,7 @@ class Stream < ActiveRecord::Base
     :conditions => "travel_starts_at > NOW()",
     :class_name => 'Trip',
     :limit => 8
+  has_one :design
   attr_accessor :new_password, 
                 :new_password_repeat
                 

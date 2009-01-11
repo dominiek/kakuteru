@@ -73,3 +73,6 @@ require 'will_paginate'
 APPLICATION_NAME = 'Kakuteru'
 GNIP_EMAIL = 'kakuteru@dominiek.com'
 GNIP_PASSWORD = ''
+
+Mime::Type.register "application/atom+xml", :activity
+
