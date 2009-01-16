@@ -1,0 +1,47 @@
+
+body {
+	background-color: #111;
+	font-family: "Lucida Grande",Arial,Helvetica,sans serif;
+	font-size: 16px;
+	color: #666;
+}
+
+a,
+a:visited,
+a:hover {
+	color: #2c94e4;
+	outline: none;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+body h1 {
+	display: none;
+}
+
+.call_for_designs {
+	background: url('/images/call_for_designs.png') no-repeat center center;
+	width: 948px;
+	height: 282px;
+	margin: 2em;
+}
+
+.explanation {
+	background-color: #fff;
+	margin: 0 2em 2em 2em;
+	padding: 2em;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+}
+
+h2, p, ul {
+	margin-bottom: 0.8em;
+}
+
+li {
+	margin-left: 1em;
+	margin-bottom: 0.4em;
+}

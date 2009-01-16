@@ -13,11 +13,11 @@ class Invite < ActiveRecord::Base
     Invite.find(:all, :conditions => ['email IS NOT NULL AND code IS NOT NULL AND is_used = 0 AND mail_sent = 0']).each do |invite|
       begin
         Inviter.deliver_invite(invite)
+        invite.update_attribute(:mail_sent, true)
       rescue => e
         logger.error("error sending invite to #{invite.email}: #{e.to_s}")
         logger.error(e)
       end
-      invite.update_attribute(:mail_sent, true)
       sleep(9)
     end
   end
@@ -27,11 +27,11 @@ class Invite < ActiveRecord::Base
     Invite.find(:all, :conditions => ['twitter_username IS NOT NULL AND code IS NOT NULL AND is_used = 0 AND mail_sent = 0']).each do |invite|
       begin
         Invite.tweet!(twitter, invite)
+        invite.update_attribute(:mail_sent, true)
       rescue => e
         logger.error("error sending invite to #{invite.twitter_username}: #{e.to_s}")
         logger.error(e)
       end
-      invite.update_attribute(:mail_sent, true)
       sleep(9)
     end
   end
