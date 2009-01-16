@@ -84,6 +84,8 @@ class StreamsController < ApplicationController
       @stream.update_attributes(:aggregation_status => Stream::STATUS_AGGREGATING, :aggregation_progress => 10)
       spawn do
         @stream.aggregate!(options)
+        ActiveRecord::Base.verify_active_connections!
+        ActiveRecord::Base.clear_active_connections!
       end
     end
   end

@@ -33,7 +33,7 @@ class Service < ActiveRecord::Base
   def fetch_profile_image!
     case identifier
       when 'twitter'
-        twitter = Twitter.new(profile_url.match(/twitter\.com\/([^\/]+)/)[1])
+        twitter = Tweeter.new(profile_url.match(/twitter\.com\/([^\/]+)/)[1])
         self.update_attribute(:profile_image_url, twitter.profile_image_url)
     end
   end

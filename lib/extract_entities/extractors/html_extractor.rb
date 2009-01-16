@@ -1,5 +1,0 @@
-
-
-class HtmlExtractor < ZemantaExtractor
-  
-end

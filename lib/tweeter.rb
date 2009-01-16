@@ -1,7 +1,7 @@
 
 require 'mechanize'
 
-class Twitter
+class Tweeter
   
   def initialize(username)
     @username = username

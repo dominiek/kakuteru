@@ -6,6 +6,7 @@ class Inviter < ActionMailer::Base
     recipients(invite.email)
     from("no-reply@kakuteru.com")
     subject("Your Kakuteru.com invite!")
+    invite.update_attribute(:mail_sent, true)
     body(:invite => invite)
   end
 
