@@ -10,6 +10,7 @@ class Asset < ActiveRecord::Base
     absolute_destination_path = File.join(RAILS_ROOT, 'public', 'assets', relative_destination_path)
     FileUtils.mkdir_p(File.dirname(absolute_destination_path))
     FileUtils.cp(file.path, absolute_destination_path)
+    FileUtils.chmod(0755, absolute_destination_path)
     asset = self.find_or_create_by_path(relative_destination_path)
     asset.update_attributes(:post_id => options[:post_id])
     asset
