@@ -37,6 +37,18 @@ body h1 {
 	-webkit-border-radius: 10px;
 }
 
+.promote {
+	float: right;
+	width: 40px;
+	margin-top: -20px;
+	padding-left: 20px;
+	padding-bottom: 20px;
+}
+
+.addthis {
+	margin-bottom: 20px;
+}
+
 h2, p, ul {
 	margin-bottom: 0.8em;
 }
