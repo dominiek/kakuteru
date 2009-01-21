@@ -33,7 +33,11 @@ class ApplicationController < ActionController::Base
     if @subdomain && @subdomain != 'kakuteru' && @domain =~ /kakuteru|localhost|test\.host/
       @stream = Stream.find_or_create_by_subdomain(@subdomain)
     else
-      @stream = Stream.find_by_domain(@domain)
+      if @subdomain
+        @stream = Stream.find_by_domain("#{@subdomain}.#{@domain}")
+      else
+        @stream = Stream.find_by_domain(@domain)
+      end
       @using_custom_domain = true
     end
   end
