@@ -20,6 +20,7 @@ class Service < ActiveRecord::Base
     'reddit'       => :bookmark,
     'flickr'       => :photo,
     'picasaweb'    => :photo,
+    'brightkite'   => :photo,
     'slideshare'   => :slide,
     'wakoopa'      => :software,
     'lastfm'       => :music

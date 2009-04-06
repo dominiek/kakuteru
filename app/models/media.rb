@@ -1,7 +1,7 @@
 class Media < ActiveRecord::Base
   belongs_to :post
   
-  SUPPORTED_SERVICES = ['flickr', 'vimeo', 'youtube', 'seesmic', 'picasaweb']
+  SUPPORTED_SERVICES = ['flickr', 'vimeo', 'youtube', 'seesmic', 'picasaweb', 'brightkite']
   
   def big_thumbnail_url
     if self.thumbnail_url =~ /flickr\.com/

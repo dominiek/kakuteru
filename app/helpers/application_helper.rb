@@ -57,10 +57,13 @@ module ApplicationHelper
   end
   
   def thumbnail(post)
-    #return image_tag('dodo.jpg')
     service = post.service
     if (post.type == 'photo' || post.type == 'slide' || post.type == 'software' || post.type == 'mixed') && !post.medias.blank?
-      image_tag(post.medias.first.thumbnail_url)
+      if service.identifier == 'brightkite'
+        image_tag(post.medias.first.embed_url.to_s.gsub('photo-feed', 'photo-big'))
+      else
+        image_tag(post.medias.first.thumbnail_url)
+      end
     elsif !service.profile_image_url.blank?
       image_tag(service.profile_image_url)
     else
