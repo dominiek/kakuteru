@@ -34,6 +34,8 @@ class Friendfeed
       entry.service.identifier = text_or_nil(xml_entry.elements['service/id'])
       entry.service.name = text_or_nil(xml_entry.elements['service/name'])
       entry.service.profileUrl = text_or_nil(xml_entry.elements['service/profileUrl'])
+      # Hack for weird bug
+      entry.service.profileUrl = entry.service.profileUrl.gsub(/\/statuses.*/, '')
       entry.service.iconUrl = text_or_nil(xml_entry.elements['service/iconUrl'])
       
       entry.medias = []
