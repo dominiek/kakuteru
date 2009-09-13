@@ -75,4 +75,5 @@ GNIP_EMAIL = 'kakuteru@dominiek.com'
 GNIP_PASSWORD = ''
 
 Mime::Type.register "application/atom+xml", :activity
+Mime::Type.register "application/rss+xml", :wxp
 

@@ -50,6 +50,10 @@ class PostsController < ApplicationController
     respond_to do |format|
       format.rss
       format.atom
+      format.wxp do
+        @articles = @stream.articles.find(:all, :limit => 300)
+        puts @articles.size
+      end
       format.html do
         require_authentication
         render(:layout => 'dashboard')
